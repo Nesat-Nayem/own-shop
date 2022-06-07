@@ -1,0 +1,112 @@
+.banner-container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .banner-img {
+    width: 100%;
+    object-fit: cover;
+    height: calc(80vh - 80px);
+    opacity: 0.3;
+  }
+  
+  .banner {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner-text {
+    font-family: Alegreya, sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: brown;
+    letter-spacing: 1px;
+  }
+  
+  .banner-form {
+    width: 70%;
+    margin: 0 auto;
+    padding: 7px 0;
+  
+    background-image: linear-gradient(
+      to right,
+      #537890,
+      #adb7c2,
+      #adb7c2,
+      #adb7c2,
+      #adb7c2,
+      #adb7c2,
+      #adb7c2,
+      #537890
+    );
+    border-radius: 7px;
+  }
+  
+  .search-field {
+    padding: 9px 4px 9px 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 7px;
+    width: 35%;
+    margin-right: 5px;
+    transition: width 0.4s ease-in-out;
+    background: transparent
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' className='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+      no-repeat 13px center;
+    background-color: white;
+    opacity: 0.7;
+  }
+  
+  .location-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-geo-alt' viewBox='0 0 16 16'%3E%3Cpath d='M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z'/%3E%3Cpath d='M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position-y: center;
+  }
+  
+  .search-field:focus {
+    width: 50%;
+    border: none;
+  }
+  
+  /* .search-field:hover {
+    background-color: lightsteelblue;
+  } */
+  
+  .search-btn {
+    background: brown;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  .search-btn:hover {
+    background-color: lightsteelblue;
+  }
+  
+  @media (max-width: 576px) {
+    .banner-img {
+      object-fit: fill;
+      height: 300px;
+    }
+    .banner-text {
+      font-size: 40px;
+    }
+    .banner-form form {
+      display: grid;
+    }
+    .search-field {
+      width: 100%;
+      margin-top: 15px;
+    }
+    .search-btn {
+      margin-top: 15px;
+    }
+  }

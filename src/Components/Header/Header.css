@@ -6,7 +6,8 @@
     color: darkblue;
 }
 .custom-bg{
-    background: rgba(255, 255, 255, 0.788);
+    /* background: rgba(255, 255, 255, 0.788); */
+    background: rgba(31, 27, 27, 0.788);
     transition: all ease-in-out .2s;
     padding-left: 20px;
 }
@@ -19,7 +20,11 @@
 
 }
 .nav-item:focus{
-    border-bottom: 3px solid #0176D5;
-    color:#0176D5 !important;
+    border-bottom: 3px solid #E60073;
+    color:#fff !important;
 
+}
+
+.text-color{
+    color: #fff !important;
 }

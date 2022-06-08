@@ -3,7 +3,7 @@ import React from "react";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <div className="banner-container overflow-hidden">
+    <div className="banner-container overflow-hidden ">
       <div>
         <img src="https://truelysell.com/assets/img/banner.jpg" />
         <div className="banner w-100">

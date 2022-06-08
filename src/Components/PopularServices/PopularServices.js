@@ -42,7 +42,7 @@ const PopularServices = () => {
 
 
     return (
-        <Container>
+        <Container className='mt-5'>
         <Stack justifyContent='center' alignItems='center' >
             <Box sx={{ width: { md: '70%', xs: "90", textAlign: 'center' } }}>
                 <Typography variant="h3" color='#363636' sx={{ fontWeight: 'bold', mb: 3 }}>Most Popular Services</Typography>

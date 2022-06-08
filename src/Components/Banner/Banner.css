@@ -1,7 +1,7 @@
 .banner-container {
     position: relative;
     text-align: center;
-    /* margin-top: 100px; */
+    margin-top: 90px;
   }
   
   .banner-img {
@@ -29,7 +29,7 @@
   }
   
   .banner-form {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     padding: 7px 0;
   
@@ -92,6 +92,42 @@
     background-color: lightsteelblue;
   }
   
+
+  .popularserch{
+    color: white !important;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: 50px;
+
+  }
+
+
+
+  .populartag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .populartag span{
+    width: 15px;
+    height: 15px;
+    background-color: #D9C505;
+    border-radius: 50%;
+  }
+  .popularserch a{
+    margin-right: 10px;
+    border: 1.4px dotted white;
+    padding: 10px 15px;
+    border-radius: 15px;
+  }
+  .popularserch a:hover{
+    background-color: #FF0080;
+    border-color: #FF0080;
+    transition: 0.2s ease;
+    cursor:pointer;
+  }
   @media (max-width: 576px) {
     .banner-img {
       object-fit: fill;
@@ -108,6 +144,20 @@
       margin-top: 15px;
     }
     .search-btn {
+      margin-top: 15px;
+    }
+    .btitle{
+      font-size: 30px !important;
+      /* margin-top: 100px; */
+    }
+    .popularserch{
+      display: none;
+    }
+    .banaerp{
+      width: 80%;
+      text-align: center !important;
+      margin-left: 35px;
+      font-size: 20px;
       margin-top: 15px;
     }
   }

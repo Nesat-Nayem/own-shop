@@ -1,0 +1,135 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.quantity-counter{
+    width: 100px;
+    height: 40px;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid rgb(236, 236, 236);
+}
+.quantity-counter input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    z-index: 0;
+}
+.quantity-counter #inc{
+    position: absolute;
+    left: 5px;
+    display: inline-block;
+    height: 100%;
+    z-index: 99;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 0 5px
+}
+.quantity-counter #dec{
+    position: absolute;
+    right: 5px;
+    height: 100%;
+    z-index: 99;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 0 5px
+}
+
+.wideget{
+  background: #f9f9f9;
+  padding: 14px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.widamaunt{
+  color: #2c3038;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+}
+.widgetbtn{
+  font-weight: 700;
+  display: block;
+  padding: 11px 25px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  width: 100%;
+  background-color: #ff0080;
+    border: 1px solid #ff0080;
+
+}
+
+.widgetbtn:hover{
+  background-color: #E60073;
+  border-color: #E60073;
+}
+
+.cardcrearyfy{
+  border: 1px solid #f0f0f0;
+  margin-bottom: 1.875rem;
+}
+.cardbodY{
+  padding: 1rem;
+}
+.cardtitLe{
+  margin-bottom: 15px;
+}
+.athorabout{
+  min-height: 80px;
+}
+.aboutproimage{
+  background-color: #fff;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  width: 80px;
+}
+.proviimagerap{
+  box-sizing: border-box;
+}
+.ancortt{
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+.providerdetails{
+  margin-left: 100px;
+}
+.authorname{
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #272b41;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: transparent;
+}
+.online{
+  color: #00e65b;
+  margin-right: 5px;
+  font-size: 12px;
+  font-weight: 900;
+}
+.mmmuted{
+  color: #6c757d!important;
+  margin-bottom: 0.25rem!important;
+}

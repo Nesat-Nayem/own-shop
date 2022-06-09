@@ -121,6 +121,8 @@
     border: 1.4px dotted white;
     padding: 10px 15px;
     border-radius: 15px;
+    text-decoration: none;
+    color: white;
   }
   .popularserch a:hover{
     background-color: #FF0080;

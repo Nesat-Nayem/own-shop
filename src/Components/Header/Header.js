@@ -29,7 +29,7 @@ const Header = () => {
           : " custom-bg py-4"
       }
     >
-      <Navbar.Brand className="ms-md-5 text-color" href="#home">
+      <Navbar.Brand className="ms-md-5 text-color" href="/">
         OwnSell
       </Navbar.Brand>
 
@@ -41,7 +41,7 @@ const Header = () => {
       <Navbar.Collapse id="responsive-navbar-nav" className={isCollapsed}>
         <Nav className="ms-auto ">
           <Nav.Link
-            href="#home"
+            href="/"
             className="me-md-5 nav-item text-color"
             onClick={() => window.scrollTo(500, 0)}
             active
@@ -49,7 +49,7 @@ const Header = () => {
             Home
           </Nav.Link>
 
-          <Nav.Link href="#link" className="me-md-5 nav-item text-color" active>
+          <Nav.Link href="/products" className="me-md-5 nav-item text-color" active>
             Services
           </Nav.Link>
 

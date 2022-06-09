@@ -1,0 +1,117 @@
+.featuredcatimg{
+    position: relative;
+}
+.feturedtextcata{
+    position:absolute;
+    top:30px;
+    left: 30px;
+}
+
+.feturedtextcata h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.feturedtextcata h6{
+    color:#858585;
+    font-size: 18px;
+}
+
+.fetuedcarig{
+    text-align: end;
+    margin-top: 30px;
+}
+.fetuedcarig a{
+    text-decoration: none;
+    color: black;
+}
+.fetuedcarig .fas{
+    font-size: 20px;
+    font-weight: bold;
+   
+}
+.fetuedcarig h1{
+    color: #f0f0f0;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.cataoryimg{
+    position: relative;
+   
+}
+.cataoryimg:hover{
+    /* transform: scale(1.5);
+    transition: 0.7s;
+    overflow: hidden !important;
+    box-sizing: border-box !important; */
+}
+.catagorycardrap{
+    position:absolute;
+    top: 20px;
+    left: 20px;
+}
+.catagorycardrap p{
+
+    color: black;
+    background:white;
+    padding: 5px 10px 5px 30px;
+    border-radius: 15px;
+}
+.catagorycardrap span{
+    width: 12px;
+    height: 12px;
+    margin: 10px -25px 3px 3px;
+    background: #ff0080;
+    border-radius: 50% 50%;
+    display: block;
+    z-index: 5;
+}
+
+/* hover image  */
+
+/* Shine */
+/* .hover14 figure {
+	position: relative;
+}
+.hover14 figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.hover14 figure:hover::before {
+	-webkit-animation: shine .75s;
+	animation: shine .75s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+} */
+
+/* hover image  */
+
+@media only screen and (max-width:556px) {
+    .fetuedcarig h1{
+        display: none;
+    }
+    .fetuedcarig a{
+        display: flex;
+    font-weight: 600;
+    margin-bottom: 30px;
+    }
+}

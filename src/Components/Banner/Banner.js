@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Banner.css";
 const Banner = () => {
@@ -45,9 +46,10 @@ const Banner = () => {
             <span></span>
             <p style={{fontSize:'18px', marginRight:'20px'}} className="mt-3 ms-2">Popular Searches</p>
             </div>
-            <a>Car Repair Services</a>
-            <a>Toughened Glass Fitting Services </a>
-            <a>Computer & Server AMC Service</a>
+            <a href="/products/carwash" >Car Repair Services</a>
+
+            <a href="/products/electrical">  Toughened Glass Fitting Services</a>
+            <a href="/products/computer">Computer & Server AMC Service</a>
           </div>
         </div>
 

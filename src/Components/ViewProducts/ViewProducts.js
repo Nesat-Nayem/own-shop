@@ -173,14 +173,19 @@ const ViewProducts = () => {
           <Col lg={4} md={4} sm={12}>
             <div className="wideget">
               <p className="widamaunt">${productView[0]?.price}</p>
-
-              <a
+              <form
+                action="/create-checkout-session"
+                method="POST"
+                
+              >
+              <button
                 variant="dark"
                 className=" widgetbtn btn btn-primary"
-                onClick={() => dispatch(addToCart(productView[0]))}
+                // onClick={() => dispatch(addToCart(productView[0]))}
               >
                 Book Services
-              </a>
+              </button>
+              </form>
             </div>
 
             <div className="cardcrearyfy mt-3">

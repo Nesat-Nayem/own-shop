@@ -1,8 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 import "./Banner.css";
 const Banner = () => {
+
+  const { searchKey, setSearchKey, searchLocation, setSearchLocation } =
+  useAuth();
+
+const handleSearchByKey = (e) => {
+  e.preventDefault();
+  const searchText = e.target.value;
+  setSearchKey(searchText);
+  console.log(searchText);
+};
+
+const handleSearchByLocation = (e) => {
+  e.preventDefault();
+  const searchText = e.target.value;
+  console.log(searchText);
+  setSearchLocation(searchText);
+};
+
   return (
     <div className="banner-container overflow-hidden">
       <div>
@@ -26,6 +45,7 @@ const Banner = () => {
                 placeholder="what you need"
                 className="search-field search-icon"
                 style={{ color: "orange" }}
+                onChange={handleSearchByKey}
               />
 
               <input
@@ -35,10 +55,13 @@ const Banner = () => {
                 placeholder="Location (city or country)"
                 className="search-field location-icon"
                 style={{ color: "orange" }}
+                onChange={handleSearchByLocation}
               />
+              <Link to="/searchresult">
               <button className="search-btn footer-search-btn p-3">
                 Search
               </button>
+              </Link>
             </form>
           </div>
           <div className="popularserch ">

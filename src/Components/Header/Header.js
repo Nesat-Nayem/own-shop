@@ -53,7 +53,7 @@ const Header = () => {
             Services
           </Nav.Link>
 
-          <Nav.Link href="#link" className="me-md-5 nav-item text-color" active>
+          <Nav.Link href="/singup" className="me-md-5 nav-item text-color" active>
             About
           </Nav.Link>
           <Nav.Link href="#link" className="me-md-5 nav-item text-color" active>

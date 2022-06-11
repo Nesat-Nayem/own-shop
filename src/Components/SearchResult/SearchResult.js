@@ -75,7 +75,7 @@ const SearchResult = () => {
               {/* <Col md={8}> */}
                 {searchJobs.length == 0 ? (
                   <div>
-                    <h1 className="text-center" style={{ color: "brown" }}>
+                    <h1 className="text-center" style={{ color: "brown", marginTop:'120px' }}>
                       No Result Found
                     </h1>
                   </div>

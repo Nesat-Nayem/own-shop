@@ -44,8 +44,9 @@ const handleSearchByLocation = (e) => {
                 id=""
                 placeholder="what you need"
                 className="search-field search-icon"
-                style={{ color: "orange" }}
+                style={{ color: "#333" }}
                 onChange={handleSearchByKey}
+                required
               />
 
               <input
@@ -54,8 +55,9 @@ const handleSearchByLocation = (e) => {
                 id=""
                 placeholder="Location (city or country)"
                 className="search-field location-icon"
-                style={{ color: "orange" }}
+                style={{ color: "#333" }}
                 onChange={handleSearchByLocation}
+                required
               />
               <Link to="/searchresult">
               <button className="search-btn footer-search-btn p-3">

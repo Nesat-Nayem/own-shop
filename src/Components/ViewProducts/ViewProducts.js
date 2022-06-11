@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
@@ -151,9 +151,9 @@ const ViewProducts = () => {
                 onChange={handleChange}
                 aria-label="ant example"
               >
-                <AntTab label="DESCRIPTION" />
-                <AntTab label="SHIPPING & RETURN" />
-                <AntTab label="REVIEWS" />
+                <AntTab label="Overview" />
+                <AntTab label="Services Offered" />
+                <AntTab label="Reviews" />
               </AntTabs>
               <TabPanel value={value} index={0}>
                 {productView[0]?.desc}
@@ -173,19 +173,16 @@ const ViewProducts = () => {
           <Col lg={4} md={4} sm={12}>
             <div className="wideget">
               <p className="widamaunt">${productView[0]?.price}</p>
-              <form
-                action="/create-checkout-session"
-                method="POST"
-                
-              >
-              <button
+    
+              <a href="/checkout"
                 variant="dark"
                 className=" widgetbtn btn btn-primary"
                 // onClick={() => dispatch(addToCart(productView[0]))}
               >
                 Book Services
-              </button>
-              </form>
+              </a>
+          
+            
             </div>
 
             <div className="cardcrearyfy mt-3">

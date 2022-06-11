@@ -10,6 +10,7 @@ const initialState = {
 export const productsReducer = createSlice({
   name: "glory-shop",
   initialState,
+  
   reducers: {
     setProducts:(state,{payload}) =>{
         state.allProducts = [...payload]

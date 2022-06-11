@@ -55,18 +55,47 @@ const FeaturedServices = () => {
         />
       ) : (
         <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+          // sx={{
+          //   display: "flex",
+          //   alignItems: "center",
+          //   justifyContent: "space-between",
+          // }}
         >
-          <Typography variant="h5" sx={{ fontWeight: "bold", mb: 3 }}>
+          {/* <Typography variant="h5" sx={{ fontWeight: "bold", mb: 3 }}>
             Trending
           </Typography>
           <Link to="/services" style={{ fontSize: 17 }}>
             View All
-          </Link>
+          </Link> */}
+
+            {/* title text  */}
+            <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-6 col-sm-12">
+            <div className="featuredcatimg">
+              <img src="https://truelysell.com/assets/img/title-image.png" />
+
+              <div className="feturedtextcata">
+                <h1>Latest Services</h1>
+                <h6>New Services</h6>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6 col-sm-12">
+            <div className="fetuedcarig">
+              <a href="#">
+                VIEW ALL
+                <span>
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+              <h1>Latest Services</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+            {/* title text  */}
+
         </Box>
       )}
 

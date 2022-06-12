@@ -8,9 +8,11 @@ import Products from "./Components/Products/Products";
 import ViewProducts from "./Components/ViewProducts/ViewProducts";
 import SearchResult from "./Components/SearchResult/SearchResult";
 import AuthProvider from "./context/AuthProvider";
-import Checkout from "./Components/Checkout/Checkout";
+// import Checkout from "./Components/Checkout/Checkout";
 import SignInForm from "./Components/Authentication/SignInForm";
 import SignupForm from "./Components/Authentication/SingUpForm.js";
+import CheckoutLayout from "./Components/Checkout/CheckoutLayout";
+import ProtectedRoutes from "./Components/ProtectedRoute/ProtectedRoutes";
 
 function App() {
   return (
@@ -25,7 +27,13 @@ function App() {
           <Route path="/products/:category/:productId" element={<ViewProducts />}></Route>
           {/* <Route path="/checkout_sessions" element={<Sheckout_Sessions />}></Route> */}
           <Route path="/searchresult" element={<SearchResult />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
+
+          <Route element={<ProtectedRoutes />}>
+        {/* <Route path="/checkout" element={<Checkout />} /> */}
+        <Route path="/checkout" element={<CheckoutLayout />}></Route>
+      </Route>
+
+         
           <Route path="/singin" element={<SignInForm />}></Route>
           <Route path="/singup" element={<SignupForm />}></Route>
 

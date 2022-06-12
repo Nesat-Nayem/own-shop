@@ -1,76 +1,108 @@
-// import React from "react";
-// import { useForm } from "react-hook-form";
-// import { Link, useHistory, useLocation } from "react-router-dom";
-// import useAuth from "../../hooks/useAuth";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import cogoToast from "cogo-toast";
+import { signin } from "../../redux/userSlice";
 
-// const SingInForm = () => {
-//   const history = useHistory();
-//   const location = useLocation();
+// import { signin } from "../../redux/slices/userSlice";
 
-//   const { error, logInWithEmailAndPassword } = useAuth();
+const SignInForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-//   const onSubmit = (data) => {
-//     logInWithEmailAndPassword(data.email, data.password, history, location);
-//   };
-//   return (
-//     <>
-//       <form className="md:w-96" onSubmit={handleSubmit(onSubmit)}>
-//         <div className="my-4">
-//           <input
-//             className="w-full block text-black border px-3 py-2 rounded focus:outline-none "
-//             placeholder="email"
-//             type="email"
-//             {...register("email", { required: true })}
-//           />
-//           {/* errors will return when field validation fails  */}
-//           {errors.email && (
-//             <span className="text-sm text-red-500 block">
-//               email is required
-//             </span>
-//           )}
-//         </div>
-//         <div className="my-4">
-//           <input
-//             className="w-full block border text-black px-3 py-2 rounded focus:outline-none "
-//             placeholder="password"
-//             type="password"
-//             {...register("password", {
-//               required: true,
-//               pattern: /^(?=.{6,})/,
-//             })}
-//           />
-//           <span className="text-sm text-red-500 block">
-//             {errors.password?.type === "required" && "password  is required"}
-//           </span>
-//           <span className="text-sm text-red-500 block">
-//             {errors.password?.type === "pattern" &&
-//               "password must be 6 characters"}
-//           </span>
-//           <span className="text-sm text-center text-red-500 block">
-//             {error ? error : ""}
-//           </span>
-//         </div>
-//         <p className="text-center py-3">
-//           Don't have an account?
-//           <Link className="text-blue-600 underline" to="/signup">
-//             Sign up
-//           </Link>
-//         </p>
-//         <div className="text-center">
-//           <input
-//             className="border btn-outline-light px-4 py-2 rounded"
-//             type="submit"
-//           />
-//         </div>
-//       </form>
-//     </>
-//   );
-// };
+  const onSubmit = (data) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
 
-// export default SingInForm;
+    axios
+      .post(
+        "http://localhost:7070/api/users/signin",
+        userInfo
+      )
+      .then((response) => {
+        dispatch(signin(response.data));
+        if (location.pathname === "/signin") {
+          navigate("/");
+        }
+        const options = { position: "bottom-center" };
+        cogoToast.success("Signin successfull", options);
+      })
+      .catch((error) => {
+        const options = { position: "bottom-center" };
+        cogoToast.error("Authentication failed", options);
+      });
+  };
+  return (
+    <div style={{marginTop:'120px'}} className="">
+      <h1 className="">
+        Sign In.
+      </h1>
+
+      {/* form */}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* email */}
+        <div className="">
+          <p className="">Email</p>
+          <input
+            className=""
+            {...register("email", { required: true })}
+          />
+          {/* errors will return when field validation fails  */}
+          {errors.email && (
+            <span className="">
+              email is required
+            </span>
+          )}
+        </div>
+        {/* password  */}
+        <div className="py-4">
+          <p className="">password</p>
+          <input
+            className=""
+            type="password"
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.{6,})/,
+            })}
+          />
+          {/* errors will return when field validation fails  */}
+          <span className="">
+            {errors.password?.type === "required" && "password  is required"}
+          </span>
+          <span className="">
+            {errors.password?.type === "pattern" &&
+              "password must be 6 characters"}
+          </span>
+        </div>
+
+        {/* submit button */}
+        <div className="flex justify-center py-4">
+          <input
+            type="submit"
+            className="  "
+            value="Continue"
+          />
+        </div>
+      </form>
+      <h1 className="text-center">
+        New here?{" "}
+        <Link className="" to="/singup">
+          Join Becakina
+        </Link>
+      </h1>
+    </div>
+  );
+};
+
+export default SignInForm;

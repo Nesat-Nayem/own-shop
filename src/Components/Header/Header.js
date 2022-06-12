@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 
 import { Navbar, Nav } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../redux/userSlice";
 
 const Header = () => {
+  const user = useSelector((state) => state.user.user)
   const [isSticky, setSticky] = useState(false);
   const [isCollapsed, setCollapsed] = useState(null);
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -16,6 +21,11 @@ const Header = () => {
       }
     });
   }, []);
+
+  const logout = () =>{
+    console.log('log out clicked')
+    dispatch(signOut())
+  }
 
   return (
     <Navbar
@@ -53,13 +63,20 @@ const Header = () => {
             Services
           </Nav.Link>
 
-          <Nav.Link href="/singup" className="me-md-5 nav-item text-color" active>
+          <Nav.Link href="" className="me-md-5 nav-item text-color" active>
             About
           </Nav.Link>
           <Nav.Link href="#link" className="me-md-5 nav-item text-color" active>
             Contract
           </Nav.Link>
+          <Nav.Link href="/singup" className="me-md-5 nav-item text-color" active>
+           Long in 
+          </Nav.Link>
+          <Nav.Link onClick={logout} className="me-md-5 nav-item text-color" active>
+           log out
+          </Nav.Link>
         </Nav>
+        <h1 style={{color:'red'}}>{user?.username}</h1>
       </Navbar.Collapse>
     </Navbar>
   );

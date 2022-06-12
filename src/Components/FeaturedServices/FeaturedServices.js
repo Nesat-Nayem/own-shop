@@ -18,7 +18,8 @@ const FeaturedServices = () => {
     setLoading(true);
     axios
       // .get("https://dry-sea-00611.herokuapp.com/api/v1/trending")
-      .get("http://localhost:5000/products")
+      // .get("http://localhost:5000/products")
+      .get("http://localhost:7070/api/products/getProduct")
       .then((res) => setServices(res.data))
      
      

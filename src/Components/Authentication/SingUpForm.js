@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import cogoToast from "cogo-toast";
+import cogoToast from "cogo-toast";
 import { useDispatch } from "react-redux";
 import { signin } from "../../redux/userSlice";
 // import { signin } from "../../redux/slices/userSlice";
@@ -43,17 +43,17 @@ const SingUpForm = () => {
         }
 
         const options = { position: "bottom-center" };
-        // cogoToast.success("Signup Sucessfully", options);
+        cogoToast.success("Signup Sucessfully", options);
       })
       .catch((error) => {
         const options = { position: "bottom-center" };
-        // cogoToast.error("Authentication failed", options);
+        cogoToast.error("Authentication failed", options);
       });
   };
   return (
     <div style={{marginTop:'120px'}} className="md:px-0 px-2">
       <h1 className="text-3xl font-thin text-center italic text-yellow-800">
-        Join Becakina.
+        Join With Us.
       </h1>
 
       {/* form */}
@@ -144,7 +144,7 @@ const SingUpForm = () => {
       </form>
       <h1 className="text-center">
         Existing User?{" "}
-        <Link className="underline text-blue-700" to="/signin">
+        <Link className="underline text-blue-700" to="/singin">
           Sign in
         </Link>
       </h1>

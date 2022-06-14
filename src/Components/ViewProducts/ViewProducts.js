@@ -11,6 +11,8 @@ import "./ViewProducts.css";
 import { Typography } from "@mui/material";
 import Card from "../Card/Card";
 import { addProduct, setProducts } from "../../redux/slice";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const AntTabs = styled(Tabs)({
   borderBottom: "1.2px solid #000",
@@ -59,12 +61,14 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
     <div
-      role="tabpanel"
+    
+      // role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
+      
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography sx={{ textAlign: "left" }}>{children}</Typography>
@@ -112,6 +116,7 @@ const ViewProducts = () => {
 
   return (
     <>
+     <Header></Header>
       <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
         <Row>
           <Col lg={8} md={8} sm={12}>
@@ -175,13 +180,13 @@ const ViewProducts = () => {
             <div className="wideget">
               <p className="widamaunt">${productView[0]?.price}</p>
     
-              <a href="/checkout"
+              <Link to={`/products/checkout/${productView[0]?.id}`}
                 variant="dark"
                 className=" widgetbtn btn btn-primary"
                 // onClick={() => dispatch(addToCart(productView[0]))}
               >
                 Book Services
-              </a>
+              </Link>
           
             
             </div>
@@ -222,6 +227,7 @@ const ViewProducts = () => {
           })}
         </div>
       </Container>
+      <Footer></Footer>
     </>
   );
 };

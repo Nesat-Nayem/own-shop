@@ -2,11 +2,13 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 import "./FuteredCatagory.css";
 const FuteredCatagory = () => {
   const products = useSelector((state) => state.products);
   return (
     <div>
+
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 col-sm-12">

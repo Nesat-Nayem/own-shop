@@ -1,0 +1,90 @@
+.cardrapper{
+    background-color: #F3F4F6;
+    padding: 100px;
+}
+
+.cardOne{
+    background-color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+.cardTow{
+    background-color: black;
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+.resisterbtn{
+    border: none;
+    padding: 5px 30px;
+    background-color: #1f8eac;
+    color: white;
+    transition: 0.2s ease;
+}
+.resisterbtn:hover{
+    background-color: #0b6e89;
+    
+}
+
+.classTowbtn{
+    border: none;
+    padding: 5px 30px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+
+.classTowbtn:hover{
+    background-color: #0b6e89;
+    color: white;
+    
+}
+
+
+.cardTow h4{
+	font-size: 25px;
+	color: white;
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	font-weight: 500;
+	position: relative;
+}
+
+.cardTow h4::before{
+	content: '';
+	position: absolute;
+	/* left:0; */
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+
+.cardOne h4{
+	font-size: 25px;
+	color: black;
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	font-weight: 500;
+	position: relative;
+}
+.cardOne h4::before{
+	content: '';
+	position: absolute;
+	/* left:0; */
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+
+@media only screen and (max-width: 560px) {
+  .cardrapper{
+    padding: 10px;
+  }
+  }

@@ -5,6 +5,9 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import cogoToast from "cogo-toast";
 import { signin } from "../../redux/userSlice";
+import './SingInForm.css'
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 // import { signin } from "../../redux/slices/userSlice";
 
@@ -44,18 +47,23 @@ const SignInForm = () => {
       });
   };
   return (
-    <div style={{marginTop:'120px'}} className="">
-      <h1 className="">
+  
+    <div>
+        <Header></Header>
+      <div className="loginare">
+      {/* <h1 className="text-center">
         Sign In.
-      </h1>
+      </h1> */}
 
       {/* form */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="loginform mb-5"  onSubmit={handleSubmit(onSubmit)}>
         {/* email */}
-        <div className="">
-          <p className="">Email</p>
+        <h3 className="text-center mb-4">Sing In</h3>
+       <div>
+       <div className="loginifo">
+          <p >Email</p>
           <input
-            className=""
+          
             {...register("email", { required: true })}
           />
           {/* errors will return when field validation fails  */}
@@ -66,7 +74,7 @@ const SignInForm = () => {
           )}
         </div>
         {/* password  */}
-        <div className="py-4">
+        <div className="loginifo">
           <p className="">password</p>
           <input
             className=""
@@ -87,20 +95,29 @@ const SignInForm = () => {
         </div>
 
         {/* submit button */}
-        <div className="flex justify-center py-4">
+        <div className="">
           <input
             type="submit"
-            className="  "
-            value="Continue"
+            className=" loginbtn"
+            value="Sign In"
           />
         </div>
-      </form>
-      <h1 className="text-center">
-        New here?{" "}
-        <Link className="" to="/singup">
-          Join Becakina
+       </div>
+       <h6 className="mt-5">
+       New here?
+        <Link className="text-end" to="/register">
+       Just Join 
         </Link>
-      </h1>
+      </h6>
+      </form>
+      {/* <h1 className="text-center my-5">
+        New here?{" "}
+        <Link className="" to="/register">
+          Just Join 
+        </Link>
+      </h1> */}
+      </div>
+      <Footer></Footer>
     </div>
   );
 };

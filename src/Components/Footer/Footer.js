@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Footer.css'
 const Footer = () => {
@@ -50,13 +51,17 @@ const Footer = () => {
                 </div>
                 <div className='container mt-4'>
                     <div className=' row d-flex justify-content-between'>
-                    <div className='col-sm-12 col-md-6'>
+                    <div className='col-sm-12 col-md-4'>
                         <p className='coppyarea'> &copy; 2022 OwnSell</p>
                     </div>
-                    <div className=' d-flex col-sm-12 col-md-6 '>
+
+                    <div className=' d-flex col-sm-12 col-md-4 '>
                         <p className='coppyarea '>Praivacy</p>
                         <span className='text-end' style={{margin:'0px 10px', color:'white'}} > | </span>
                         <p className='coppyarea'>Trams & Conditions</p>
+                    </div>
+                    <div style={{cursor:'pointer'}} className='col-sm-12 col-md-4 text-end'>
+                     <Link to='/register' style={{textDecoration:'none'}}>   <a style={{textDecoration:'none'}} className='coppyarea partertext'> Partner Register</a></Link>
                     </div>
                     </div>
                 </div>

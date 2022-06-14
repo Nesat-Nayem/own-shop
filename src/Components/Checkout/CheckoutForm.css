@@ -1,23 +1,18 @@
-.loginare{
-    margin-top: 120px;
-}
-
-.loginform{
-    width: 500px;
+.checkoutforn{
+    width: 800px;
     background-color: rgba(0, 0, 0, 0.094);
     margin: 0 auto;
     padding: 30px 100px;
-
-    
 }
 
-.loginifo p{
+
+.paymentifput p{
     font-size: 17PX;
     font-weight: 500;
     color:black;
 }
 
-.loginifo input{
+.paymentifput input{
     width: 300px;
     /* margin-left: 40px; */
     outline: none;
@@ -25,13 +20,13 @@
     border: none;
     padding: 3px 0 0 5px;
     margin-bottom: 10px;
+    
 }
 
-
-.loginbtn{
+.formBtbn{
+    width: 300px;
     border: 1px solid #06B6D4;
-    padding: 4px 123px;
-
+    padding: 4px 50px;
     margin-top: 20px;
     outline: none;
     border-radius: 3px;
@@ -40,7 +35,29 @@
     transition: 0.5s ease;
 }
 
-.loginbtn:hover{
+.formBtbn:hover{
     background-color: #06B6D4;
     color: white;
+}
+
+@media screen and (max-width:560px) {
+    .checkoutforn{
+        width: 100%;
+        padding: 20px 0px;
+    
+    }
+    .paymentifput input{
+        /* width: 90%; */
+        padding-left: 10px;
+        margin-left: 20px;
+    }
+    .paymentifput p{
+        margin-left: 20px;
+    }
+    .regionbtn{
+        margin-left: 20px;
+    }
+    .formBtbn{
+        margin-left: 20px;
+    }
 }

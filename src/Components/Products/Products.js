@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, addWishList, setProducts } from '../../redux/slice';
 import Card from '../Card/Card';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import './Products.css'
 
 const Products = () => {
@@ -42,6 +44,7 @@ const Products = () => {
 
     return (
         <div>
+            <Header></Header>
         <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
             <p className='m-0'>Total Product found {products.length}</p>
 
@@ -55,6 +58,7 @@ const Products = () => {
               })
           }
         </div>
+        <Footer></Footer>
     </div>
     );
 };

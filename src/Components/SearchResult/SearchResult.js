@@ -3,6 +3,8 @@ import useAuth from "../../hooks/useAuth";
 import { Col, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const SearchResult = () => {
     const [searchJobs, setSearchJobs] = useState([]);
@@ -43,6 +45,7 @@ const SearchResult = () => {
   
     return (
         <>
+        <Header></Header>
         <div >
           {/* <div
             className="list-sec-banner d-flex align-items-center justify-content-center"
@@ -152,6 +155,7 @@ const SearchResult = () => {
             </div>
           </div>
         </div>
+        <Footer></Footer>
       </>
     );
 };

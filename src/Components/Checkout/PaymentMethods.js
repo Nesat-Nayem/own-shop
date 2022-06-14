@@ -10,8 +10,11 @@ import {
   import React, { useEffect, useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import axios from "axios";
+  import './PaymentMethods.css'
 //   import { clearCart } from "../../redux/slices/cartSlice";
-  import { useNavigate } from "react-router-dom";
+  import { useNavigate, useParams } from "react-router-dom";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
   
   const ELEMENT_OPTIONS = {
     style: {
@@ -37,26 +40,28 @@ import {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false);
-  
+
+    const {productId} = useParams()
+
     const user = useSelector((state) => state.user.user);
     // const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+
+    const [data,setdata] = useState("")
+
+    const {price} = data;
+    // console.log("product price",price)
+    console.log(data)
+    console.log(data?.name)
+    useEffect(()=>{
+      fetch(`http://localhost:7070/api/Products/singleProduct/${productId}`)
+      .then(res =>res.json())
+      .then(data =>setdata(data))
+    },[productId])
   
-    useEffect(() => {
-      axios
-        .post(
-          "http://localhost:7070/create-payment-intent",
-          // cart
-        )
-        .then(function (response) {
-          console.log(response.data.clientSecret)
-          setClientSecret(response.data.clientSecret);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }, []);
+
   
     // total cost
     // const total = cart.reduce((total, pd) => total + pd.price * pd.quantity, 0);
@@ -147,62 +152,104 @@ import {
         //   });
       //   setProcessing(false);
       // }
+
+
+
+
+
     };
+
+    useEffect(() => {
+      fetch('http://localhost:7070/create-payment-intent',{
+        method:'POST',
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify({price})
+
+      })
+      .then(res =>res.json())
+      .then(data => setClientSecret(data?.clientSecret))
+  }, [price]);
+
   
     return (
-      <div style={{marginTop:'120px'}} className="flex justify-center">
-        <form onSubmit={handleSubmit}>
-          <h1 className="text-center text-xl font-bold pb-7">Pay with Card</h1>
+     <>
+     <Header></Header>
+      <div style={{marginTop:'120px'}} className="">
+        <form className="paymentform" onSubmit={handleSubmit}>
+        {/* <h1>pay for: {productId}</h1>
+        <h1>pay for: {data?.name}</h1> */}
+          <h1 className="">Fill Your Card Information</h1>
           <br />
-          <label htmlFor="cardNumber">Card Number</label>
+
+
+          <div className="paymentifput">
+          <label htmlFor="cardNumber">Enter You Card Number</label>
           <CardNumberElement
             id="cardNumber"
-            className="focus:outline-none w-full border border-gray-400 rounded px-3 py-2"
+            className="paymentifputinput"
             options={ELEMENT_OPTIONS}
           />
-          <div className="flex justify-between py-4">
-            <div>
-              <label htmlFor="expiry">Card Expiration</label>
+          </div>
+       
+            <div className="paymentifput" >
+              <label htmlFor="expiry">Enter Your Card Expiration</label>
               <CardExpiryElement
                 id="expiry"
-                className="focus:outline-none  border border-gray-400 rounded px-3 py-2"
+                className="paymentifputinput"
                 options={ELEMENT_OPTIONS}
               />
             </div>
-            <div>
-              <label htmlFor="cvc">CVC</label>
+
+            <div className="paymentifput" >
+              <label htmlFor="cvc">Enter Your CVC</label>
               <CardCvcElement
                 id="cvc"
-                className="focus:outline-none w-20 border border-gray-400 rounded px-3 py-2"
+                className="paymentifputinput "
                 options={ELEMENT_OPTIONS}
               />
             </div>
-          </div>
-  
-          <label htmlFor="postal">Postal Code</label>
+         
+
+
+
+          <div className="paymentifput">
+              
+          <label htmlFor="postal">Enter Your Postal Code</label>
+          <br />
           <input
             id="postal"
             required
             placeholder="12345"
-            className="focus:outline-none w-full border border-gray-400 rounded px-3 py-2"
+            className="paymentifputinput"
             value={postal}
+
+            
             onChange={(e) => {
               setPostal(e.target.value);
             }}
           />
+
+          </div>
+
+
           {/* {errorMessage && <ErrorResult>{errorMessage}</ErrorResult>}
         {paymentMethod && <Result>Got PaymentMethod: {paymentMethod.id}</Result>} */}
-          <div className="flex justify-center py-6">
+          <div className="">
             <button
               type="submit"
-              className="btn btn-primary"
+              className="formBtbn"
               disabled={!stripe || processing}
             >
-              Pay $120
+              Pay $ {data?.price}
             </button>
           </div>
+
         </form>
       </div>
+      <Footer></Footer>
+     </>
     );
   };
   

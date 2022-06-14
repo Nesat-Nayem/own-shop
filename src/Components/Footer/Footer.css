@@ -96,6 +96,10 @@ ul{
 
 }
 
+.partertext a{
+	text-decoration: none !important;
+}
+
 /*responsive*/
 @media(max-width: 767px){
   .footer-col{

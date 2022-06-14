@@ -66,20 +66,30 @@ const Header = () => {
           <Nav.Link href="" className="me-md-5 nav-item text-color" active>
             About
           </Nav.Link>
-          <Nav.Link href="#link" className="me-md-5 nav-item text-color" active>
+
+          <Nav.Link href="/dashboard" className="me-md-5 nav-item text-color" active>
+            Dashboard
+          </Nav.Link>
+
+          <Nav.Link href="/contract" className="me-md-5 nav-item text-color" active>
             Contract
           </Nav.Link>
-          <Nav.Link href="/singup" className="me-md-5 nav-item text-color" active>
-           Long in 
-          </Nav.Link>
-          <Nav.Link onClick={logout} className="me-md-5 nav-item text-color" active>
-           log out
-          </Nav.Link>
+          {user?.email ? 
+          (
+            <Nav.Link onClick={logout} className="me-md-5 nav-item text-color" active>
+             Log Out
+            </Nav.Link>):
+          (
+                      <Nav.Link href="/singin" className="me-md-5 nav-item text-color" active>
+                      Long in 
+                     </Nav.Link> )
+          }
         </Nav>
-        <h1 style={{color:'red'}}>{user?.username}</h1>
+        {/* <h1 style={{color:'red'}}>{user?.username}</h1> */}
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
 export default Header;
+

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addProduct, addWishList, setProducts } from '../../redux/slice';
 import Card from '../Card/Card';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
 const FilterProduct = () => {
     const { category } = useParams();
@@ -32,7 +34,9 @@ const FilterProduct = () => {
     const filtered = products.filter(pro => pro.category.toLocaleLowerCase() === category.toLocaleLowerCase());
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4  container mx-auto my-5">
+      <>
+      <Header></Header>
+              <div className="row row-cols-1 row-cols-md-3 g-4  container mx-auto my-5">
         {
           filtered.map(pro=>{
                 return(
@@ -41,6 +45,8 @@ const FilterProduct = () => {
             })
         }
       </div>
+      <Footer></Footer>
+      </>
     );
 };
 

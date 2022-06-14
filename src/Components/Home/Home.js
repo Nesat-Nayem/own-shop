@@ -16,6 +16,7 @@ const Home = () => {
       <FeaturedServices></FeaturedServices>
       <PopularServices></PopularServices>
       <WorkFlow></WorkFlow>
+      <Footer></Footer>
 
     </div>
   );

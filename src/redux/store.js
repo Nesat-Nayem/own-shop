@@ -2,6 +2,7 @@ import { configureStore, combineReducers, getDefaultMiddleware, } from "@reduxjs
 import productReducer from './slice'
 // import userSlice from "./userSlice";
 import userSlice from "./userSlice";
+import dataSlice from "./dataSlice/dataSlice";
 import {
   persistReducer,
   FLUSH,
@@ -16,9 +17,11 @@ import storage from "redux-persist/lib/storage";
 
 
 
+
 const reducers = combineReducers({
   products:productReducer,
   user:userSlice,
+  data:dataSlice
 });
 
 const persistConfig = {

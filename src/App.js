@@ -20,47 +20,77 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import OverView from "./Components/Dashboard/OverView/OverView";
 import Logo from "./Components/Logo/Logo";
 import ContactUs from "./Components/ContractUs/ContactUs"
+import PendingProviders from "./Components/Dashboard/PendingProviders/PendingProviders";
+import AddServiceRequest from "./Components/Dashboard/MakeServiceRequist/AddServiceRequest";
+import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
+import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
+import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
+import Dashboardoverviewtow from "./Components/Dashboard/Dashboardoverviewtow/Dashboardoverviewtow";
+import DashbordFastPage from "./Components/Dashboard/DashboardOverview/DashbordFastPage";
 // import Login from "./Components/Loginuser/Loginuser";
 // import StyleLogin from "./Components/styleLogin/StyleLogin";
 
+
 function App() {
+
   return (
     <div>
       <AuthProvider>
       <BrowserRouter>
-        {/* <Header></Header> */}
-        {/* <Navigation></Navigation> */}
-        <Routes>
+      <Routes>
+
+       
           <Route path="/" element={<Home />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/register" element={<NewRegister />}></Route>
           <Route path="/vendor" element={<Vendor />}></Route>
           <Route path="/products/:category" element={<FilterProduct />}></Route>
           <Route path="/products/:category/:productId" element={<ViewProducts />}></Route>
-          {/* <Route path="/checkout_sessions" element={<Sheckout_Sessions />}></Route> */}
+         
           <Route path="/searchresult" element={<SearchResult />}></Route>
 
-          <Route element={<ProtectedRoutes />}>
+        {/* provite or protected route  */}
+          <Route element={<ProtectedRoutes />} >
         {/* <Route path="/checkout" element={<Checkout />} /> */}
         <Route path="/products/checkout/:productId" element={<CheckoutLayout />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/dashboard/overview" element={<OverView />}></Route>
-        </Route>
+        
+
+      {/* dashborad route must be dashboard route  */}
+        <Route path="/dashboard" element={<Dashboard />}>
+       <Route path="/dashboard/overview" element={<OverView />}></Route> 
+        <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
+        <Route path="/dashboard/servicerequist" element={<AddServiceRequest />}></Route>
+        <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
+        {/* dashbord  */}
+         </Route> 
+          {/* dashbord  */}
+    {/* provate tourte */}
+         </Route>
+ {/* provate tourte */}
+
+          {/* dashborad route must be dashboard route  */}
+       
+           {/* provite or protected route  */}
 
 
         <Route path="/contract" element={<ContactUs />}></Route>
-        {/* <Route path="loginform" element={<StyleLogin/>}></Route> */}
 
-      
+
+        <Route path="/overview" element={<DashboardOverView />}>      
+        <Route path="/overview/adminroute" element={<Dashboardadminroute />}></Route> 
+        <Route path='/overview/dashbordFastPage' element={<DashbordFastPage />}></Route> 
+        </Route>
+
+   
 
          
           <Route path="/singin" element={<SignInForm />}></Route>
           <Route path="/singup" element={<SignupForm />}></Route>
-          {/* <Route path="/logo" element={<Logo />}></Route> */}
+          <Route path="/Dashboardoverviewtow" element={<Dashboardoverviewtow />}></Route>
+       
 
 
-        </Routes>
-        {/* <Footer></Footer> */}
+        </ Routes >
       </BrowserRouter>
       </AuthProvider>
     </div>

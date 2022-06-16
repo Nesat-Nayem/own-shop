@@ -8,7 +8,7 @@ import {
   } from "@stripe/react-stripe-js";
   import cogoToast from "cogo-toast";
   import React, { useEffect, useState } from "react";
-  import { useDispatch, useSelector } from "react-redux";
+  import {  useSelector } from "react-redux";
   import axios from "axios";
   import './PaymentMethods.css'
 //   import { clearCart } from "../../redux/slices/cartSlice";
@@ -33,6 +33,7 @@ import Footer from "../Footer/Footer";
   };
   
   const PaymentMethods = ({ checkoutDetails }) => {
+    // console.log(checkoutDetails)
     const elements = useElements();
     const stripe = useStripe();
     const [postal, setPostal] = useState("");
@@ -45,16 +46,22 @@ import Footer from "../Footer/Footer";
 
     const user = useSelector((state) => state.user.user);
     // const cart = useSelector((state) => state.cart.cart);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    
+    let [data,setdata] = useState('')
+ 
+    // console.log(data)
 
-    const [data,setdata] = useState("")
+
+
 
     const {price} = data;
-    // console.log("product price",price)
     console.log(data)
-    console.log(data?.name)
+    // console.log("product price",price)
+    // console.log(data)
+    // console.log(data?.name)
     useEffect(()=>{
       fetch(`http://localhost:7070/api/Products/singleProduct/${productId}`)
       .then(res =>res.json())
@@ -69,6 +76,7 @@ import Footer from "../Footer/Footer";
   
     const handleSubmit = async (event) => {
       // Block native form submission.
+      // console.log(event)
       event.preventDefault();
       if (!stripe || !elements) {
         return;
@@ -85,12 +93,12 @@ import Footer from "../Footer/Footer";
         type: "card",
         card,
         billing_details: {
-          name: checkoutDetails.fullname,
-          email: checkoutDetails.email,
-          phone: checkoutDetails.phone,
-          address: {
-            postal_code: postal,
-          },
+          name: checkoutDetails?.fullname,
+          email: checkoutDetails?.email,
+          phone: checkoutDetails?.phone,
+          // address: {
+          //   postal_code: postal,
+          // },
         },
       });
   
@@ -110,8 +118,8 @@ import Footer from "../Footer/Footer";
           payment_method: {
             card: card,
             billing_details: {
-              name: checkoutDetails.fullname,
-              email: checkoutDetails.email,
+              name: checkoutDetails?.fullname,
+              email: checkoutDetails?.email,
             },
           },
         }
@@ -120,38 +128,49 @@ import Footer from "../Footer/Footer";
       if (error) {
         cogoToast.error(error.message);
       }
-      // if (paymentIntent) {
-      //   console.log(paymentIntent);
-      //   let orders = [];
-      //   for (let i = 0; i < cart.length; i++) {
-      //     const element = cart[i];
-      //     orders.push({
-      //       userId: user._id,
-      //       productId: element._id,
-      //       quantity: element.quantity,
-      //       shippingAddress: {
-      //         country: checkoutDetails.country,
-      //         region: checkoutDetails.region,
-      //         phone: checkoutDetails.phone,
-      //       },
-      //       transectionId: paymentIntent.id,
-      //     });
-      //   }
-  
-        // axios
-        //   .post("https://still-eyrie-85728.herokuapp.com/api/orders", orders)
-        //   .then((response) => {
-        //     navigate("/dashboard/orders");
-        //     dispatch(clearCart());
-        //     const options = { position: "bottom-right" };
-        //     cogoToast.success("Order sucessfully completed!", options);
-        //   })
-        //   .catch(function (error) {
-        //     const options = { position: "bottom-right" };
-        //     cogoToast.error("Orders failed", options);
+      if (paymentIntent) {
+        // console.log(paymentIntent);
+        // let orders = [];
+        // console.log(orders)
+        // for (let i = 0; i < user.length; i++) {
+        //   const element = cart[i];
+        //   orders.push({
+        //     userId: user._id,
+        //     productId: element._id,
+        //     quantity: element.quantity,
+        //     shippingAddress: {
+        //       country: checkoutDetails.country,
+        //       region: checkoutDetails.region,
+        //       phone: checkoutDetails.phone,
+        //     },
+        //     transectionId: paymentIntent.id,
         //   });
-      //   setProcessing(false);
-      // }
+        // }
+  
+        // const paymentInfo ={
+        //   servicename: data?.name,
+        //   serviceimg:data?.img,
+        //   serviceprice:data?.price,
+
+        // }
+        // console.log(paymentInfo)
+
+
+        axios
+          .post("http://localhost:7070/api/orders/postOrder", data)
+          // .post("http://localhost:7070/api/orders/postOrder", )
+          .then((response) => {
+            navigate("/");
+            // dispatch(clearCart());
+            const options = { position: "bottom-right" };
+            cogoToast.success("Order sucessfully completed!", options);
+          })
+          .catch(function (error) {
+            const options = { position: "bottom-right" };
+            cogoToast.error("Orders failed", options);
+          });
+        setProcessing(false);
+      }
 
 
 
@@ -176,7 +195,7 @@ import Footer from "../Footer/Footer";
     return (
      <>
      <Header></Header>
-      <div style={{marginTop:'120px'}} className="">
+      <div style={{marginTop:'120px', marginBottom:'20px'}} className="">
         <form className="paymentform" onSubmit={handleSubmit}>
         {/* <h1>pay for: {productId}</h1>
         <h1>pay for: {data?.name}</h1> */}

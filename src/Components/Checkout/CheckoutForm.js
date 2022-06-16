@@ -34,6 +34,7 @@ const CheckoutForm = ({ setIsFullFilled, setCheckoutDetails }) => {
   } = useForm();
 
   const onSubmit = (data) => {
+    // console.log(data)
     if (data.fullname && data.email && data.phone && country && region) {
       const checkoutDetails = {
         fullname: data.fullname,
@@ -42,6 +43,8 @@ const CheckoutForm = ({ setIsFullFilled, setCheckoutDetails }) => {
         country,
         region,
       };
+      // console.log(checkoutDetails)
+
       setCheckoutDetails(checkoutDetails);
       setIsFullFilled(true);
     } else {

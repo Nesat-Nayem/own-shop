@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FilterProduct from "./Components/FilterProduct/FilterProduct";
@@ -23,10 +24,10 @@ import ContactUs from "./Components/ContractUs/ContactUs"
 import PendingProviders from "./Components/Dashboard/PendingProviders/PendingProviders";
 import AddServiceRequest from "./Components/Dashboard/MakeServiceRequist/AddServiceRequest";
 import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
-import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
-import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
-import Dashboardoverviewtow from "./Components/Dashboard/Dashboardoverviewtow/Dashboardoverviewtow";
-import DashbordFastPage from "./Components/Dashboard/DashboardOverview/DashbordFastPage";
+// import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
+// import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
+// import Dashboardoverviewtow from "./Components/Dashboard/Dashboardoverviewtow/Dashboardoverviewtow";
+// import DashbordFastPage from "./Components/Dashboard/DashboardOverview/DashbordFastPage";
 // import Login from "./Components/Loginuser/Loginuser";
 // import StyleLogin from "./Components/styleLogin/StyleLogin";
 
@@ -76,17 +77,17 @@ function App() {
         <Route path="/contract" element={<ContactUs />}></Route>
 
 
-        <Route path="/overview" element={<DashboardOverView />}>      
+        {/* <Route path="/overview" element={<DashboardOverView />}>      
         <Route path="/overview/adminroute" element={<Dashboardadminroute />}></Route> 
         <Route path='/overview/dashbordFastPage' element={<DashbordFastPage />}></Route> 
-        </Route>
+        </Route> */}
 
    
 
          
           <Route path="/singin" element={<SignInForm />}></Route>
           <Route path="/singup" element={<SignupForm />}></Route>
-          <Route path="/Dashboardoverviewtow" element={<Dashboardoverviewtow />}></Route>
+          {/* <Route path="/Dashboardoverviewtow" element={<Dashboardoverviewtow />}></Route> */}
        
 
 

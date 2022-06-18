@@ -4,6 +4,7 @@ import { Rating } from 'react-simple-star-rating';
 import './Card.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeWishProduct } from '../../redux/slice';
+import { BoltRounded } from '@mui/icons-material';
 
 const Card = ({product, addToCart, addToWishlist}) => {
 
@@ -35,20 +36,21 @@ const Card = ({product, addToCart, addToWishlist}) => {
             <div className="card-body d-flex flex-column align-items-start">
                 <Rating ratingValue={review * 20} size={18} readonly={true}/>
               <p style={{
-                  color: '#818995', 
+                   color: '#3a9046',
                   fontSize: '13px',
                   margin: '5px 0'
                   }}>
                       {String(category).toLocaleUpperCase()}
                 </p>
-              <h5 className="card-title" style={{
-                  color: '#3e4a5e',
+              <h2  className="card-title" style={{
+                  color: '#FF0080',
                   fontSize: '18px',
+                  fontWeight:900,
                   margin: '5px 0', 
                   letterSpacing: '1px'
                 }}>
                     {name}
-              </h5>
+              </h2>
               <p style={{
                   color: '#3a9046',
                   fontSize: '25px',

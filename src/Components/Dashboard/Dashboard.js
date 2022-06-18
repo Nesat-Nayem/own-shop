@@ -12,32 +12,18 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
-import ReviewsIcon from "@mui/icons-material/Reviews";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import PaymentIcon from "@mui/icons-material/Payment";
-import RateReviewIcon from "@mui/icons-material/RateReview";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import HandymanIcon from "@mui/icons-material/Handyman";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import Avatar from "@mui/material/Avatar";
 import { Outlet } from "react-router-dom";
-import PersonIcon from '@mui/icons-material/Person';
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';
-import DoneAllIcon from '@mui/icons-material/DoneAll';
 
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import AnchorIcon from '@mui/icons-material/Anchor';
-import BeenhereIcon from '@mui/icons-material/Beenhere';
+
 import { useSelector } from "react-redux";
-// import { allData } from "../../redux/dataSlice/dataSlice";
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import Skeleton from '@mui/material/Skeleton';
-// import useFirebase from "../../Hooks/useFirebase";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
 import { allData } from "../../redux/dataSlice/dataSlice";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../redux/userSlice";
@@ -72,22 +58,24 @@ const Dashboard = (props) => {
   const { loading } = useSelector(allData)
   const activeStyle = ({ isActive }) => {
     return {
-      borderRight: isActive ? "4px solid #00a1ba" : "4px solid transparent",
-      backgroundColor: isActive ? "#f4f5f8" : 'white'
+      // borderRight: isActive ? "4px solid #00a1ba" : "4px solid transparent",
+      borderRight: isActive ? "4px solid #E60073" : "4px solid transparent",
+      backgroundColor: isActive ? "#444444 " : '#333333 '
     };
   }
   const drawer = (
     <>
-      {/* { */}
-        {/* // loading ?  */}
+  
         
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            mt: 2,
-         
+            // mt: 2,
+            backgroundColor:'#333333',
+            
+          
           }}
         >
           {/* <Skeleton variant="circular" width={80} height={80} /> */}
@@ -98,7 +86,9 @@ const Dashboard = (props) => {
             flexDirection: "column",
             alignItems: "center",
             mt: 2,
-            
+            backgroundColor:'#333333',
+          
+
           }}
         >
           <Avatar
@@ -106,7 +96,7 @@ const Dashboard = (props) => {
          src='https://i.ibb.co/1qdnh78/img-1.jpg'
             alt='admin img'
           />
-          <Typography variant="h6" gutterBottom mt={1}>
+          <Typography sx={{color:'#F6F6F6'}} variant="h6" gutterBottom mt={1}>
             {user?.role}
             {/* David */}
           </Typography>
@@ -140,7 +130,9 @@ const Dashboard = (props) => {
           
           <Box
           sx={{
-           
+           backgroundColor:'#333333',
+           color:'#F6F6F6',
+         
           }}
           >
 
@@ -150,7 +142,7 @@ const Dashboard = (props) => {
             {
               user?.role === 'admin' ? <>
 
-                <ListItem
+                <ListItem 
                   component={NavLink}
                   to={`/dashboard/overview`}
                   // to='/dashboard/overview'
@@ -158,9 +150,11 @@ const Dashboard = (props) => {
                   style={activeStyle}
                 >
                   <ListItemIcon>
-                    <ManageSearchIcon />
+                    <ManageSearchIcon style={{color:'#F6F6F6',   
+         
+            }} />
                   </ListItemIcon>
-                  <ListItemText primary={"Over view"} />
+                  <ListItemText style={{color:'#F6F6F6'}} primary={"Over view"} />
                 </ListItem>
                 {/* Service Provider Overview */}
 
@@ -172,9 +166,9 @@ const Dashboard = (props) => {
                   style={activeStyle}
                 >
                   <ListItemIcon>
-                    <SavedSearchOutlinedIcon />
+                    <SavedSearchOutlinedIcon style={{color:'#F6F6F6', }} />
                   </ListItemIcon>
-                  <ListItemText primary={"Pending Providers"} />
+                  <ListItemText style={{color:'#F6F6F6'}} primary={"Pending Providers"} />
                 </ListItem>
 
 
@@ -189,7 +183,7 @@ const Dashboard = (props) => {
                   style={activeStyle}
                 >
                   <ListItemIcon>
-                    <SavedSearchOutlinedIcon />
+                    <SavedSearchOutlinedIcon style={{color:'#F6F6F6'}} />
                   </ListItemIcon>
                   <ListItemText primary={"Make Service Request"} />
                 </ListItem>
@@ -217,7 +211,7 @@ const Dashboard = (props) => {
             {/* <ListItem onClick={handleSignOut} button> */}
             <ListItem onClick={LogOut} button>
               <ListItemIcon>
-                <LogoutIcon />
+                <LogoutIcon style={{color:'#F6F6F6'}} />
               </ListItemIcon>
               <ListItemText primary={"LogOut"} />
             </ListItem>
@@ -234,6 +228,7 @@ const Dashboard = (props) => {
     window !== undefined ? () => window().document.body : undefined;
   const navStyle = {
     backgroundColor: "white",
+    // backgroundColor: "#333333",
     color: "black",
     boxShadow:
       " 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
@@ -244,27 +239,37 @@ const Dashboard = (props) => {
         position="fixed"
         style={navStyle}
         sx={{
+          backgroundColor:'black',
+       
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
-          <Box sx={{ flexGrow: 1,  }}>
-          <Typography sx={{ display: { xs: "none", md: "block",color: "gray" } }}>
-            Own Sell
+          <Box sx={{ flexGrow: 1,    }}>
+          <Typography sx={{ display: { xs: "none", md: "block" } , color: "#E60073",
+          fontSize:'30px',
+          fontWeight:'700',
+     
+        fontFamily: 'Cinzel',
+        
+        }}>
+            Own <span style={{color:'#27B1FC'}}>Sell</span>
           </Typography>
             {/* <img onClick={goHome} src="https://i.ibb.co/n8Wp01q/web-logo.png" width="120" alt="weblogo" /> */}
           </Box>
           <Typography sx={{ display: { xs: "none", md: "block" } }}>
             <NavLink
-              style={{ textDecoration: "none", color: "gray" }}
+              style={{ textDecoration: "none", color: "black" }}
               // to="/home"
               to='/'
             >
               <Button color="inherit">Home</Button>
             </NavLink>
             <NavLink
-              style={{ textDecoration: "none", color: "gray" }}
+              style={{ textDecoration: "none", color: "black"
+          
+          }}
               // to="/services"
               to=''
             >
@@ -284,7 +289,7 @@ const Dashboard = (props) => {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } , marginBottom:'500px' }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } , border:'10px solid red', marginBottom:'500px' }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -301,6 +306,8 @@ const Dashboard = (props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+             
+           
             },
           }}
         >
@@ -312,6 +319,8 @@ const Dashboard = (props) => {
             display: { xs: "none", sm: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
+              // border:'10px solid red',
+              backgroundColor:'#333333',
               width: drawerWidth,
             },
           }}

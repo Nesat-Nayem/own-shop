@@ -1,0 +1,16 @@
+.rapperminicard{
+    background-color: #FFFFFF;
+    color:black;
+    display: flex;
+    /* justify-content: space-around; */
+    padding: 25px 20px;
+    border-radius: 10px;
+
+}
+
+.iconrapper h1{
+    background-color: #FF0080;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+}

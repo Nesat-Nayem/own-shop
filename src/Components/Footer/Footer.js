@@ -7,7 +7,7 @@ const Footer = () => {
         <footer class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="footer-col">
+                    <div class="footer-col col-md-3 col-12">
                         <h4>Categories</h4>
                         <ul>
                             <li>Conputer</li>
@@ -16,7 +16,7 @@ const Footer = () => {
                             <li>Cleaning</li>
                         </ul>
                     </div>
-                    <div class="footer-col">
+                    <div class="footer-col col-md-3 col-12">
                         <h4>Quick Links</h4>
                         <ul>
                             <li>About Us</li>
@@ -26,7 +26,7 @@ const Footer = () => {
 
                         </ul>
                     </div>
-                    <div class="footer-col">
+                    <div class="footer-col col-md-3 col-12">
                         <h4>Contract Us</h4>
                         <ul>
                             <li > <span style={{color:'#ff0080', marginRight:'10px'}}><i class="far fa-building"></i></span> 367 Hillcrest, California, USA</li>
@@ -35,8 +35,8 @@ const Footer = () => {
                           
                         </ul>
                     </div>
-                    <div class="footer-col">
-                        <h4>follow us</h4>
+                    <div class="footer-col col-md-3 col-12">
+                        <h4 id='fowllowus'>follow us</h4>
                         <div class="social-links">
                             <span>  <i class="fab fa-facebook-f"></i></span>
                             <span> <i class="fab fa-twitter"></i></span>

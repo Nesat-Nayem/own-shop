@@ -24,6 +24,9 @@ import ContactUs from "./Components/ContractUs/ContactUs"
 import PendingProviders from "./Components/Dashboard/PendingProviders/PendingProviders";
 import AddServiceRequest from "./Components/Dashboard/MakeServiceRequist/AddServiceRequest";
 import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
+import AddCategory from "./Components/Dashboard/Category/AddCategory";
+import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
+// import Category from "./Components/Dashboard/Category/Category";
 // import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
 // import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
 // import Dashboardoverviewtow from "./Components/Dashboard/Dashboardoverviewtow/Dashboardoverviewtow";
@@ -59,6 +62,9 @@ function App() {
       {/* dashborad route must be dashboard route  */}
         <Route path="/dashboard" element={<Dashboard />}>
        <Route path="/dashboard/overview" element={<OverView />}></Route> 
+       <Route path="/dashboard/addcategory" element={<AddCategory />}></Route> 
+       <Route path="/dashboard/subcategory" element={<SubCategory />}></Route> 
+
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
         <Route path="/dashboard/servicerequist" element={<AddServiceRequest />}></Route>
         <Route path="/dashboard/myorder" element={<MyOrder />}></Route>

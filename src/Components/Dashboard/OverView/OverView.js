@@ -6,31 +6,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import TablePagination from '@mui/material/TablePagination';
 import './OverView.css'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee,faBagShopping } from '@fortawesome/free-solid-svg-icons'
-// import { FaBeer } from 'react-icons/fa';
+import { Container } from '@mui/system';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Box } from '@mui/material';
+import TotalReports from '../TotalReports/TotalReports';
 
 
 
-function createData(
-  name,
-  calories,
-  fat,
-  carbs,
-  protein
-) {
-  return { name, calories, fat, carbs, protein };
-}
+// metrial ui table 
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// metrial ui table 
+
+
 
 
 
@@ -38,10 +28,24 @@ const rows = [
 
 
 const OverView = () => {
+
+  const [order,setOrder] = useState([''])
+  console.log(order)
+  useEffect(()=>{
+    fetch('http://localhost:7070/api/orders/allorder')
+    .then(res=>res.json())
+    .then(data => setOrder(data))
+  })
+
+
+  // table state 
+
+  
+
     return (
  <div style={{backgroundColor:'#F5F5F5'}}>
 
-      <div className='container b'>
+      {/* <div className='container b'>
       <div className='row'>
       
         <div className='col-md-3'>
@@ -100,40 +104,101 @@ const OverView = () => {
 
 
       </div>
-      </div>
+      </div> */}
+
+      {/* total overview  */}
+      <Container>
+
+      <TotalReports></TotalReports>
+      </Container>
+  
+      {/* total overview  */}
+
 
       {/* table  */}
-        <h3 className='m-4'>Recent Booking</h3>
-      <TableContainer component={Paper}>
+        <h3 className='m-4 recentbooking'>Recent Booking</h3>
+        <Container>
+
+          {/* recent booking  */}
+
+    
+       <TableContainer component={Paper}>
       <Table sx={{ }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name </TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Service</TableCell>
+            <TableCell align="left" >Name </TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Service</TableCell>
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {order?.slice(0,5)?.map((row) => (
             <TableRow
-              key={row.name}
+              key='Name'
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <img style={{width:'50px', height:'50px', borderRadius:'50%', marginRight:'10px'}} src='https://i.ibb.co/1qdnh78/img-1.jpg' />
-                {row.name}
+                <img style={{width:'50px', height:'50px', borderRadius:'50%', marginRight:'10px'}} src='https://i.postimg.cc/rz2qtMkp/profile.jpg' />
+           
+                {row?.username}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
+              <TableCell align="left">{new Date(row.createdAt)?.toDateString()}</TableCell>
+              <TableCell align="left">{row?.serviceName?.slice(0,30)}</TableCell>
+              <TableCell align="right">{row?.status}</TableCell>
+              <TableCell align="right">${row?.price}</TableCell>
+            </TableRow>  
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer> 
+
+
+   
+
+
+            {/* recent booking  */}
+
+            <h3 className='paymenttext' > Payments </h3>
+       
+     <Box className='boxbottom'>
+     <TableContainer   component={Paper}>
+      <Table sx={{ }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Date </TableCell>
+            <TableCell align="left">Provider</TableCell>
+            <TableCell align="left">Service</TableCell>
+            <TableCell align="center">Amount</TableCell>
+            <TableCell align="center">Status</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {order?.slice(0,5)?.map((row) => (
+            <TableRow
+              key='Name'
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+                           <TableCell align="left">{new Date(row?.createdAt).toDateString()}</TableCell>
+              <TableCell component="th" scope="row">
+               
+            Jane Kim
+                {/* {row?.username} */}
+              </TableCell>
+ 
+              <TableCell align="left">{row?.serviceName?.slice(0,30)}</TableCell>
+              <TableCell align="center">${row?.price}</TableCell>
+              <TableCell align="center">{row?.status}</TableCell>
+              
+            </TableRow>  
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+     </Box>
+
+    </Container>
 
  </div>
     );

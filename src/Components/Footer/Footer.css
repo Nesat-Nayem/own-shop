@@ -36,6 +36,7 @@ ul{
 	margin-bottom: 35px;
 	font-weight: 500;
 	position: relative;
+	margin-left: 30px;
 }
 .footer-col h4::before{
 	content: '';
@@ -99,6 +100,13 @@ ul{
 .partertext a{
 	text-decoration: none !important;
 }
+.social-links{
+	text-align: right;
+}
+#fowllowus{
+	margin-left: 50px;
+	/* text-align: center; */
+}
 
 /*responsive*/
 @media(max-width: 767px){
@@ -110,6 +118,10 @@ ul{
 @media(max-width: 574px){
   .footer-col{
     width: 100%;
+}
+.social-links{
+	text-align: left;
+	margin-left: 30px;
 }
 }
 

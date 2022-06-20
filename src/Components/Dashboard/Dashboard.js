@@ -1,13 +1,21 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import Filter1Icon from "@mui/icons-material/Filter1";
+import Filter2Icon from "@mui/icons-material/Filter2";
+import Filter3Icon from "@mui/icons-material/Filter3";
+import SpeedIcon from "@mui/icons-material/Speed";
+import LayersIcon from '@mui/icons-material/Layers';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import Filter4Icon from "@mui/icons-material/Filter4";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import SavedSearchOutlinedIcon from '@mui/icons-material/SavedSearchOutlined';
-import { Button } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -34,7 +42,7 @@ const Dashboard = (props) => {
 
   const dispatch = useDispatch()
   const user = useSelector((state)=> state.user.user)
-  console.log(user)
+  // console.log(user)
   const navigate = useNavigate();
 //   const { handleSignOut } = useFirebase()
   const { window } = props;
@@ -49,7 +57,7 @@ const Dashboard = (props) => {
 
 
   const LogOut = () =>{
-    console.log('log out clicked')
+    // console.log('log out clicked')
     dispatch(signOut())
   }
 
@@ -60,7 +68,7 @@ const Dashboard = (props) => {
     return {
       // borderRight: isActive ? "4px solid #00a1ba" : "4px solid transparent",
       borderRight: isActive ? "4px solid #E60073" : "4px solid transparent",
-      backgroundColor: isActive ? "#444444 " : '#333333 '
+      backgroundColor: isActive ? "#444444 " : '#003366 '
     };
   }
   const drawer = (
@@ -73,7 +81,7 @@ const Dashboard = (props) => {
             flexDirection: "column",
             alignItems: "center",
             // mt: 2,
-            backgroundColor:'#333333',
+            backgroundColor:'#003366',
             
           
           }}
@@ -86,18 +94,20 @@ const Dashboard = (props) => {
             flexDirection: "column",
             alignItems: "center",
             mt: 2,
-            backgroundColor:'#333333',
+            backgroundColor:'#003366',
           
 
           }}
         >
           <Avatar
             sx={{ width: 90, height: 90 }}
-         src='https://i.ibb.co/1qdnh78/img-1.jpg'
+        //  src='https://i.ibb.co/1qdnh78/img-1.jpg'
+         src='https://i.ibb.co/5Fdfdxw/Ellipse-91.png'
             alt='admin img'
           />
-          <Typography sx={{color:'#F6F6F6'}} variant="h6" gutterBottom mt={1}>
-            {user?.role}
+          <Typography sx={{color:'#FF0080'}} variant="h6" gutterBottom mt={1}>
+            {/* {user?.username} */}
+            Welcome Back! Janin
             {/* David */}
           </Typography>
         </Box>
@@ -130,7 +140,7 @@ const Dashboard = (props) => {
           
           <Box
           sx={{
-           backgroundColor:'#333333',
+           backgroundColor:'#003366',
            color:'#F6F6F6',
          
           }}
@@ -142,7 +152,36 @@ const Dashboard = (props) => {
             {
               user?.role === 'admin' ? <>
 
-                <ListItem 
+              {/* dashboard  */}
+              {/* <Accordion
+            TransitionProps={{ unmountOnExit: false }}
+            sx={{
+              background: "#003366 !important",
+              boxShadow: "none !important",
+            }}
+          >
+            <AccordionSummary> */}
+              <NavLink
+                style={{ textDecoration: "none", marginTop: "0 !important", marginLeft:'15px' }}
+                to={`/dashboard/overview`}
+              >
+                <Button
+                  sx={{
+                    color: "#fff !important",
+                    textTransform: "capitalize",
+                    fontWeight: "300",
+                    fontSize: "16px",
+                  }}
+                >
+                  <SpeedIcon sx={{ mr: 2, fontSize: "24px" }} />
+                  Dashboard
+                </Button>
+              </NavLink>
+            {/* </AccordionSummary>
+          </Accordion> */}
+              {/* dashboard  */}
+
+                {/* <ListItem 
                   component={NavLink}
                   to={`/dashboard/overview`}
                   // to='/dashboard/overview'
@@ -150,26 +189,90 @@ const Dashboard = (props) => {
                   style={activeStyle}
                 >
                   <ListItemIcon>
-                    <ManageSearchIcon style={{color:'#F6F6F6',   
-         
-            }} />
+
+                  <i class="fas fa-columns"></i>
+                  
                   </ListItemIcon>
                   <ListItemText style={{color:'#F6F6F6'}} primary={"Over view"} />
-                </ListItem>
+                </ListItem> */}
+
+  {/* metrial ui accourdian  */}
+                  {/*======= Product Nav Menu Start ======*/}
+          <Accordion
+            TransitionProps={{ unmountOnExit: true }}
+            sx={{
+              background: "#003366 !important",
+              boxShadow: "none !important",
+            }}
+          >
+            <AccordionSummary
+              expandIcon={
+                <ArrowBackIosNewIcon
+                  sx={{ color: "#fff !important", fontSize: "12px" }}
+                />
+              }
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+              sx={{
+                "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                  transform: "rotate(-90deg)",
+                  marginBottom: 0,
+                },
+              }}
+            >
+              <Button
+                sx={{
+                  color: "#fff !important",
+                  textTransform: "capitalize",
+                  fontWeight: "300",
+                  fontSize: "16px",
+                }}
+              >
+                <LayersIcon sx={{ mr: 2, fontSize: "24px" }} />
+                Categories
+              </Button>
+            </AccordionSummary>
+            <AccordionDetails sx={{ background: "#012C56 !important" }}>
+              <NavLink
+                style={{ textDecoration: "none", marginTop: "0 !important" }}
+                to={`/dashboard/addcategory`}
+              >
+                <Button
+                  sx={{
+                    color: "#fff !important",
+                    textTransform: "capitalize",
+                    fontWeight: "700",
+                    fontSize: "12px",
+                  }}
+                >
+                  <LibraryAddCheckIcon sx={{ mr: 1, ml: 1, color: "yellow" }} />{" "}
+                  Category
+                </Button>
+              </NavLink>
+            
+          
+              <NavLink
+                style={{ textDecoration: "none", marginTop: "0 !important" }}
+                to={`/dashboard/subcategory`}
+              >
+                <Button
+                  sx={{
+                    color: "#fff !important",
+                    textTransform: "capitalize",
+                    fontWeight: "700",
+                    fontSize: "12px",
+                  }}
+                >
+                  <LibraryAddCheckIcon sx={{ mr: 1, ml: 1, color: "yellow" }} /> Sub Category
+                </Button>
+              </NavLink>
+            </AccordionDetails>
+          </Accordion>
+{/*======= Product Nav Menu End ======*/}
+                {/* metrial ui accourdian  */}
                 {/* Service Provider Overview */}
 
-                <ListItem
-                  component={NavLink}
-                  // to={`/dashboard/pendingprovider`}
-                  to={`/dashboard/pendingProvider`}
-                  button
-                  style={activeStyle}
-                >
-                  <ListItemIcon>
-                    <SavedSearchOutlinedIcon style={{color:'#F6F6F6', }} />
-                  </ListItemIcon>
-                  <ListItemText style={{color:'#F6F6F6'}} primary={"Pending Providers"} />
-                </ListItem>
+
 
 
                 </> : user?.role === 'vendor' ? <>
@@ -206,13 +309,16 @@ const Dashboard = (props) => {
 
             }
 
+              {/* follow it  */}
+
+           
 
 
             {/* <ListItem onClick={handleSignOut} button> */}
             <ListItem onClick={LogOut} button>
               <ListItemIcon>
-                <LogoutIcon style={{color:'#F6F6F6'}} />
-              </ListItemIcon>
+                <LogoutIcon style={{color:'#F6F6F6', marginLeft:'10px'}} />
+              </ListItemIcon  >
               <ListItemText primary={"LogOut"} />
             </ListItem>
 
@@ -228,7 +334,7 @@ const Dashboard = (props) => {
     window !== undefined ? () => window().document.body : undefined;
   const navStyle = {
     backgroundColor: "white",
-    // backgroundColor: "#333333",
+    // backgroundColor: "#003366",
     color: "black",
     boxShadow:
       " 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
@@ -289,7 +395,7 @@ const Dashboard = (props) => {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } , border:'10px solid red', marginBottom:'500px' }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } ,  marginBottom:'500px' }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -320,7 +426,7 @@ const Dashboard = (props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               // border:'10px solid red',
-              backgroundColor:'#333333',
+              backgroundColor:'#003366',
               width: drawerWidth,
             },
           }}

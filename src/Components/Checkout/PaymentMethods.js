@@ -54,7 +54,34 @@ import Footer from "../Footer/Footer";
  
     // console.log(data)
 
+  const orderalldata = {
+    username: checkoutDetails?.fullname,
+    price:data?.price,
+    serviceName:data?.name,
+    status:'pending',
+    providerName:'providerDebo name'
+   
 
+  }
+
+    const paymentbutton = ()=>{
+      // console.log('clicked butoon' , orderalldata)
+
+      axios
+      .post("http://localhost:7070/api/orders/postOrder", orderalldata)
+      // .post("http://localhost:7070/api/orders/postOrder", )
+      .then((response) => {
+        navigate("/");
+        // dispatch(clearCart());
+        const options = { position: "bottom-right" };
+        cogoToast.success("Order sucessfully completed!", options);
+      })
+      .catch(function (error) {
+        const options = { position: "bottom-right" };
+        cogoToast.error("Orders failed", options);
+      });
+
+    }
 
 
     const {price} = data;
@@ -156,20 +183,20 @@ import Footer from "../Footer/Footer";
         // console.log(paymentInfo)
 
 
-        axios
-          .post("http://localhost:7070/api/orders/postOrder", data)
-          // .post("http://localhost:7070/api/orders/postOrder", )
-          .then((response) => {
-            navigate("/");
-            // dispatch(clearCart());
-            const options = { position: "bottom-right" };
-            cogoToast.success("Order sucessfully completed!", options);
-          })
-          .catch(function (error) {
-            const options = { position: "bottom-right" };
-            cogoToast.error("Orders failed", options);
-          });
-        setProcessing(false);
+        // axios
+        //   .post("http://localhost:7070/api/orders/postOrder", data)
+        //   // .post("http://localhost:7070/api/orders/postOrder", )
+        //   .then((response) => {
+        //     navigate("/");
+        //     // dispatch(clearCart());
+        //     const options = { position: "bottom-right" };
+        //     cogoToast.success("Order sucessfully completed!", options);
+        //   })
+        //   .catch(function (error) {
+        //     const options = { position: "bottom-right" };
+        //     cogoToast.error("Orders failed", options);
+        //   });
+        // setProcessing(false);
       }
 
 
@@ -260,6 +287,7 @@ import Footer from "../Footer/Footer";
               type="submit"
               className="formBtbn"
               disabled={!stripe || processing}
+              onClick={paymentbutton}
             >
               Pay $ {data?.price}
             </button>

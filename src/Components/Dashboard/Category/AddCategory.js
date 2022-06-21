@@ -77,7 +77,7 @@ const AddCategory = () => {
 //   fetch all category 
 
   const [newCategory, setnewCategory] = useState([''])
-  console.log(newCategory)
+  // console.log(newCategory)
   useEffect(()=>{
     fetch('http://localhost:7070/api/category/getcategories')
     .then(res => res.json())

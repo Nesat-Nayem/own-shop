@@ -154,9 +154,26 @@ const SubCategory = () => {
         console.log(error);
       });
 
-    // reset();
+    reset();
+
 
     }
+
+    // fetch all data 
+
+    //   fetch all category 
+
+  const [subcategory, setSubCategory] = useState([''])
+
+  // console.log( 'sub category info', subcategory)
+  useEffect(()=>{
+    fetch('http://localhost:7070/api/category/getcategories')
+    .then(res => res.json())
+    .then(data => setSubCategory(data?.categoryList))
+  })
+
+
+
   return (
     <Container sx={{ width: "100%", mb: 5 }}>
       <Box className={`${styles.topContainer}`} sx={{ display: "flex", my: 3 }}>
@@ -168,6 +185,7 @@ const SubCategory = () => {
           <span style={{ color: "#969494" }}>Sub Categories</span>
         </Typography>
       </Box>
+
 
       <Box className={`${styles.tableContainer}`}>
         <Typography sx={{ fontWeight: "bold", textAlign: "left" }}>
@@ -280,6 +298,8 @@ const SubCategory = () => {
                             value="Save"
                           />
                         </Box>
+
+                     
                       </div>
                     </div>
                   </div>
@@ -293,61 +313,45 @@ const SubCategory = () => {
       {/* manage category form  */}
       <h3 className="my-5">Manage Sub Category</h3>
 
-      <Box>
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
-          <TableContainer sx={{ maxHeight: 440 }}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                      >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      </Box>
+      <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Category</TableCell>
+            <TableCell align="center">Date</TableCell>
+            <TableCell align="center">Fetured</TableCell>
+            <TableCell align="right">Action</TableCell>
+         
+          </TableRow>
+        </TableHead>
+        <TableBody>
+             {/* {
+                          subcategory?.map((data)=>console.log('children data', data?.children?.[0]?.name))
+                        } */}
+          {subcategory?.map((row) => (
+
+           
+
+            
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+              <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.children?.[0]?.img} />
+                {row?.children?.[0]?.name}
+              </TableCell>
+              <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
+              <TableCell align="center">On</TableCell>
+              <TableCell align="right">Edit</TableCell>
+            
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+
     </Container>
   );
 };

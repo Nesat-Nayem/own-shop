@@ -29,6 +29,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Table from "@mui/material/Table";
 import Chip from "@mui/material/Chip";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import Swal from "sweetalert2";
 
 // mui select
 
@@ -71,6 +72,7 @@ const SubCategory = () => {
     reset,
   } = useForm();
   const [photoURL, setPhotoURL] = useState("");
+  // console.log(photoURL)
 
   // metrial ui data table
   const [page, setPage] = React.useState(0);
@@ -97,6 +99,7 @@ const SubCategory = () => {
       .then(function (response) {
         // console.log(response);
         setPhotoURL(response.data.data.display_url);
+        console.log(response.data.data.display_url);
       })
       .catch(function (error) {
         console.log(error);
@@ -116,13 +119,44 @@ const SubCategory = () => {
 
   // category id form mui select
   const [age, setAge] = React.useState("");
-
+  // console.log(age)
   const handleChange = (event) => {
+    // setAge(event.target.value);
     setAge(event.target.value);
   };
 
   // category id form mui select
 
+
+  // sub category post here 
+
+    // category submit post :
+
+    const onSubmit = (data) => {
+      // console.log(data);
+      // e.preventDefault()
+      const userinfo = {
+        name: data.name,
+        img: photoURL,
+        parentId:age,
+     
+      };
+      console.log(userinfo);
+     
+      axios
+      .post("http://localhost:7070/api/category/create", userinfo)
+      .then(function (response) {
+        console.log("success", response);
+
+        Swal.fire("Congreats!", "You Create A Sub Category!", "success");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // reset();
+
+    }
   return (
     <Container sx={{ width: "100%", mb: 5 }}>
       <Box className={`${styles.topContainer}`} sx={{ display: "flex", my: 3 }}>
@@ -143,10 +177,10 @@ const SubCategory = () => {
         <div className="mt-2">
           <div className="form-container">
             <div>
-              {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-              <form
-              // onSubmit={console.log('fd')}
-              >
+              <form onSubmit={handleSubmit(onSubmit)}>
+              {/* <form */}
+              {/* // onSubmit={console.log('fd')} */}
+              {/* > */}
                 <div className="row gx-3 mb-3">
                   <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
@@ -163,7 +197,8 @@ const SubCategory = () => {
                             onChange={handleChange}
                           >
                             {loadCategory?.map((select) => (
-                              <MenuItem value={3}>{select?.name}</MenuItem>
+                              // <MenuItem value={3}>{select?.name}</MenuItem>
+                              <MenuItem value={select?._id}>{select?.name}</MenuItem>
                             ))}
                           </Select>
                         </FormControl>
@@ -220,7 +255,7 @@ const SubCategory = () => {
                         />
                         {/* errors will return when field validation fails  */}
                         {errors.photoURL && (
-                          <span className="">License is required</span>
+                          <span className="">Sub Category Photo Is Required</span>
                         )}
                       </div>
                     </div>

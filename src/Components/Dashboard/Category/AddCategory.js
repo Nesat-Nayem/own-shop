@@ -10,7 +10,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import styles from "./AddCategory.module.css";
@@ -58,7 +58,7 @@ const AddCategory = () => {
       .then(function (response) {
         console.log("success", response);
 
-        Swal.fire("Cool!", "Add New Category!", "success");
+        Swal.fire("Congreats!", "Add New Category!", "success");
       })
       .catch(function (error) {
         console.log(error);
@@ -72,18 +72,24 @@ const AddCategory = () => {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  // metrial ui data table
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
 
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+
+//   fetch all category 
+
+  const [newCategory, setnewCategory] = useState([''])
+  console.log(newCategory)
+  useEffect(()=>{
+    fetch('http://localhost:7070/api/category/getcategories')
+    .then(res => res.json())
+    .then(data => setnewCategory(data.categoryList))
+  })
+//   fetch all category 
+
+
+  // metrial ui data table
+//   function createData(name, calories, fat, carbs, protein) {
+//     return { name, calories, fat, carbs, protein };
+//   }
 
   // metrial ui data table
 
@@ -239,37 +245,37 @@ const AddCategory = () => {
       <h3 className="my-5">Manage Category</h3>
 
       <TableContainer component={Paper}>
-        <Table sx={{}} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Fetured</TableCell>
-              <TableCell align="right">Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* {rows.map((row) => ( */}
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Category</TableCell>
+            <TableCell align="center">Date</TableCell>
+            <TableCell align="center">Fetured</TableCell>
+            <TableCell align="right">Action</TableCell>
+         
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {newCategory?.map((row) => (
             <TableRow
-              //   key={name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <img /> Appliance
+              <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.img} />
+                {row.name}
               </TableCell>
-              <TableCell align="right">15 Sep 2021</TableCell>
-              <TableCell align="right">
-                <ToggleOffIcon sx={{ color: "red", fontSize: "40px" }} />
-              </TableCell>
-              <TableCell align="right">
-                {" "}
-                <button>edit</button> <button>delet</button>{" "}
-              </TableCell>
+              <TableCell align="center">{new Date(row?.createdAt).toDateString()}</TableCell>
+              <TableCell align="center">On</TableCell>
+              <TableCell align="right">Edit</TableCell>
+            
             </TableRow>
-            {/* ))} */}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+
     </Container>
   );
 };

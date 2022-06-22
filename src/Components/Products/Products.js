@@ -9,6 +9,7 @@ import './Products.css'
 const Products = () => {
 
     const products = useSelector((state) => state.products.allProducts);
+    console.log('form product folder',products)
     const cart = useSelector((state) => state.products.cart);
     const dispatch = useDispatch();
 

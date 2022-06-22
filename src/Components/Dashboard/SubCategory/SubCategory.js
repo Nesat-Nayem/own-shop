@@ -19,7 +19,6 @@ import { useTheme } from "@mui/material/styles";
 import styles from "./SubCategory.module.css";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import axios from "axios";
-import ToggleOffIcon from "@mui/icons-material/ToggleOff";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -27,13 +26,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import Table from "@mui/material/Table";
-import Chip from "@mui/material/Chip";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import Swal from "sweetalert2";
-
-// mui select
-
-// mui select
 
 const columns = [
   { id: "name", label: "Sub Category", minWidth: 170 },
@@ -87,8 +80,6 @@ const SubCategory = () => {
     setPage(0);
   };
 
-  // metrial ui data table
-
   // image upload handler
   const imageUploadHandler = (e) => {
     const imageData = new FormData();
@@ -125,35 +116,27 @@ const SubCategory = () => {
     setAge(event.target.value);
   };
 
-  // category id form mui select
+  // fetch category name by id
+  const [name, setName] = useState("");
+  const id = age;
+  useEffect(() => {
+    fetch(`http://localhost:7070/api/category/singleCategories/${id}`)
+      .then((res) => res.json())
+      .then((data) => setName(data?.name));
+  });
 
+  const onSubmit = (data) => {
+    // console.log(data);
+    // e.preventDefault()
+    const userinfo = {
+      name: data.name,
+      img: photoURL,
+      parentId: age,
+      parentName: name,
+    };
+    console.log(userinfo);
 
-  // sub category post here 
-
-    // category submit post :
-
-    // fetch category name by id 
-  const [name,setName] = useState('')
-  const id = age
-    useEffect(() => {
-      fetch(`http://localhost:7070/api/category/singleCategories/${id}`)
-        .then((res) => res.json())
-        .then((data) => setName(data?.name));
-    });
-
-    const onSubmit = (data) => {
-      // console.log(data);
-      // e.preventDefault()
-      const userinfo = {
-        name: data.name,
-        img: photoURL,
-        parentId:age,
-        parentName:name
-     
-      };
-      console.log(userinfo);
-     
-      axios
+    axios
       .post("http://localhost:7070/api/category/create", userinfo)
       .then(function (response) {
         console.log("success", response);
@@ -165,24 +148,17 @@ const SubCategory = () => {
       });
 
     reset();
+  };
+  //   fetch all category
 
-
-    }
-
-    // fetch all data 
-
-    //   fetch all category 
-
-  const [subcategory, setSubCategory] = useState([''])
+  const [subcategory, setSubCategory] = useState([""]);
 
   // console.log( 'sub category info', subcategory)
-  useEffect(()=>{
-    fetch('http://localhost:7070/api/category/getcategories')
-    .then(res => res.json())
-    .then(data => setSubCategory(data?.categoryList))
-  })
-
-
+  useEffect(() => {
+    fetch("http://localhost:7070/api/category/getcategories")
+      .then((res) => res.json())
+      .then((data) => setSubCategory(data?.categoryList));
+  });
 
   return (
     <Container sx={{ width: "100%", mb: 5 }}>
@@ -196,25 +172,23 @@ const SubCategory = () => {
         </Typography>
       </Box>
 
-
       <Box className={`${styles.tableContainer}`}>
         <Typography sx={{ fontWeight: "bold", textAlign: "left" }}>
           Add Sub Category
         </Typography>
         <hr />
         <div className="mt-2">
-          <div  className="form-container">
+          <div className="form-container">
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
-              {/* <form */}
-              {/* // onSubmit={console.log('fd')} */}
-              {/* > */}
+                {/* <form */}
+                {/* // onSubmit={console.log('fd')} */}
+                {/* > */}
                 <div className="row gx-3 mb-3">
                   <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
                       <div className="mb-3">
-
-                      <label
+                        <label
                           className="form-label"
                           style={{ fontWeight: "bold" }}
                         >
@@ -222,7 +196,7 @@ const SubCategory = () => {
                           <sup className="text-danger fw-bold fs-6">*</sup>
                         </label>
 
-                        <FormControl style={{height:'50px'}} fullWidth>
+                        <FormControl style={{ height: "50px" }} fullWidth>
                           <InputLabel id="demo-simple-select-label">
                             Category
                           </InputLabel>
@@ -235,7 +209,9 @@ const SubCategory = () => {
                           >
                             {loadCategory?.map((select) => (
                               // <MenuItem value={3}>{select?.name}</MenuItem>
-                              <MenuItem value={select?._id}>{select?.name}</MenuItem>
+                              <MenuItem value={select?._id}>
+                                {select?.name}
+                              </MenuItem>
                             ))}
                           </Select>
                         </FormControl>
@@ -255,11 +231,11 @@ const SubCategory = () => {
                           Sub Category Name
                           <sup className="text-danger fw-bold fs-6">*</sup>
                         </label>
-                        <input 
+                        <input
                           type="text"
                           className="form-control"
                           placeholder="Sub Category Name"
-                          style={{ background: "#E5E5E5",height:'50px' }}
+                          style={{ background: "#E5E5E5", height: "50px" }}
                           {...register("name", { required: true })}
                         />
                         {errors.name && (
@@ -283,7 +259,7 @@ const SubCategory = () => {
                         </label>
 
                         <input
-                          style={{ border: "none",height:'50px' }}
+                          style={{ border: "none", height: "50px" }}
                           className=""
                           placeholder="photoURL"
                           id="photoURL"
@@ -293,7 +269,9 @@ const SubCategory = () => {
                         />
                         {/* errors will return when field validation fails  */}
                         {errors.photoURL && (
-                          <span className="">Sub Category Photo Is Required</span>
+                          <span className="">
+                            Sub Category Photo Is Required
+                          </span>
                         )}
                       </div>
                     </div>
@@ -318,8 +296,6 @@ const SubCategory = () => {
                             value="Save"
                           />
                         </Box>
-
-                     
                       </div>
                     </div>
                   </div>
@@ -331,52 +307,55 @@ const SubCategory = () => {
       </Box>
 
       {/* manage category form  */}
-      <h3 style={{color:'#FF0080'}} className="my-5">Manage Sub Category</h3>
+      <h3 style={{ color: "#FF0080" }} className="my-5">
+        Manage Sub Category
+      </h3>
 
-    <Box sx={{backgroundColor:'#F1F3F6' }}>
-    <TableContainer  component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Sub Category</TableCell>
-            <TableCell align="center">Category</TableCell>
-            <TableCell align="center">Date</TableCell>
-            <TableCell align="center">Action</TableCell>
-         
-          </TableRow>
-        </TableHead>
-        <TableBody>
-             {/* {
+      <Box sx={{ backgroundColor: "#F1F3F6" }}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Sub Category</TableCell>
+                <TableCell align="center">Category</TableCell>
+                <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* {
                           subcategory?.map((data)=>console.log('children data', data?.children?.[0]?.name))
                         } */}
-          {subcategory?.map((row) => (
-
-           
-
-            
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-              <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.children?.[0]?.img} />
-                {row?.children?.[0]?.name}
-              </TableCell>
-              <TableCell align="center"> {row?.children?.[0]?.parentName}</TableCell>
-              <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
-              <TableCell align="center">Edit</TableCell>
-            
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    </Box>
-
-     
-
-
+              {subcategory?.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    <img
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        marginRight: "10px",
+                      }}
+                      src={row?.children?.[0]?.img}
+                    />
+                    {row?.children?.[0]?.name}
+                  </TableCell>
+                  <TableCell align="center">
+                    {" "}
+                    {row?.children?.[0]?.parentName}
+                  </TableCell>
+                  <TableCell align="center">
+                    {new Date(row?.children?.[0]?.createdAt).toDateString()}
+                  </TableCell>
+                  <TableCell align="center">Edit</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     </Container>
   );
 };

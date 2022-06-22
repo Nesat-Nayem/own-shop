@@ -1,13 +1,9 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Filter1Icon from "@mui/icons-material/Filter1";
-import Filter2Icon from "@mui/icons-material/Filter2";
-import Filter3Icon from "@mui/icons-material/Filter3";
 import SpeedIcon from "@mui/icons-material/Speed";
 import GroupIcon from '@mui/icons-material/Group';
 import LayersIcon from '@mui/icons-material/Layers';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
-import Filter4Icon from "@mui/icons-material/Filter4";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -25,7 +21,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
-import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import Avatar from "@mui/material/Avatar";
 import { Outlet } from "react-router-dom";
 
@@ -274,7 +269,7 @@ const Dashboard = (props) => {
 
           <NavLink
                 style={{ textDecoration: "none", marginTop: "0 !important", marginLeft:'15px' }}
-                to={`/dashboard/overview`}
+                to={`/dashboard/pendingProvider`}
               >
                 <Button
                   sx={{

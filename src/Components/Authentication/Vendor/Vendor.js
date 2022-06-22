@@ -57,6 +57,26 @@ const Vendor = () => {
           )
           .then((response) => {
             dispatch(signin(response.data));
+            // console.log(response.data)
+            // if (location.pathname === "/") {
+              // navigate("");
+            // }
+    
+            const options = { position: "bottom-center" };
+            // cogoToast.success("Signup Sucessfully", options);
+          })
+          .catch((error) => {
+            const options = { position: "bottom-center" };
+            cogoToast.error("Authentication failed", options);
+          });
+
+        axios
+          .post(
+            "http://localhost:7070/api/createprovider",
+            userInfo
+          )
+          .then((response) => {
+            dispatch(signin(response.data));
             console.log(response.data)
             // if (location.pathname === "/") {
               navigate("");
@@ -69,7 +89,18 @@ const Vendor = () => {
             const options = { position: "bottom-center" };
             cogoToast.error("Authentication failed", options);
           });
+
+
+
+
+
+
+
       };
+
+
+
+      
 
         // image upload handler
   const imageUploadHandler = (e) => {

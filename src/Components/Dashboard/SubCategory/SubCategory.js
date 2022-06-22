@@ -203,7 +203,7 @@ const SubCategory = () => {
         </Typography>
         <hr />
         <div className="mt-2">
-          <div className="form-container">
+          <div  className="form-container">
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
               {/* <form */}
@@ -213,7 +213,16 @@ const SubCategory = () => {
                   <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
                       <div className="mb-3">
-                        <FormControl fullWidth>
+
+                      <label
+                          className="form-label"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          Category Name
+                          <sup className="text-danger fw-bold fs-6">*</sup>
+                        </label>
+
+                        <FormControl style={{height:'50px'}} fullWidth>
                           <InputLabel id="demo-simple-select-label">
                             Category
                           </InputLabel>
@@ -246,11 +255,11 @@ const SubCategory = () => {
                           Sub Category Name
                           <sup className="text-danger fw-bold fs-6">*</sup>
                         </label>
-                        <input
+                        <input 
                           type="text"
                           className="form-control"
                           placeholder="Sub Category Name"
-                          style={{ background: "#E5E5E5" }}
+                          style={{ background: "#E5E5E5",height:'50px' }}
                           {...register("name", { required: true })}
                         />
                         {errors.name && (
@@ -270,10 +279,11 @@ const SubCategory = () => {
                           style={{ fontWeight: "bold" }}
                         >
                           Sub Category Img
+                          <sup className="text-danger fw-bold fs-6">*</sup>
                         </label>
 
                         <input
-                          style={{ border: "none" }}
+                          style={{ border: "none",height:'50px' }}
                           className=""
                           placeholder="photoURL"
                           id="photoURL"
@@ -321,16 +331,17 @@ const SubCategory = () => {
       </Box>
 
       {/* manage category form  */}
-      <h3 className="my-5">Manage Sub Category</h3>
+      <h3 style={{color:'#FF0080'}} className="my-5">Manage Sub Category</h3>
 
-      <TableContainer component={Paper}>
+    <Box sx={{backgroundColor:'#F1F3F6' }}>
+    <TableContainer  component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Sub Category</TableCell>
             <TableCell align="center">Category</TableCell>
             <TableCell align="center">Date</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="center">Action</TableCell>
          
           </TableRow>
         </TableHead>
@@ -353,13 +364,17 @@ const SubCategory = () => {
               </TableCell>
               <TableCell align="center"> {row?.children?.[0]?.parentName}</TableCell>
               <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
-              <TableCell align="right">Edit</TableCell>
+              <TableCell align="center">Edit</TableCell>
             
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+
+    </Box>
+
+     
 
 
     </Container>

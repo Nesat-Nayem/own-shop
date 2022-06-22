@@ -351,7 +351,7 @@ const SubCategory = () => {
               <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.children?.[0]?.img} />
                 {row?.children?.[0]?.name}
               </TableCell>
-              <TableCell align="center">On</TableCell>
+              <TableCell align="center"> {row?.children?.[0]?.parentName}</TableCell>
               <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
               <TableCell align="right">Edit</TableCell>
             

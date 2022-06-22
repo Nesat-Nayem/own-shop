@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 // import { signin } from "../../redux/userSlice";
 import Select from "react-select";
 import countryList from "react-select-country-list";
-import { signin } from "../../../redux/userSlice";
+import { signin, signOut } from "../../../redux/userSlice";
 import './Vendor.css'
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
@@ -17,10 +17,16 @@ const Vendor = () => {
     const [country, setCountry] = useState("");
     const options = useMemo(() => countryList().getData(), []);
 
+
+    const logout = () =>{
+      console.log('log out clicked')
+      dispatch(signOut())
+    }
       // location
   const changeHandler = (country) => {
     setCountry(country);
   };
+
 
 
     const {
@@ -79,17 +85,22 @@ const Vendor = () => {
             dispatch(signin(response.data));
             console.log(response.data)
             // if (location.pathname === "/") {
-              navigate("");
+              navigate("/");
             // }
     
             const options = { position: "bottom-center" };
-            cogoToast.success("Signup Sucessfully", options);
+            // dispatch(signOut())
+            cogoToast.success("Signup Sucessfully && please log in", options);
+         
+            logout()
           })
           .catch((error) => {
             const options = { position: "bottom-center" };
             cogoToast.error("Authentication failed", options);
           });
 
+          dispatch(signOut())
+          logout()
 
 
 

@@ -132,6 +132,15 @@ const SubCategory = () => {
 
     // category submit post :
 
+    // fetch category name by id 
+  const [name,setName] = useState('')
+  const id = age
+    useEffect(() => {
+      fetch(`http://localhost:7070/api/category/singleCategories/${id}`)
+        .then((res) => res.json())
+        .then((data) => setName(data?.name));
+    });
+
     const onSubmit = (data) => {
       // console.log(data);
       // e.preventDefault()
@@ -139,6 +148,7 @@ const SubCategory = () => {
         name: data.name,
         img: photoURL,
         parentId:age,
+        parentName:name
      
       };
       console.log(userinfo);
@@ -317,9 +327,9 @@ const SubCategory = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Category</TableCell>
+            <TableCell>Sub Category</TableCell>
+            <TableCell align="center">Category</TableCell>
             <TableCell align="center">Date</TableCell>
-            <TableCell align="center">Fetured</TableCell>
             <TableCell align="right">Action</TableCell>
          
           </TableRow>
@@ -341,8 +351,8 @@ const SubCategory = () => {
               <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.children?.[0]?.img} />
                 {row?.children?.[0]?.name}
               </TableCell>
-              <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
               <TableCell align="center">On</TableCell>
+              <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
               <TableCell align="right">Edit</TableCell>
             
             </TableRow>

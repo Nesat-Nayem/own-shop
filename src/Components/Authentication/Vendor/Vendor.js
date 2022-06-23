@@ -134,7 +134,7 @@ const Vendor = () => {
         console.log(error);
       });
   };
-
+  // image upload handler
 // lince uplode 
 
 // const [license,setLicense] = useState("")

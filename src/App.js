@@ -27,6 +27,7 @@ import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
 import AddCategory from "./Components/Dashboard/Category/AddCategory";
 import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
 import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOverview";
+import AddAService from "./Components/Dashboard/AddAService/AddAService";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 // import Category from "./Components/Dashboard/Category/Category";
@@ -78,8 +79,8 @@ function App() {
        <Route path="/dashboard/subcategory" element={<SubCategory />}></Route> 
 
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
-        <Route path="/dashboard/servicerequist" element={<AddServiceRequest />}></Route>
         <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
+        <Route path="/dashboard/addservice" element={<AddAService />}></Route>
         <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
         {/* dashbord  */}
          </Route> 

@@ -6,6 +6,7 @@ import LayersIcon from "@mui/icons-material/Layers";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import Drawer from "@mui/material/Drawer";
 import SavedSearchOutlinedIcon from "@mui/icons-material/SavedSearchOutlined";
 import {
@@ -266,47 +267,81 @@ const Dashboard = (props) => {
               </>
             ) : user?.role === "vendor" ? (
               <>
-                <ListItem
-                  component={NavLink}
+
+
+              <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
                   to={`/dashboard/provideroverview`}
-                  // to=''
-                  button
-                  style={activeStyle}
                 >
-                  <ListItemIcon>
-                    <SavedSearchOutlinedIcon style={{ color: "#F6F6F6" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={"Provider Overview"} />
-                </ListItem>
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <SpeedIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    Provider Overview
+                  </Button>
+                </NavLink>
+
+
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/addservice`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                   
+                    <PlaylistAddCheckIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    Add A Service
+                  </Button>
+                </NavLink>
 
                 
-                <ListItem
-                  component={NavLink}
-                  to={`/dashboard/servicerequist`}
-                  // to=''
-                  button
-                  style={activeStyle}
-                >
-                  <ListItemIcon>
-                    <SavedSearchOutlinedIcon style={{ color: "#F6F6F6" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={"Make Service Request"} />
-                </ListItem>
+               
               
               </>
             ) : (
               <>
-                <ListItem
-                  component={NavLink}
+
+<NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
                   to={`/dashboard/myorder`}
-                  button
-                  style={activeStyle}
                 >
-                  <ListItemIcon>
-                    <ShoppingCartIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"My Orders"} />
-                </ListItem>
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <ShoppingCartIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    My Orders
+                  </Button>
+                </NavLink>
+
+             
               </>
             )}
 

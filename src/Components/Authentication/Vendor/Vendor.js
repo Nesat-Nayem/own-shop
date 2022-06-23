@@ -11,6 +11,7 @@ import { signin, signOut } from "../../../redux/userSlice";
 import './Vendor.css'
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
+import Swal from "sweetalert2";
 
 const Vendor = () => {
 
@@ -40,6 +41,7 @@ const Vendor = () => {
       const dispatch = useDispatch();
       const location = useLocation();
       const [photoURL, setPhotoURL] = useState("");
+     
     
       const password = useRef({});
       password.current = watch("password", "");
@@ -53,7 +55,8 @@ const Vendor = () => {
           email: data.email,
           password: data.password,
           location: country.label,
-          access:'pending',
+          access:'InActive',
+          phone:data.phone
         };
     
         axios
@@ -65,10 +68,12 @@ const Vendor = () => {
             dispatch(signin(response.data));
             // console.log(response.data)
             // if (location.pathname === "/") {
-              // navigate("");
+              
             // }
-    
-            const options = { position: "bottom-center" };
+
+         
+          
+            // const options = { position: "bottom-center" };
             // cogoToast.success("Signup Sucessfully", options);
           })
           .catch((error) => {
@@ -85,12 +90,13 @@ const Vendor = () => {
             dispatch(signin(response.data));
             console.log(response.data)
             // if (location.pathname === "/") {
-              navigate("/");
+              // navigate("/");
             // }
-    
-            const options = { position: "bottom-center" };
+            Swal.fire("Success!", "Your account is created", "success");
+            navigate("/dashboard");
+            // const options = { position: "bottom-center" };
             // dispatch(signOut())
-            cogoToast.success("Signup Sucessfully && please log in", options);
+            // cogoToast.success("Signup Sucessfully && please log in", options);
          
             logout()
           })
@@ -128,6 +134,29 @@ const Vendor = () => {
         console.log(error);
       });
   };
+
+// lince uplode 
+
+// const [license,setLicense] = useState("")
+// console.log("vendor licence",license)
+
+//   const licnceUploadHandler = (e) => {
+//     const imageData = new FormData();
+//     imageData.set("key", "fe834545cf9ccab761e32c03f567e890");
+//     imageData.append("image", e.target.files[0]);
+//     axios
+//       .post("https://api.imgbb.com/1/upload", imageData)
+//       .then(function (response) {
+//         console.log(response);
+//         setLicense(response.data.data.display_url);
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   };
+
+
+
     return (
        <>
        <Header></Header>
@@ -217,7 +246,7 @@ const Vendor = () => {
 
           {/* photo upload */}
           <div  className="generalifo">
-            <p style={{marginLeft:'-40px'}}>Upload your business license</p>
+            <p style={{marginLeft:'-120px'}}>Upload Your Photo</p>
             <input style={{border:'1px solid black'}}
               className=""
               placeholder="photoURL"
@@ -233,6 +262,8 @@ const Vendor = () => {
               </span>
             )}
           </div>
+
+
         </div>
 
         {/* // professional details */}
@@ -242,6 +273,25 @@ const Vendor = () => {
           Professional Details
         </h2>
         <div className=" col-md-6">
+              {/* Lincence upload  */}
+        {/* <div  className="profisinfo">
+            <p >Upload your business license</p>
+            <input style={{border:'1px solid black'}}
+              className=""
+              placeholder="photoURL"
+              id="photoURL"
+              type="file"
+              {...register("photoURL", { required: true })}
+              onBlur={licnceUploadHandler}
+            />
+            {/* errors will return when field validation fails  */}
+            {/* {errors.photoURL && (
+              <span className="">
+                License is required
+              </span>
+          //   )}
+          // // </div> */} 
+
           <div className="profisinfo">
             <p className="">Enter your Company Name</p>
             <input
@@ -310,7 +360,7 @@ const Vendor = () => {
 
 
        </div>
-       <div className="text-center me-5 py-2">
+       <div style={{marginLeft:'-180px', marginTop:'30px'}} className="text-center py-2">
           <input id="verdeorbtn"
             className="vendorbtn"
             value="Register A Vendor"

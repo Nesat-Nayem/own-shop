@@ -10,36 +10,81 @@ import axios from 'axios';
 import { Avatar, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
+import PendingproviderStatusModal from './PendingproviderStatusModal';
+import Swal from 'sweetalert2';
 
 
 
 const PendingProviders = () => {
 
-    const user = useSelector((state)=> state.user.user)
-    console.log(user)
-
-// const [provider,setProvider] = useState([''])
-// // console.log(provider?.username)
-// useEffect(()=>{
-//     fetch('http://localhost:7070/api/users/alluser')
-//     .then(res=>res.json())
-//     .then(data=>setProvider(data))
-//     // .then(data=>console.log(data.length))
 
 
-// })
+const [provider,setProvider] = useState([''])
+// console.log(provider)
+useEffect(()=>{
+    fetch('http://localhost:7070/api/getprovider')
+    .then(res=>res.json())
+    .then(data=>setProvider(data))
+    // .then(data=>console.log(data.length))
+
+
+})
+
+const [modalIsOpen, setIsOpen] = useState(false);
+const [blogId, setBlogId] = useState(null);
+
+  // modal functions
+
+  function openModal(id) {
+    setIsOpen(true);
+    setBlogId(id);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+
+
+//   delete provider 
+
+const handleDeleteCustomer = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:7070/api/deleteProvider/${id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data._id) {
+                Swal.fire("Deleted!", "Customer has been deleted.", "success");
+                // alert("Deleted Successfully");
+                // const remaining = jobs.filter((ema) => ema._id !== id);
+                // setJobs(remaining);
+              }
+            });
+        // dispatch(deleteCustomerToDB(id));
+        // Swal.fire("Deleted!", "Customer has been deleted.", "success");
+        // Set reload
+        // setReload(!reload);
+      }
+    });
+  };
+
+
+
     return (
 
         <>
-            {/* {
-                pendingProviders.length === 0 && <Typography variant='h6'>No pending providers</Typography>
-            } */}
-            {/* {
-                // provider.role !== 0 && */}
-
-
-                
-            {/* {  provider?.role === vendor &&  */}
+ 
                 <TableContainer component={Paper}> 
 
                     <Table sx={{ width: '100%' }} aria-label="simple table">
@@ -52,64 +97,82 @@ const PendingProviders = () => {
                                 <TableCell>Email</TableCell>
                                 <TableCell>Reg Date</TableCell>
                                 <TableCell>Status</TableCell>
+                                <TableCell>update</TableCell>
                                 <TableCell>Action</TableCell>
                               
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                          {/* {provider.map((provider) => { 
 
-                            console.log(provider.role)
+                
 
-                          {  provider?.role === 'vendor' ? <> */}
-                           <TableRow
-                                    // key={provider?._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                    <img style={{width:'50px', height:'50px', borderRadius:'50%', marginRight:'10px'}} src='https://i.postimg.cc/rz2qtMkp/profile.jpg' />
-                                        {/* David Jon */}
-                                        {/* {provider?.Name} */}
-                                        {/* <Avatar sx={{ borderRadius: 0 }} src={provider?.Img} alt="serviceImage" /> */}
+                          {
+                            provider.map((provider)=>(
+
+                                <TableRow
+                             
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                <img style={{width:'50px', height:'50px', borderRadius:'50%', marginRight:'10px'}} src={provider?.photoURL} />
+                                    {/* David Jon */}
+                                    {provider?.username}
+                                    {/* <Avatar sx={{ borderRadius: 0 }} src={provider?.Img} alt="serviceImage" /> */}
+                                </TableCell>
+                                <TableCell >
+                                    {/* {provider?.Name} */}
+
+                                    {/* +178767676767 */}
+                                    {provider?.phone}
+
+                                    </TableCell>
+                                <TableCell >
+                                {provider?.email}
+                                    {/* davidlian@gmail.com */}
+                                    {/* <Avatar src={provider?.data?.travelImg} alt="providerImage" /> */}
+                                </TableCell>
+                                <TableCell >
+                                    {/* {provider?.data?.providerName} */}
+                                    {/* 02/02/22 */}
+                                    {new Date(provider.createdAt)?.toDateString()}
+                                    </TableCell>
+                                <TableCell  >
+                                    {/* {provider?.data?.number} */}
+                                    {/* pending */}
+                                    {provider?.access}
+                                    </TableCell>
+                                <TableCell >
+                                    {/* {provider?.data?.email} */}
+                                    <Button      onClick={() => openModal(provider?._id)} >updated</Button>
+
+                                    <PendingproviderStatusModal
+                            modalIsOpen={modalIsOpen}
+                            closeModal={closeModal}
+                            jobTitle={provider?.username}
+                            id={blogId}
+                          />
                                     </TableCell>
                                     <TableCell >
-                                        {/* {provider?.Name} */}
-
-                                        +178767676767
-
-                                        </TableCell>
-                                    <TableCell >
-                                        davidlian@gmail.com
-                                        {/* <Avatar src={provider?.data?.travelImg} alt="providerImage" /> */}
+                                    {/* {provider?.data?.number} */}
+                                    {/* pending */}
+                                    {/* {provider?.access} */}
+                                    <Button onClick={() => handleDeleteCustomer(provider?._id)} >Delete</Button>
                                     </TableCell>
-                                    <TableCell >
-                                        {/* {provider?.data?.providerName} */}
-                                        02/02/22
-                                        </TableCell>
-                                    <TableCell >
-                                        {/* {provider?.data?.number} */}
-                                        pending
-                                        </TableCell>
-                                    <TableCell >
-                                        {/* {provider?.data?.email} */}
-                                        <Button>action</Button>
-                                        </TableCell>
-                                  
-                                </TableRow>
-                          {/* </> :<> */}
-                          {/* <h1>no provider right now</h1>
-                          </> */}
-
-                               
-                          {/* }
+                              
+                            </TableRow>
 
 
-                            })} */}
+                            ))}
+  
+
+                  
+
+                    
                         </TableBody>
                         
                     </Table>
                 </TableContainer>
-         {/* }  */}
+   
         </>
     );
 };

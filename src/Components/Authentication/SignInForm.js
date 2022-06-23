@@ -35,9 +35,9 @@ const SignInForm = () => {
       )
       .then((response) => {
         dispatch(signin(response.data));
-        if (location.pathname === "/signin") {
-          navigate("/");
-        }
+        // if (location.pathname === "/signin") {
+          navigate("/dashboard");
+        // }
         const options = { position: "bottom-center" };
         cogoToast.success("Signin successfull", options);
       })

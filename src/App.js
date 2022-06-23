@@ -26,6 +26,9 @@ import AddServiceRequest from "./Components/Dashboard/MakeServiceRequist/AddServ
 import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
 import AddCategory from "./Components/Dashboard/Category/AddCategory";
 import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
+import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOverview";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 // import Category from "./Components/Dashboard/Category/Category";
 // import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
 // import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
@@ -36,6 +39,8 @@ import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
 
 
 function App() {
+  const user = useSelector((state) => state.user.user);
+ 
 
   return (
     <div>
@@ -59,6 +64,13 @@ function App() {
         <Route path="/products/checkout/:productId" element={<CheckoutLayout />}></Route>
         
 
+        {/* {
+            loading ? <Route path="/dashboard" element={<Loading />} /> : user.role === 'admin' ? <Route path="/dashboard" element={<PrivateUserRoute><Overview /></PrivateUserRoute>}/> : user.role === 'provider' ? <Route path="/dashboard" element={<PrivateUserRoute><ProviderOverview /></PrivateUserRoute>} /> : <Route path="/dashboard" element={<PrivateUserRoute><MyOrder /></PrivateUserRoute>} />
+          } */}
+        {/* {
+           user?.role === 'admin' ? <Route path="/dashboard" element={<ProtectedRoutes><OverView /></ProtectedRoutes>}/> : user?.role === 'vendor' ? <Route path="/dashboard" element={<ProtectedRoutes><ProviderOverview /></ProtectedRoutes>} /> : <Route path="/dashboard" element={<ProtectedRoutes><MyOrder /></ProtectedRoutes>} />
+          } */}
+
       {/* dashborad route must be dashboard route  */}
         <Route path="/dashboard" element={<Dashboard />}>
        <Route path="/dashboard/overview" element={<OverView />}></Route> 
@@ -67,6 +79,7 @@ function App() {
 
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
         <Route path="/dashboard/servicerequist" element={<AddServiceRequest />}></Route>
+        <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
         <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
         {/* dashbord  */}
          </Route> 

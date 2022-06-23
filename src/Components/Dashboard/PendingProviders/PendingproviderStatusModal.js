@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import cogoToast from "cogo-toast";
 import { useForm } from "react-hook-form";
@@ -16,8 +16,17 @@ const customStyles = {
 };
 
 const PendingproviderStatusModal    = ({ modalIsOpen, closeModal, jobTitle, id }) => {
-console.log(id)
+// console.log(id,email)
+
+
   const { register, handleSubmit } = useForm();
+
+
+
+
+
+
+
 
   const onSubmit = (data) => {
     const updatedUser = {
@@ -40,6 +49,21 @@ console.log(id)
         }
       });
   };
+
+  // const newid = id
+
+  // console.log('id on click',newid)
+  
+// get email throw id 
+// const [providerEmail,setProviderEmail] = useState([])
+// useEffect(()=>{
+//   fetch(`http://localhost:7070/api/getproviderid/${newid}`)
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+// })
+
+// get email throw id 
+
 
   return (
     <Modal

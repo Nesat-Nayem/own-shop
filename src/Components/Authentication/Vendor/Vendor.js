@@ -48,6 +48,8 @@ const Vendor = () => {
     
       const onSubmit = (data) => {
         console.log(data)
+
+        
         const userInfo = {
             photoURL,
             role:'vendor',

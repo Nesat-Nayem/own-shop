@@ -1,45 +1,73 @@
 import axios from "axios";
+import cogoToast from "cogo-toast";
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import swal from "sweetalert";
+import { useForm } from "react-hook-form";
+import {  useSelector } from "react-redux";
+// import swal from "sweetalert";
+import Swal from "sweetalert2";
 import "./AddAService.css";
 
 const AddProducts = () => {
+    const user = useSelector((state) => state.user.user)
   const [product, setProduct] = useState({});
+  const [photoURL, setPhotoURL] = useState("");
 //   console.log(product);
-  const handleBlur = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-    const newProduct = { ...product };
-    newProduct[field] = value;
-    setProduct(newProduct);
-    // console.log(newProduct);
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-    console.log(product);
+  const onSubmit = (data) => {
+    // console.log(data)
+    const serviceinfo = {
+        photoURL,
+        // data
+        id:data.id,
+        name:data.name,
+        price:data.price,
+        subcategory:data.subcategory,
+        category:data.category,
+        location:data.location,
+        longdec:data.longdesc,
+        shortdesc:data.shrotdesc,
+        providername:user.username,
+        provideremail:user.email,
+        providernumber:user.phone
+    }
+    console.log(serviceinfo)
 
-    // fetch("http://localhost:5000/addProduct", {
-    //     method: "POST",
-    //     headers: {
-    //         "content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(product),
-    // })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         if (data.insertedId) {
-    //             swal("Product Inserted Successfully!", "", "success");
-    //             e.target.reset();
-    //         }
-    //     });
+    axios
+    .post(
+      "http://localhost:7070/api/products/postProduct",
+      serviceinfo
+    )
+    .then((response) => {
+ 
+      console.log(response.data)
+   
+        // navigate("/");
+     
+      Swal.fire("Success!", "Your account is created", "success");
+  
+   
+  
+    })
+    .catch((error) => {
+      const options = { position: "bottom-center" };
+      cogoToast.error("Authentication failed", options);
+    });
 
-    console.log(product);
-  };
+  }
 
-  // category lodad
+
+  const options = { position: "bottom-center" };
+ 
+
+  
   const [loadCategory, setLoadCategory] = useState([""]);
   // console.log(loadCategory)
 
@@ -63,7 +91,7 @@ const AddProducts = () => {
       .post("https://api.imgbb.com/1/upload", imageData)
       .then(function (response) {
         console.log(response);
-        // setPhotoURL(response.data.data.display_url);
+        setPhotoURL(response.data.data.display_url);
       })
       .catch(function (error) {
         console.log(error);
@@ -82,6 +110,8 @@ const AddProducts = () => {
     width: "100%",
     padding: "5px",
   };
+
+
   const textArea2 = {
     height: "100px",
     outline: "none",
@@ -93,24 +123,27 @@ const AddProducts = () => {
   return (
     <div>
       <Container>
-        <h2
+      <form  onSubmit={handleSubmit(onSubmit)}>
+       <div>
+       <h2
           className="text-center mb-4 fw-bold mt-3"
           style={{ color: "#3498db" }}
         >
           Add a Service
         </h2>
         <div className="form-area">
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}> */}
           <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>
            Service Name
               
             </p>
             <input
               type="text"
-              onBlur={handleBlur}
-              name="name"
+            //   onBlur={handleBlur}
+            //   name="name"
               placeholder="Service Name"
               required
+              {...register("name", { required: true })}
             />
 
             {/* category sub category  */}
@@ -122,8 +155,9 @@ const AddProducts = () => {
               className="form-select mb-3"
               aria-label="Default select example"
               style={{ background: "#E5E5E5" }}
-              name="category"
-              onBlur={handleBlur}
+            //   name="category"
+            //   onBlur={handleBlur}
+              {...register("category", { required: true })}
             >
               {loadCategory.map((category) => (
                 <option key={category._id} defaultValue={category?.name}>
@@ -139,8 +173,9 @@ const AddProducts = () => {
               className="form-select mb-3"
               aria-label="Default select example"
               style={{ background: "#E5E5E5" }}
-              name="subcategory"
-              onBlur={handleBlur}
+            //   name="subcategory"
+            {...register("subcategory", { required: true })}
+            //   onBlur={handleBlur}
             >
               {loadCategory.map((category) => (
                 <option key={category._id} defaultValue={category?.name}>
@@ -149,13 +184,26 @@ const AddProducts = () => {
               ))}
             </select>
             <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>
+         Service Location
+              
+            </p>
+            <input
+              type="text"
+            //   onBlur={handleBlur}
+            //   name="location"
+            {...register("location", { required: true })}
+              placeholder="Service Location"
+              required
+            />
+            <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>
          Service Id
               
             </p>
             <input
-              type="number"
-              onBlur={handleBlur}
-              name="id"
+              type="providernumber"
+            //   onBlur={handleBlur}
+            //   name="id"
+            {...register("id", { required: true })}
               placeholder="Service Id"
               required
             />
@@ -169,7 +217,7 @@ const AddProducts = () => {
               placeholder="photoURL"
               id="photoURL"
               type="file"
-            //   {...register("photoURL", { required: true })}
+              {...register("photoURL", { required: true })}
               onBlur={imageUploadHandler}
             />
              <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>
@@ -177,36 +225,45 @@ const AddProducts = () => {
               Service Price
          </p>
             <input
-              onBlur={handleBlur}
+            //   onBlur={handleBlur}
               type="number"
-              name="price"
+            //   name="price"
+            {...register("price", { required: true })}
               placeholder="Price"
               required
             />
 
-           
-
             <textarea
               style={textArea}
-              onBlur={handleBlur}
+            //   onBlur={handleBlur}
               type="text"
-              name="longdesc"
+            //   name="longdesc"
+              {...register("longdesc", { required: true })}
               placeholder="Long Description"
               required
             />
             <textarea
               style={textArea2}
-              onBlur={handleBlur}
+            //   onBlur={handleBlur}
               type="text"
-              name="shotdesc"
+            //   name="shrotdesc"
+              {...register("shrotdesc", { required: true })}
               placeholder="Short Description"
               required
             />
-            <button type="submit" className="signBtn mt-2">
+            {/* <button type="submit" className="signBtn mt-2">
               Add Service
-            </button>
-          </form>
+            </button> */}
+
+            <input id="verdeorbtn"
+            className="signBtn mt-2"
+            value="Add Service"
+            type="submit"
+          />
+          {/* </form> */}
         </div>
+       </div>
+       </form>
       </Container>
     </div>
   );

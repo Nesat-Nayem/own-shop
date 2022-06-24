@@ -11,7 +11,7 @@ import "./AddAService.css";
 const AddProducts = () => {
     const user = useSelector((state) => state.user.user)
   const [product, setProduct] = useState({});
-  const [photoURL, setPhotoURL] = useState("");
+  const [img, setImg] = useState("");
 //   console.log(product);
 
   const {
@@ -24,7 +24,7 @@ const AddProducts = () => {
   const onSubmit = (data) => {
     // console.log(data)
     const serviceinfo = {
-        photoURL,
+        img,
         // data
         id:data.id,
         name:data.name,
@@ -91,7 +91,7 @@ const AddProducts = () => {
       .post("https://api.imgbb.com/1/upload", imageData)
       .then(function (response) {
         console.log(response);
-        setPhotoURL(response.data.data.display_url);
+        setImg(response.data.data.display_url);
       })
       .catch(function (error) {
         console.log(error);
@@ -217,7 +217,7 @@ const AddProducts = () => {
               placeholder="photoURL"
               id="photoURL"
               type="file"
-              {...register("photoURL", { required: true })}
+              {...register("img", { required: true })}
               onBlur={imageUploadHandler}
             />
              <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>

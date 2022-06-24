@@ -4,6 +4,7 @@ import "./Header.css";
 import { Navbar, Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/userSlice";
+import { Typography } from "@mui/material";
 
 const Header = () => {
   const user = useSelector((state) => state.user.user)
@@ -40,7 +41,19 @@ const Header = () => {
       }
     >
       <Navbar.Brand className="ms-md-5 text-color" href="/">
-        OwnSell
+        {/* OwnSell */}
+        <Typography
+              sx={{
+                display: { xs: "none", md: "block" },
+                color: "#E60073",
+                fontSize: "30px",
+                fontWeight: "700",
+
+                fontFamily: "Cinzel",
+              }}
+            >
+              Own <span style={{ color: "#27B1FC" }}>Sell</span>
+            </Typography>
       </Navbar.Brand>
 
       <Navbar.Toggle

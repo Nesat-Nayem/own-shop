@@ -48,7 +48,7 @@ const Products = () => {
             <Header></Header>
             <img  className=' product-banner img-fluid' src='https://i.postimg.cc/9X7ZHsYd/services-banner.webp' />
         <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
-            <h3 style={{color:'#FF0080'}} className='m-0 mt-5'>Total Product found {products.length}</h3>
+            <h3 style={{color:'#FF0080'}} className='m-0 mt-5'>Total services found {products.length}</h3>
 
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto mb-5">

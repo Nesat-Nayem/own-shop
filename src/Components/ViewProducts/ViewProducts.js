@@ -157,15 +157,15 @@ const ViewProducts = () => {
                 onChange={handleChange}
                 aria-label="ant example"
               >
-                <AntTab label="Overview" />
-                <AntTab label="Services Offered" />
+                <AntTab label="Long Description" />
+                <AntTab label="Short Description" />
                 <AntTab label="Reviews" />
               </AntTabs>
               <TabPanel value={value} index={0}>
-                {productView[0]?.desc}
+                {productView[0]?.longdesc}
               </TabPanel>
               <TabPanel value={value} index={1}>
-                NO DATA
+              {productView[0]?.shrotdesc}
               </TabPanel>
               <TabPanel value={value} index={2}>
                 NO DATA

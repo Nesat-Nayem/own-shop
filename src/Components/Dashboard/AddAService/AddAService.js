@@ -32,8 +32,8 @@ const AddProducts = () => {
         subcategory:data.subcategory,
         category:data.category,
         location:data.location,
-        longdec:data.longdesc,
-        shortdesc:data.shrotdesc,
+        longdesc:data.longdesc,
+        shrotdesc:data.shrotdesc,
         providername:user.username,
         provideremail:user.email,
         providernumber:user.phone
@@ -51,7 +51,7 @@ const AddProducts = () => {
    
         // navigate("/");
      
-      Swal.fire("Success!", "Your account is created", "success");
+      Swal.fire("Success!", "Your services successfully created", "success");
   
    
   

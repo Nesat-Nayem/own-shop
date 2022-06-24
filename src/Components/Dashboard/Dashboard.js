@@ -7,6 +7,7 @@ import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import InterestsIcon from '@mui/icons-material/Interests';
 import Drawer from "@mui/material/Drawer";
 import SavedSearchOutlinedIcon from "@mui/icons-material/SavedSearchOutlined";
 import {
@@ -310,6 +311,27 @@ const Dashboard = (props) => {
                    
                     <PlaylistAddCheckIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Add A Service
+                  </Button>
+                </NavLink>
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/manageservices`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                   
+                    <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
+                   Manage Services
                   </Button>
                 </NavLink>
 

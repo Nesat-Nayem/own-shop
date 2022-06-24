@@ -30,6 +30,7 @@ import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOv
 import AddAService from "./Components/Dashboard/AddAService/AddAService";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import ManageServices from "./Components/Dashboard/ManageServices/ManageServices";
 // import Category from "./Components/Dashboard/Category/Category";
 // import DashboardOverView from "./Components/Dashboard/DashboardOverview/DashboardOverView";
 // import Dashboardadminroute from "./Components/Dashboard/Dashboardadminroute/Dashboardadminroute";
@@ -81,6 +82,7 @@ function App() {
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
         <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
         <Route path="/dashboard/addservice" element={<AddAService />}></Route>
+        <Route path="/dashboard/manageservices" element={<ManageServices />}></Route>
         <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
         {/* dashbord  */}
          </Route> 

@@ -134,14 +134,14 @@ const AddProducts = () => {
         <div className="form-area">
           {/* <form onSubmit={handleSubmit}> */}
           <p className="form-label" style={{ fontWeight: "bold",textAlign:'left',color: 'green' }}>
-           Service Name
+           Soft Name
               
             </p>
             <input
               type="text"
             //   onBlur={handleBlur}
             //   name="name"
-              placeholder="Service Name"
+              placeholder="Soft Name"
               required
               {...register("name", { required: true })}
             />

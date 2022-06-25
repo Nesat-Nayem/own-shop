@@ -65,7 +65,7 @@ const SubCategory = () => {
     reset,
   } = useForm();
   const [photoURL, setPhotoURL] = useState("");
-  // console.log(photoURL)
+  console.log(photoURL)
 
   // metrial ui data table
   const [page, setPage] = React.useState(0);

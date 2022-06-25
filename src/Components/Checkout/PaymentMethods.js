@@ -32,7 +32,7 @@ const ELEMENT_OPTIONS = {
 };
 
 const PaymentMethods = ({ checkoutDetails }) => {
-  // console.log(checkoutDetails)
+  console.log(checkoutDetails)
   const elements = useElements();
   const stripe = useStripe();
   const [postal, setPostal] = useState("");
@@ -46,16 +46,29 @@ const PaymentMethods = ({ checkoutDetails }) => {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
+// payment intent 
+
+
+
+
+
   let [data, setdata] = useState("");
 
-  // console.log(data)
+  console.log(data)
 
   const orderalldata = {
     username: checkoutDetails?.fullname,
+    email:checkoutDetails?.email,
+    userAddress:checkoutDetails?.country,
+    userRegion:checkoutDetails?.region,
+    userNumber:checkoutDetails?.phone,
     price: data?.price,
     serviceName: data?.name,
     status: "pending",
-    providerName: "providerDebo name",
+    providerName: data?.providername,
+    providerEmail: data?.provideremail,
+    providerNumber:data?.providernumber,
+    serviceImg:data?.img
   };
 
   const paymentbutton = () => {

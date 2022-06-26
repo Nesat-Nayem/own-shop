@@ -13,6 +13,8 @@ import Card from "../Card/Card";
 import { addProduct, setProducts } from "../../redux/slice";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import useAuth from "../../hooks/useAuth"
+import Review from "./Review";
 
 const AntTabs = styled(Tabs)({
   borderBottom: "1.2px solid #000",
@@ -83,12 +85,16 @@ const ViewProducts = () => {
   const cart = useSelector((state) => state.products.cart);
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
+  const {reviews} = useAuth()
+
+  console.log("direct product comments",reviews?.reviews?.data)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const { productId } = useParams();
+  console.log(productId)
 
   useEffect(() => {
     // fetch("http://localhost:5000/products")
@@ -100,6 +106,16 @@ const ViewProducts = () => {
   const productView = products.filter(
     (pro) => Number(pro.id) === Number(productId)
   );
+
+  const prductreviewid = productView[0]?.productId;
+
+  console.log(prductreviewid)
+
+  const productreview = reviews?.reviews?.data?.filter((r) => r.blogId === prductreviewid);
+  // const productreview = reviews?.data?.filter((r) => console.log(r));
+  // const blogComments = comments?.data?.filter((c) => c.blogId === id);
+  // const blogComments = reviews?.data?.filter((c) => console.log(c));
+  console.log("filter product comment",productreview);
 
   const category = productView[0]?.category;
 
@@ -168,7 +184,13 @@ const ViewProducts = () => {
               {productView[0]?.shrotdesc}
               </TabPanel>
               <TabPanel value={value} index={2}>
-                NO DATA
+                {
+                  productreview?.map((review)=>(
+                    <Review key={review?._id} review={review}></Review>
+                  ))
+                }
+           
+
               </TabPanel>
 
               <Box sx={{ p: 3 }} />

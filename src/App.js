@@ -24,6 +24,7 @@ import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOv
 import AddAService from "./Components/Dashboard/AddAService/AddAService";
 import { useSelector } from "react-redux";
 import ManageServices from "./Components/Dashboard/ManageServices/ManageServices";
+import AddServiceReview from "./Components/Dashboard/AddServiceReview/AddServiceReview";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
        <Route path="/dashboard/addcategory" element={<AddCategory />}></Route> 
        <Route path="/dashboard/subcategory" element={<SubCategory />}></Route> 
 
+        <Route path="/dashboard/review/:id" element={<AddServiceReview />}></Route>
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
         <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
         <Route path="/dashboard/addservice" element={<AddAService />}></Route>

@@ -8,6 +8,7 @@ import axios from 'axios';
 // import { allData, parentServiceId, reviewServiceIndex } from '../../../../redux/dataSlice/dataSlice';
 
 const MyOrdersCard = ({ service, notShow, index }) => {
+    // console.log(service)
 
     // const [getProvider, setGetProvider] = useState({});
     const [loading, setLoading] = useState(true);
@@ -16,12 +17,12 @@ const MyOrdersCard = ({ service, notShow, index }) => {
     // const dispatch = useDispatch();
 
 
-    // const handleRouteChange = (selectServiceId, index, service) => {
-    //     navigate(`/dashboard/review/${selectServiceId}`);
-    //     dispatch(reviewServiceIndex(parseInt(index) + 1));
-    //     const data = { selectServiceId, email: user.email, providerEmail: service.providerEmail };
-    //     dispatch(parentServiceId(data));
-    // };
+    const handleRouteChange = (serviceId, index, service) => {
+        navigate(`/dashboard/review/${serviceId}`);
+        // dispatch(reviewServiceIndex(parseInt(index) + 1));
+        // const data = { selectServiceId, email: user.email, providerEmail: service.providerEmail };
+        // dispatch(parentServiceId(data));
+    };
 
 
     // useEffect(() => {
@@ -93,8 +94,8 @@ const MyOrdersCard = ({ service, notShow, index }) => {
                     <Typography sx={{ fontSize: 15 }} variant="h6">Phone:- {service?.providerNumber}</Typography>
                 </Box>
 
-                {/* <Button to={`/dashboard/review/${service.selectServiceId}`} onClick={() => handleRouteChange(service.selectServiceId, index, service)} style={{ marginTop: 10, display: 'block', letterSpacing: 2, textAlign: 'center' }} variant="outlined" color='warning'>WRITE A REVIEW?</Button> */}
-                <Button to={`/dashboard/review/${service.selectServiceId}`}  style={{ marginTop: 10, display: 'block', letterSpacing: 2, textAlign: 'center' }} variant="outlined" color='warning'>WRITE A REVIEW?</Button>
+                <Button to={`/dashboard/review/${service?.serviceId}`} onClick={() => handleRouteChange(service.serviceId, index, service)} style={{ marginTop: 10, display: 'block', letterSpacing: 2, textAlign: 'center' }} variant="outlined" color='warning'>WRITE A REVIEW?</Button>
+                {/* <Button to={`/dashboard/review/${service.selectServiceId}`}  style={{ marginTop: 10, display: 'block', letterSpacing: 2, textAlign: 'center' }} variant="outlined" color='warning'>WRITE A REVIEW?</Button> */}
 
             </CardContent>
         </Card>

@@ -147,6 +147,7 @@ const handleSubmit = async (event) => {
    
     username: checkoutDetails?.fullname,
     userId: user?._id,
+    serviceId:data?.id,
     email:checkoutDetails?.email,
     userAddress:checkoutDetails?.country,
     userRegion:checkoutDetails?.region,

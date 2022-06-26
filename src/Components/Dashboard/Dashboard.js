@@ -6,8 +6,8 @@ import LayersIcon from "@mui/icons-material/Layers";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
-import InterestsIcon from '@mui/icons-material/Interests';
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import InterestsIcon from "@mui/icons-material/Interests";
 import Drawer from "@mui/material/Drawer";
 import SavedSearchOutlinedIcon from "@mui/icons-material/SavedSearchOutlined";
 import {
@@ -24,6 +24,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import HailIcon from '@mui/icons-material/Hail';
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -268,9 +269,7 @@ const Dashboard = (props) => {
               </>
             ) : user?.role === "vendor" ? (
               <>
-
-
-              <NavLink
+                <NavLink
                   style={{
                     textDecoration: "none",
                     marginTop: "0 !important",
@@ -291,7 +290,6 @@ const Dashboard = (props) => {
                   </Button>
                 </NavLink>
 
-
                 <NavLink
                   style={{
                     textDecoration: "none",
@@ -308,7 +306,6 @@ const Dashboard = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                   
                     <PlaylistAddCheckIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Add A Service
                   </Button>
@@ -329,20 +326,14 @@ const Dashboard = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                   
                     <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
-                   Manage Services
+                    Manage Services
                   </Button>
                 </NavLink>
-
-                
-               
-              
               </>
             ) : (
               <>
-
-<NavLink
+                <NavLink
                   style={{
                     textDecoration: "none",
                     marginTop: "0 !important",
@@ -362,8 +353,26 @@ const Dashboard = (props) => {
                     My Orders
                   </Button>
                 </NavLink>
-
-             
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/myorder`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <HailIcon sx={{ mr: 2, fontSize: "24px" }} />
+                   Give Feedback
+                  </Button>
+                </NavLink>
               </>
             )}
 

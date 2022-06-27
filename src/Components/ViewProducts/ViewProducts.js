@@ -6,7 +6,9 @@ import { Rating } from "react-simple-star-rating";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Rate from '@mui/material/Rating'
 import Box from "@mui/material/Box";
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import "./ViewProducts.css";
 import { Typography } from "@mui/material";
 import Card from "../Card/Card";
@@ -107,11 +109,14 @@ const ViewProducts = () => {
     (pro) => Number(pro.id) === Number(productId)
   );
 
-  const prductreviewid = productView[0]?.productId;
+// console.log( "get product id", productView[0]?._id)
+  // const prductreviewid = productView[0]?.productId;
+  const prductreviewid = productView[0]?._id;
 
   console.log(prductreviewid)
 
-  const productreview = reviews?.reviews?.data?.filter((r) => r.blogId === prductreviewid);
+  // const productreview = reviews?.reviews?.data?.filter((r) => r.blogId === prductreviewid);
+  const productreview = reviews?.reviews?.data?.filter((r) => r.productId === prductreviewid);
   // const productreview = reviews?.data?.filter((r) => console.log(r));
   // const blogComments = comments?.data?.filter((c) => c.blogId === id);
   // const blogComments = reviews?.data?.filter((c) => console.log(c));
@@ -136,10 +141,11 @@ const ViewProducts = () => {
       <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
         <Row>
           <Col lg={8} md={8} sm={12}>
-            <h2 className="my-2">{productView[0]?.name}</h2>
-            <p className="my-2">{productView[0]?.location}</p>
+            <h2 style={{fontWeight: 'bold', fontSize:'36px', fontFamily:'Poppins', color:'#2c3038'}} className="my-2">{productView[0]?.name}</h2>
+            <p className="my-4"> <GpsFixedIcon/> {productView[0]?.location}</p>
             <Rating
-              ratingValue={productView[0]?.review * 20}
+              // ratingValue={productView[0]?.review * 20}
+              ratingValue={5}
               size={25}
               readonly={true}
             />
@@ -184,6 +190,9 @@ const ViewProducts = () => {
               {productView[0]?.shrotdesc}
               </TabPanel>
               <TabPanel value={value} index={2}>
+              <Typography variant="h5" sx={{ fontWeight: 600, margin:'3px 0px 10px -25px' }}>Review of {productView[0]?.name}</Typography>
+              <Typography variant='h2'>4.67</Typography>
+                 <Rate name="read-only" value='4.5' readOnly />
                 {
                   productreview?.map((review)=>(
                     <Review key={review?._id} review={review}></Review>

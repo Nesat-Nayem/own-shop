@@ -6,12 +6,13 @@ import { Alert, Button, Grid, Paper, Rating, TextField, Typography } from '@mui/
 import { Box } from '@mui/system';
 // import CloseIcon from '@mui/icons-material/Close';
 // import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 // import { allData } from '../../../../redux/dataSlice/dataSlice';
 
 const AddServiceReview = () => {
 const {id} = useParams()
-
+ const navigate = useNavigate()
 const [review,setreview] = useState([]);
 console.log(review._id)
 useEffect(()=>{
@@ -76,6 +77,12 @@ console.log(id)
         axios.post('http://localhost:7070/api/postreview',reviewdata)
 
         .then(function (response) {
+            Swal.fire(
+                'Submited!',
+                'Recorded your review!',
+                'success'
+              )
+              navigate('/dashboard/myorder')
             console.log(response);
           })
           .catch(function (error) {

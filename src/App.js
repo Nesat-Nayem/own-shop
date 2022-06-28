@@ -19,12 +19,17 @@ import ContactUs from "./Components/ContractUs/ContactUs"
 import PendingProviders from "./Components/Dashboard/PendingProviders/PendingProviders";
 import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
 import AddCategory from "./Components/Dashboard/Category/AddCategory";
-import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
+
+
+// import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
+
+
 import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOverview";
 import AddAService from "./Components/Dashboard/AddAService/AddAService";
 import { useSelector } from "react-redux";
 import ManageServices from "./Components/Dashboard/ManageServices/ManageServices";
 import AddServiceReview from "./Components/Dashboard/AddServiceReview/AddServiceReview";
+import SubCategoryParent from "./Components/Dashboard/SubCategoryParent/SubCategoryParent";
 
 
 function App() {
@@ -53,7 +58,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}>
        <Route path="/dashboard/overview" element={<OverView />}></Route> 
        <Route path="/dashboard/addcategory" element={<AddCategory />}></Route> 
-       <Route path="/dashboard/subcategory" element={<SubCategory />}></Route> 
+
+       <Route path="/dashboard/subcategory" element={<SubCategoryParent />}></Route> 
 
         <Route path="/dashboard/review/:id" element={<AddServiceReview />}></Route>
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>

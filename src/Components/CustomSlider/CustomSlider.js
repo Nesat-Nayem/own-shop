@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 const CustomSlider = props => {
     const data = props.data;
-    console.log(data)
+    // console.log(data)
     const Component = props.component;
     const [my_swiper, set_my_swiper] = useState({});
     const [my_swiper_status, set_my_swiper_status] = useState({

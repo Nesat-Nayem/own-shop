@@ -33,6 +33,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Table from "@mui/material/Table";
 import cogoToast from "cogo-toast";
 import Swal from "sweetalert2";
+import SubCategory from "../SubCategory/SubCategory";
 
 const AddCategory = () => {
   const {
@@ -275,6 +276,12 @@ const AddCategory = () => {
       </Table>
     </TableContainer>
 
+    {/* {
+                newCategory.map((c)=>(
+                  console.log(c)
+                    // <SubCategory key={c._id} id={c._id}></SubCategory>
+                ))
+            } */}
 
     </Container>
   );

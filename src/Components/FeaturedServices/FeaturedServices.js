@@ -12,7 +12,7 @@ import ComonServices from "../ComonServices/ComonServices";
 const FeaturedServices = () => {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
-  console.log(services)
+  // console.log(services)
 
   useEffect(() => {
     setLoading(true);

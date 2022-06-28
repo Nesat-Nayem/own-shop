@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import cogoToast from "cogo-toast";
-import { signin } from "../../redux/userSlice";
+import { signin, signOut } from "../../redux/userSlice";
 import './SingInForm.css'
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Swal from "sweetalert2";
 
 // import { signin } from "../../redux/slices/userSlice";
 
@@ -15,6 +16,21 @@ const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const inactiveaccess = () =>{
+    Swal.fire(
+      'Oops...',
+      'Your access is pending at this time. admin check your info soon.',
+      'error'
+    )
+    // console.log('log out clicked')
+    dispatch(signOut())
+  }
+
+  const activeAccess = () =>{
+         const options = { position: "bottom-center" };
+        cogoToast.success("Signin successfull", options);
+  }
 
   const {
     register,
@@ -35,11 +51,24 @@ const SignInForm = () => {
       )
       .then((response) => {
         dispatch(signin(response.data));
+        console.log(response.data.access)
+        {
+          response.data.access === 'InActive'? 
+          // console.log('he is not active') 
+       
+          inactiveaccess()
+        
+    
+          : activeAccess()
+        }
+        // if(response.data.access ==== 'InActive'){
+        //   console.log('he is not active')
+        // }
         // if (location.pathname === "/signin") {
           navigate("/dashboard");
         // }
-        const options = { position: "bottom-center" };
-        cogoToast.success("Signin successfull", options);
+        // const options = { position: "bottom-center" };
+        // cogoToast.success("Signin successfull", options);
       })
       .catch((error) => {
         const options = { position: "bottom-center" };

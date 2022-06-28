@@ -15,8 +15,24 @@ const customStyles = {
   },
 };
 
-const PendingproviderStatusModal    = ({ modalIsOpen, closeModal, jobTitle, id }) => {
-// console.log(id,email)
+const PendingproviderStatusModal    = ({ modalIsOpen, closeModal, jobTitle, id,userStatusid }) => {
+// console.log('from provider collection',id)
+// console.log('from user collection',userStatusid)
+
+// get pending provider details by id 
+
+// const [penprovider,setPenprovider] = useState('')
+// console.log(penprovider)
+// useEffect(()=>{
+//   fetch(`http://localhost:7070/api/getproviderid/${id}`)
+//   .then(res => res.json())
+//   .then(data => setPenprovider(data[0].email))
+// })
+
+
+
+
+
 
 
   const { register, handleSubmit } = useForm();
@@ -33,6 +49,23 @@ const PendingproviderStatusModal    = ({ modalIsOpen, closeModal, jobTitle, id }
         access: data.status,
     };
     fetch(`http://localhost:7070/api/updateprovider/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          // Swal.fire("Updated!", "Provider status updated successfully.", "success");
+          // cogoToast.success("User role updated successfully");
+          // closeModal();
+        } else {
+          cogoToast.error("something went wrong");
+          closeModal();
+        }
+      });
+
+    fetch(`http://localhost:7070/api/users/update/${userStatusid}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedUser),

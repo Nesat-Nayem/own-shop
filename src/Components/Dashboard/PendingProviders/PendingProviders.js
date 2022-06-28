@@ -28,27 +28,87 @@ useEffect(()=>{
     // .then(data=>console.log(data.length))
 
 
-})
+},[])
 
 const [modalIsOpen, setIsOpen] = useState(false);
 const [blogId, setBlogId] = useState(null);
 
-  // modal functions
+const [userstatusupdate,setUserstatusupdate] = useState('')
 
+// provider email to get user collection user data 
+const [updateprovieremail, setUpdateprovideremail] = useState()
+
+useEffect(()=>{
+      fetch(`http://localhost:7070/api/users/email/${updateprovieremail}`)
+      .then(res => res.json())
+      .then(data => setUserstatusupdate(data[0]._id))
+    })
+
+// provider email to get user collection user data 
+
+
+// get email throw id from provider collection 
+
+const [pupdateid,setpupdateid] = useState('')
+// console.log(pupdateid)
+useEffect(()=>{
+  fetch(`http://localhost:7070/api/getproviderid/${pupdateid}`)
+  .then(res => res.json())
+  .then(data => setUpdateprovideremail(data[0].email))
+})
+// get email throw id from provider collection 
+
+
+  // modal functions
+  
   function openModal(id) {
+    // console.log(id)
+    
     setIsOpen(true);
     setBlogId(id);
+    
+    setpupdateid(id)
   }
 
   function closeModal() {
     setIsOpen(false);
   }
 
+  // get email from provider collection to find user collection data 
+  // set email to fetch user usercollection 
 
+//   const [getemail,setGetemail] = useState('')
+//   // console.log(getemail)
 
-//   delete provider 
+//   // get email by email 
 
+//   const [usemail,setUserMail] = useState('')
+
+//   useEffect(()=>{
+//     fetch(`http://localhost:7070/api/users/email/${getemail}`)
+//     .then(res => res.json())
+//     .then(data => setUserMail(data))
+//   })
+
+//   // get email from provider collection to find user collection data 
+
+// //   delete provider 
+
+// // fast id to get email 
+
+// const [providerid,setProviderId] = useState('')
+
+// // console.log(providerid)
+// useEffect(()=>{
+//   fetch(`http://localhost:7070/api/getproviderid/${providerid}`)
+//   .then(res => res.json())
+//   .then(data => setGetemail(data[0].email))
+// })
+
+// fast id to get email 
 const handleDeleteCustomer = (id) => {
+  // setProviderId(id)
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -148,6 +208,7 @@ const handleDeleteCustomer = (id) => {
                                     <PendingproviderStatusModal
                             modalIsOpen={modalIsOpen}
                             closeModal={closeModal}
+                            userStatusid={userstatusupdate}
                             jobTitle={provider?.username}
                             id={blogId}
                           />

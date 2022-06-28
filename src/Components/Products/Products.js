@@ -4,6 +4,7 @@ import { setProducts } from "../../redux/slice";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import MultiServicesFilter from "../MultiServicesFilter/MultiServicesFilter";
 import "./Products.css";
 
 const Products = () => {
@@ -26,10 +27,12 @@ const Products = () => {
   return (
     <div>
       <Header></Header>
-      <img
+      {/* <img
         className=" product-banner img-fluid"
         src="https://i.postimg.cc/9X7ZHsYd/services-banner.webp"
-      />
+      /> */}
+
+      <MultiServicesFilter></MultiServicesFilter>
       <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
         <h6 style={{ color: "#FF0080" }} className="m-0 mt-5">
           Total services found {products.length}

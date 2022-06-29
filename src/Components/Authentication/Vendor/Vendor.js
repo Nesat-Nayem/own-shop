@@ -41,8 +41,10 @@ const Vendor = () => {
       const dispatch = useDispatch();
       const location = useLocation();
       const [photoURL, setPhotoURL] = useState("");
+      const [lincence, setLicenceURL] = useState("")
+      const [id, setIdURL] = useState("")
      
-    
+    console.log(id)
       const password = useRef({});
       password.current = watch("password", "");
     
@@ -52,6 +54,7 @@ const Vendor = () => {
         
         const userInfo = {
             photoURL,
+            lincence,
             role:'vendor',
           username: data.username,
           email: data.email,
@@ -139,6 +142,39 @@ const Vendor = () => {
   // image upload handler
 // lince uplode 
 
+        // image upload handler
+        const imageUploadHandler2 = (e) => {
+          const imageData = new FormData();
+          imageData.set("key", "fe834545cf9ccab761e32c03f567e890");
+          imageData.append("image", e.target.files[0]);
+          axios
+            .post("https://api.imgbb.com/1/upload", imageData)
+            .then(function (response) {
+              console.log(response);
+              setLicenceURL(response.data.data.display_url);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        };
+        // image upload handler
+        // image upload handler
+        const imageUploadHandler3 = (e) => {
+          const imageData = new FormData();
+          imageData.set("key", "fe834545cf9ccab761e32c03f567e890");
+          imageData.append("image", e.target.files[0]);
+          axios
+            .post("https://api.imgbb.com/1/upload", imageData)
+            .then(function (response) {
+              console.log(response);
+              setIdURL(response.data.data.display_url);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        };
+        // image upload handler
+
 // const [license,setLicense] = useState("")
 // console.log("vendor licence",license)
 
@@ -180,7 +216,7 @@ const Vendor = () => {
             />
             {/* errors will return when field validation fails  */}
             {errors.username && (
-              <span className="">
+              <span style={{display:'block',color:'red', marginLeft:'-70px'}} className="">
                 username is required
               </span>
             )}
@@ -196,7 +232,7 @@ const Vendor = () => {
             />
             {/* errors will return when field validation fails  */}
             {errors.email && (
-              <span className="">
+              <span style={{display:'block',color:'red', marginLeft:'-100px'}} className="">
                 email is required
               </span>
             )}
@@ -217,7 +253,7 @@ const Vendor = () => {
               })}
             />
             {/* errors will return when field validation fails  */}
-            <span className="">
+            <span style={{display:'block',color:'red', marginLeft:'-70px'}} className="">
               {errors.password?.type === "required" && "password  is required"}
             </span>
             <span className="">
@@ -237,7 +273,7 @@ const Vendor = () => {
               {...register("phone", { required: true, pattern: /^(?=.{11,})/ })}
             />
             {/* errors will return when field validation fails  */}
-            <span className="">
+            <span style={{display:'block' ,color:'red', marginLeft:'-100px'}} className="">
               {errors.phone?.type === "required" && "phone  is required"}
             </span>
             <span className="">
@@ -254,8 +290,9 @@ const Vendor = () => {
               placeholder="photoURL"
               id="photoURL"
               type="file"
-              {...register("photoURL", { required: true })}
+          
               onBlur={imageUploadHandler}
+              required
             />
             {/* errors will return when field validation fails  */}
             {errors.photoURL && (
@@ -303,11 +340,56 @@ const Vendor = () => {
             />
             {/* errors will return when field validation fails  */}
             {errors.companyName && (
-              <span className="">
-                Current Company Name is required
+              <span style={{display:'block' ,color:'red'}}  className="">
+              Company Name is required
               </span>
             )}
           </div>
+
+          {/* liceance  */}
+
+            {/* photo upload */}
+            <div  className="profisinfo">
+            <p >Upload Your business License</p>
+            <input style={{border:'1px solid black'}}
+              className=""
+              placeholder="photoURL"
+              id="photoURL"
+              type="file"
+              // {...register("photoURL", { required: true })}
+              onBlur={imageUploadHandler2}
+              required
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.photoURL && (
+              <span style={{display:'block' ,color:'red'}} className="">
+                License is required
+              </span>
+            )}
+          </div>
+
+          {/* liceance  */}
+            {/* photo upload */}
+            <div  className="profisinfo">
+            <p >Upload Your business License</p>
+            <input style={{border:'1px solid black'}}
+              className=""
+              placeholder="photoURL"
+              id="photoURL"
+              type="file"
+              // {...register("photoURL", { required: true })}
+              onBlur={imageUploadHandler3}
+              required
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.photoURL && (
+              <span style={{display:'block' ,color:'red'}} className="">
+                License is required
+              </span>
+            )}
+          </div>
+
+          {/* liceance  */}
           <div className="profisinfo">
             <p className="">Enter your Designation</p>
             <input
@@ -318,7 +400,7 @@ const Vendor = () => {
             />
             {/* errors will return when field validation fails  */}
             {errors.post && (
-              <span className="">
+              <span style={{display:'block' ,color:'red'}} className="">
                 Current Designation is required
               </span>
             )}
@@ -329,21 +411,17 @@ const Vendor = () => {
               className=""
               placeholder="www.google.com"
               type="text"
-              {...register("companyWebsite", {
-                required: true,
-                pattern:
-                  /(https?:\/\/)?(www\.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|(https?:\/\/)?(www\.)?(?!ww)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-              })}
+              {...register("companyWebsite")}
             />
             {/* errors will return when field validation fails  */}
-            <span className="">
+            {/* <span className="">
               {errors.companyWebsite?.type === "required" &&
                 "companyWebsite is required"}
             </span>
             <span className="">
               {errors.companyWebsite?.type === "pattern" &&
                 "Please insert a valid link"}
-            </span>
+            </span> */}
           </div>
           <div id="location" style={{width:'250px'}} className="profisinfo">
             <p className="">Enter your Company Location</p>

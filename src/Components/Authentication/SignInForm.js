@@ -79,7 +79,10 @@ const SignInForm = () => {
   
     <div>
         <Header></Header>
-      <div className="loginare">
+        <div className="container">
+   <div className="row">
+    <div className="col-md-6 col-12">
+    <div className="loginare">
       {/* <h1 className="text-center">
         Sign In.
       </h1> */}
@@ -146,6 +149,12 @@ const SignInForm = () => {
         </Link>
       </h1> */}
       </div>
+    </div>
+    <div className="col-md-6 col-12">
+    <img className="img-fluid mt-5" src="https://i.postimg.cc/NFw7H4ZL/login.webp" alt="login" />
+    </div>
+   </div>
+   </div>
       <Footer></Footer>
     </div>
   );

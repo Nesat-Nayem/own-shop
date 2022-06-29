@@ -38,7 +38,7 @@ const Products = () => {
           Total services found {products.length}
         </h6>
 
-        <select
+        {/* <select
           style={{
             padding: "10px 30px",
             backgroundColor: "#85F4FF",
@@ -58,7 +58,7 @@ const Products = () => {
           <option value="Carwash">Carwash</option>
           <option value="Cleaning">Cleaning</option>
           <option value="Electrical">Electrical</option>
-        </select>
+        </select> */}
       </div>
       <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto mb-5">
         {products?.map((pro) => {

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -22,6 +22,26 @@ const SingUpForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const [photoURL, setPhotoURL] = useState("");
+
+  // image uplodar 
+          // image upload handler
+          const imageUploadHandler = (e) => {
+            const imageData = new FormData();
+            imageData.set("key", "fe834545cf9ccab761e32c03f567e890");
+            imageData.append("image", e.target.files[0]);
+            axios
+              .post("https://api.imgbb.com/1/upload", imageData)
+              .then(function (response) {
+                console.log(response);
+                setPhotoURL(response.data.data.display_url);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          };
+  // image uplodar 
+
   const password = useRef({});
   password.current = watch("password", "");
 
@@ -31,6 +51,7 @@ const SingUpForm = () => {
      
       username: data.username,
       email: data.email,
+      photoURL,
       password: data.password,
       access:'approved',
       role:'user',
@@ -68,6 +89,7 @@ const SingUpForm = () => {
 <form className="singupform " onSubmit={handleSubmit(onSubmit)}>
   {/* username */}
   <h3 className="text-center mb-4">User Register</h3>
+ 
   <div className="registerifo">
     <p className="uppertext">User Name</p>
     <input
@@ -97,6 +119,26 @@ const SingUpForm = () => {
       </span>
     )}
   </div>
+   {/* photo  */}
+   <div  className="registerifo">
+            <p >Upload Your Photo</p>
+            <input style={{border:'1px solid black'}}
+              className=""
+              placeholder="photoURL"
+              id="photoURL"
+              type="file"
+              {...register("photoURL", { required: true })}
+              onBlur={imageUploadHandler}
+           
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.photoURL && (
+              <span className="">
+                Photo is required
+              </span>
+            )}
+          </div>
+  {/* photo  */}
   {/* password  */}
   <div className="registerifo">
     <p className="">Password</p>

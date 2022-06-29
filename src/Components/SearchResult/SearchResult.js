@@ -25,6 +25,7 @@ const SearchResult = () => {
       fetch("http://localhost:7070/api/products/getProduct")
         .then((res) => res.json())
         .then((data) => {
+          // console.log(data)
           var result = data.filter(
             (Products) =>
               Products.name.toLowerCase().includes(searchKey.toLowerCase()) &&

@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 
 import "./Banner.css";
 const Banner = () => {
 
-  const { searchKey, setSearchKey, searchLocation, setSearchLocation } =
-  useAuth();
+  const { searchKey, setSearchKey, searchLocation, setSearchLocation } = useAuth();
 
 const handleSearchByKey = (e) => {
   e.preventDefault();
   const searchText = e.target.value;
-  setSearchKey(searchText);
   console.log(searchText);
+  setSearchKey(searchText);
 };
 
 const handleSearchByLocation = (e) => {
@@ -46,7 +46,7 @@ const handleSearchByLocation = (e) => {
                 className="search-field search-icon"
                 style={{ color: "#333" }}
                 onChange={handleSearchByKey}
-                required
+                // required
               />
 
               <input
@@ -57,7 +57,7 @@ const handleSearchByLocation = (e) => {
                 className="search-field location-icon"
                 style={{ color: "#333" }}
                 onChange={handleSearchByLocation}
-                required
+                // required
               />
               <Link to="/searchresult">
               <button className="search-btn footer-search-btn p-3">

@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 
 import { Link } from "react-router-dom";
 import SecondaryButton from "../StyledComponent/SecondaryButton";
+import useAuth from "../../hooks/useAuth";
 // import SecondaryButton from "../../../StyledComponent/Buttons/SecondaryButton";
 
 const MultiServicesFilter = () => {
@@ -26,9 +27,44 @@ const MultiServicesFilter = () => {
   const dateRef = useRef();
   const toRef = useRef();
 
+  const { searchId, setSearchId , city, setCity, provider, setProvider, service,setServiceName  } = useAuth()
+
+
   const onSubmit = data =>{
-    console.log(data)
+    // console.log(data)
+    // const muiltiSearch = {
+    //   searchid : data?.serviceId
+     
+    // }
+    // setSearchId(muiltiSearch)
   }
+
+  const handleserivceId = (e) =>{
+    e.preventDefault()
+    const searchId = e.target.value
+    setSearchId(searchId);
+    console.log(searchId)
+  }
+const handleserivceCity = (e) =>{
+  e.preventDefault()
+  const searchCity = e.target.value;
+  setCity(searchCity);
+  console.log(searchCity)
+}
+
+const handleproviderName =(e)=>{
+  e.preventDefault()
+  const searchprovider = e.target.value;
+  setProvider(searchprovider);
+  console.log(searchprovider)
+}
+const searchservicename =(e)=>{
+  e.preventDefault()
+  const searchname = e.target.value;
+  setServiceName(searchname);
+  console.log(searchname)
+}
+
 
   //   useEffect(() => {
   //     // fetch("https://dashboard.heroku.com/flight")
@@ -141,7 +177,8 @@ const MultiServicesFilter = () => {
               {/* <TextField  className="selector"  variant="outlined" /> */}
               <TextField
                 className="selector"
-                {...register("serviceName")}
+                // {...register("serviceName")}
+                onChange={searchservicename}
                 id="outlined-basic"
                 variant="outlined"
               />
@@ -168,7 +205,8 @@ const MultiServicesFilter = () => {
               <Box className="label">Provider Name</Box>
               <TextField
                 className="selector"
-                {...register("providerName")}
+                // {...register("providerName")}
+                onChange={handleproviderName}
                 id="outlined-basic"
                 variant="outlined"
               />
@@ -193,7 +231,8 @@ const MultiServicesFilter = () => {
               </Box>
               <TextField
                 className="selector"
-                {...register("city")}
+                // {...register("city")}
+                onChange={handleserivceCity}
                 id="outlined-basic"
                 variant="outlined"
               />
@@ -214,8 +253,9 @@ const MultiServicesFilter = () => {
               </Box>
               <TextField
                 className="selector"
-                {...register("serviceId")}
+                // {...register("serviceId")}
                 id="outlined-basic"
+                onChange={handleserivceId}
                 variant="outlined"
               />
               {/* <Box className="selector">
@@ -235,10 +275,10 @@ const MultiServicesFilter = () => {
           </Grid>
           {/* </form> */}
           <Box className="personal_flight_btn">
-            {/* <Link to="" style={{ textDecoration: "none" }}> */}
+            <Link to="/searchresultm" style={{ textDecoration: "none" }}>
               {/* <SecondaryButton onClick={ handleSubmit }> */}
-              <SecondaryButton type='submit' >search now</SecondaryButton>
-            {/* </Link> */}
+              <SecondaryButton type="submit" >search now</SecondaryButton>
+            </Link>
           </Box>
         </Grid>
 

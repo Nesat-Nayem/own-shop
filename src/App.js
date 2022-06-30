@@ -30,6 +30,9 @@ import { useSelector } from "react-redux";
 import ManageServices from "./Components/Dashboard/ManageServices/ManageServices";
 import AddServiceReview from "./Components/Dashboard/AddServiceReview/AddServiceReview";
 import SubCategoryParent from "./Components/Dashboard/SubCategoryParent/SubCategoryParent";
+import ServicesSearchResult from "./Components/ServicesSearchResult/ServicesSearchResult";
+// import AdminReport from "./Components/Dashboard/AdminReport/AdminReport";
+import AdminReports from "./Components/Dashboard/AdminReport/AdminReports";
 
 
 function App() {
@@ -51,6 +54,9 @@ function App() {
           <Route path="/products/:category/:productId" element={<ViewProducts />}></Route>
          
           <Route path="/searchresult" element={<SearchResult />}></Route>
+
+          <Route path="/searchresultm" element={<ServicesSearchResult />}></Route>
+          
           <Route element={<ProtectedRoutes />} >
         <Route path="/products/checkout/:productId" element={<CheckoutLayout />}></Route>
         
@@ -60,6 +66,7 @@ function App() {
        <Route path="/dashboard/addcategory" element={<AddCategory />}></Route> 
 
        <Route path="/dashboard/subcategory" element={<SubCategoryParent />}></Route> 
+       <Route path="/dashboard/report" element={<AdminReports />}></Route> 
 
         <Route path="/dashboard/review/:id" element={<AddServiceReview />}></Route>
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>

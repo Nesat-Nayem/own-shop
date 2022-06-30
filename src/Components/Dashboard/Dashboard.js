@@ -2,6 +2,9 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import SpeedIcon from "@mui/icons-material/Speed";
 import GroupIcon from "@mui/icons-material/Group";
+// import TocIcon from '@mui/icons-material/Toc';
+import StorageIcon from '@mui/icons-material/Storage';
+
 import LayersIcon from "@mui/icons-material/Layers";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import Box from "@mui/material/Box";
@@ -260,6 +263,27 @@ const Dashboard = (props) => {
                   >
                     <GroupIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Service Provider
+                  </Button>
+                </NavLink>
+
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/report`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <StorageIcon sx={{ mr: 2, fontSize: "24px" }} />
+                   Total Report
                   </Button>
                 </NavLink>
 

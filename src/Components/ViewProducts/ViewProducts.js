@@ -87,16 +87,28 @@ const ViewProducts = () => {
   const cart = useSelector((state) => state.products.cart);
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
-  const {reviews} = useAuth()
+  // const {reviews} = useAuth()
 
-  console.log("direct product comments",reviews?.reviews?.data)
+const [reviews,setReviews] = useState('')
+
+// console.log(reviews.data)
+
+useEffect(()=>{
+  fetch('http://localhost:7070/api/postreview')
+  .then(res=>res.json())
+  .then(data => setReviews(data) )
+})
+
+
+  // console.log("direct product comments",reviews?.reviews?.data)
+  // console.log("direct product comments",reviews?.data)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const { productId } = useParams();
-  console.log(productId)
+  // console.log(productId)
 
   useEffect(() => {
     // fetch("http://localhost:5000/products")
@@ -113,14 +125,12 @@ const ViewProducts = () => {
   // const prductreviewid = productView[0]?.productId;
   const prductreviewid = productView[0]?._id;
 
-  console.log(prductreviewid)
+  // console.log(prductreviewid)
 
-  // const productreview = reviews?.reviews?.data?.filter((r) => r.blogId === prductreviewid);
-  const productreview = reviews?.reviews?.data?.filter((r) => r.productId === prductreviewid);
-  // const productreview = reviews?.data?.filter((r) => console.log(r));
-  // const blogComments = comments?.data?.filter((c) => c.blogId === id);
-  // const blogComments = reviews?.data?.filter((c) => console.log(c));
-  console.log("filter product comment",productreview);
+  // const productreview = reviews?.reviews?.data?.filter((r) => r.productId === prductreviewid);
+  const productreview = reviews?.data?.filter((r) => r.productId === prductreviewid);
+  
+  // console.log("filter product comment",productreview);
 
   const category = productView[0]?.category;
 
@@ -231,13 +241,14 @@ const ViewProducts = () => {
                       <a className="ancortt">
                         <img
                           className="img-fluid rounded-circle"
+                          // src={productView[0]?.providername}
                           src="https://truelysell.com/uploads/profile_img/1631787916.jpg"
                         />
                       </a>
                     </div>
                   </div>
                   <div className="providerdetails">
-                    <a className="authorname">David Smith</a>
+                    <a className="authorname">{productView[0]?.providername}</a>
                     <p>
                     <i class="fas fa-circle online"></i>
                     Online

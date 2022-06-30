@@ -1,26 +1,28 @@
-import React from "react";
+// import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-// import useAuth from "../../hooks/useAuth";
-
+// import useAuth from "../hooks/useAuth";
 import "./Banner.css";
+
+
 const Banner = () => {
 
-  const { searchKey, setSearchKey, searchLocation, setSearchLocation } = useAuth();
+  const { searchKey, setSearchKey, searchLocation, setSearchLocation } =
+    useAuth();
 
-const handleSearchByKey = (e) => {
-  e.preventDefault();
-  const searchText = e.target.value;
-  console.log(searchText);
-  setSearchKey(searchText);
-};
+  const handleSearchByKey = (e) => {
+    e.preventDefault();
+    const searchText = e.target.value;
+    setSearchKey(searchText);
+    console.log(searchText);
+  };
 
-const handleSearchByLocation = (e) => {
-  e.preventDefault();
-  const searchText = e.target.value;
-  console.log(searchText);
-  setSearchLocation(searchText);
-};
+  const handleSearchByLocation = (e) => {
+    e.preventDefault();
+    const searchText = e.target.value;
+    console.log(searchText);
+    setSearchLocation(searchText);
+  };
 
   return (
     <div className="banner-container overflow-hidden">
@@ -38,6 +40,7 @@ const handleSearchByLocation = (e) => {
               action=""
               className="d-md-flex justify-content-center  banner-form-input"
             >
+                  {/* <form className="loginform mb-5"  onSubmit={handleSubmit(onSubmit)}> */}
               <input
                 type="text"
                 name=""
@@ -45,6 +48,8 @@ const handleSearchByLocation = (e) => {
                 placeholder="what you need"
                 className="search-field search-icon"
                 style={{ color: "#333" }}
+
+                // {...register("searchkey", { required: true })}
                 onChange={handleSearchByKey}
                 // required
               />
@@ -57,13 +62,17 @@ const handleSearchByLocation = (e) => {
                 className="search-field location-icon"
                 style={{ color: "#333" }}
                 onChange={handleSearchByLocation}
+
+                // {...register("searchlocation", { required: true })}
+
                 // required
               />
               <Link to="/searchresult">
-              <button className="search-btn footer-search-btn p-3">
+              <button    className="search-btn footer-search-btn p-3">
                 Search
               </button>
               </Link>
+            {/* </form> */}
             </form>
           </div>
           <div className="popularserch ">

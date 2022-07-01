@@ -35,7 +35,7 @@ import {
   import Table from "@mui/material/Table";
   import Swal from "sweetalert2";
   import useAuth from "../../../hooks/useAuth";
-  import SubCategoryTable from "../SubCategoryTable/SubCategoryTable";
+  // import SubCategoryTable from "../SubCategoryTable/SubCategoryTable";
   
   const columns = [
     { id: "name", label: "Sub Category", minWidth: 170 },
@@ -86,7 +86,7 @@ const {
     reset,
   } = useForm();
   const [photoURL, setPhotoURL] = useState("");
-  // console.log(photoURL)
+  console.log(photoURL)
 
   // metrial ui data table
   const [page, setPage] = React.useState(0);
@@ -109,7 +109,7 @@ const {
     axios
       .post("https://api.imgbb.com/1/upload", imageData)
       .then(function (response) {
-        // console.log(response);
+        console.log(response);
         setPhotoURL(response.data.data.display_url);
         console.log(response.data.data.display_url);
       })
@@ -121,7 +121,7 @@ const {
   // load all category
 
   const [loadCategory, setLoadCategory] = useState([""]);
-  // console.log(loadCategory)
+  console.log(loadCategory)
 
   useEffect(() => {
     fetch("http://localhost:7070/api/category/getcategories")
@@ -362,7 +362,8 @@ const {
         {/* <div> */}
             {/* <SubCategory></SubCategory> */}
             { 
-                categories?.categories?.map((catego)=>( 
+                // categories?.categories?.map((catego)=>( 
+                  loadCategory.map((catego)=>( 
                 
                     <SubCategory catego={catego} ></SubCategory>
                  )) 

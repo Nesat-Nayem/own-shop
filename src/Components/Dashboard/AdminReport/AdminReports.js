@@ -126,7 +126,7 @@ const AdminReports = () => {
   const handleOnclick = () => {
     pdfExportComponent.current.save();
 
-    Swal.fire("Salary Sheet Downloaded Successfully!");
+    Swal.fire("Your Report Downloaded Successfully!");
   };
     // download total report 
     return (

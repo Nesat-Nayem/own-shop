@@ -16,12 +16,15 @@ import TotalReports from "../TotalReports/TotalReports";
 
 const OverView = () => {
   const [order, setOrder] = useState([""]);
-  console.log(order);
+  
+  console.log('this is from order' , order);
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   });
+
+
 
   // table state
 

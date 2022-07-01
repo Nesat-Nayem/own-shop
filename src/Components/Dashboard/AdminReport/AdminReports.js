@@ -29,7 +29,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#A3D2ED",
         color: theme.palette.common.black,
-        fontSize: 24,
+        fontSize: 18,
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 18,
@@ -38,6 +38,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const AdminReports = () => {
     const [attendances, setAttendances] = useState([]);
+    console.log(attendances)
     const [inputValue, setInputValue] = useState("");
     const { register, handleSubmit } = useForm();
     const [filterDates, setFilterDates] = useState([]);
@@ -46,9 +47,13 @@ const AdminReports = () => {
     const [filterData, setFilterData] = useState([]);
 
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
+        // fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
+        fetch("http://localhost:7070/api/orders/allorder")
             .then((res) => res.json())
-            .then((data) => setAttendances(data.data.reverse()));
+            // .then((data) => setAttendances(data.data.reverse()));
+            .then((data) => setAttendances(data.reverse()));
+            // .then((data) => console.log(data.data));
+            // .then((data) => console.log(data));
     }, []);
 
     useEffect(() => {
@@ -114,16 +119,16 @@ const AdminReports = () => {
             {/* Breadcrumbs */}
             <Box sx={{ mb: 4 }}>
                 <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
-                    Attendance Manages
+                  Admin Report
                 </Typography>
-                <Breadcrumbs aria-label="breadcrumb">
+                {/* <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
                         <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
                     </Link>
                     <Link to="/dashboard/manage_attendance">
                         <StyledBreadcrumb component="a" href="#" label="Attendance Manages" />
                     </Link>
-                </Breadcrumbs>
+                </Breadcrumbs> */}
             </Box>
 
             {/* search box */}
@@ -203,13 +208,13 @@ const AdminReports = () => {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>ID</StyledTableCell>
-                            <StyledTableCell align="left">Name</StyledTableCell>
+                            {/* <StyledTableCell>ID</StyledTableCell> */}
+                            <StyledTableCell align="left">Service Name</StyledTableCell>
                             <StyledTableCell align="left">Date</StyledTableCell>
-                            <StyledTableCell align="center">Entry</StyledTableCell>
-                            <StyledTableCell align="center">Leave</StyledTableCell>
-                            <StyledTableCell align="right">Vacation</StyledTableCell>
-                            <StyledTableCell align="right">Holiday</StyledTableCell>
+                            <StyledTableCell align="right">Provider</StyledTableCell>
+                            <StyledTableCell align="center">User</StyledTableCell>
+                            <StyledTableCell align="center">Price</StyledTableCell>
+                            {/* <StyledTableCell align="right">Holiday</StyledTableCell>  */}
                         </TableRow>
                     </TableHead>
                     <TableBody>

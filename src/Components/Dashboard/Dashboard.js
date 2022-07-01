@@ -28,6 +28,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HailIcon from '@mui/icons-material/Hail';
+import AutoModeIcon from '@mui/icons-material/AutoMode';
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -340,7 +341,7 @@ const Dashboard = (props) => {
                     marginTop: "0 !important",
                     marginLeft: "15px",
                   }}
-                  to={`/dashboard/manageservices`}
+                  to={`/dashboard/vendorReport`}
                 >
                   <Button
                     sx={{
@@ -351,7 +352,7 @@ const Dashboard = (props) => {
                     }}
                   >
                     <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
-                    Manage Services
+                    Vendor Report
                   </Button>
                 </NavLink>
               </>
@@ -395,6 +396,27 @@ const Dashboard = (props) => {
                   >
                     <HailIcon sx={{ mr: 2, fontSize: "24px" }} />
                    Give Feedback
+                  </Button>
+                </NavLink>
+
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/history`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <AutoModeIcon sx={{ mr: 2, fontSize: "24px" }} />
+                  History
                   </Button>
                 </NavLink>
               </>

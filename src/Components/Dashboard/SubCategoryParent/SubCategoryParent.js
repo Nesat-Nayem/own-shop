@@ -351,28 +351,46 @@ const {
                   <TableCell>Sub Category</TableCell>
                   <TableCell align="center">Category</TableCell>
                   <TableCell align="center">Date</TableCell>
-                  <TableCell align="left">Action</TableCell>
+                  <TableCell align="center">Action</TableCell>
                 </TableRow>
               </TableHead>
-              {/* <TableBody> */}
-
-
-        {/* // form sub category  */}
-
-        {/* <div> */}
-            {/* <SubCategory></SubCategory> */}
-            { 
-                // categories?.categories?.map((catego)=>( 
+            
+            {/* { 
+            
                   loadCategory.map((catego)=>( 
                 
                     <SubCategory catego={catego} ></SubCategory>
                  )) 
-            } 
-        {/* </div> */}
+            }  */}
 
-        {/* from sub category  */}
+            {/* here older format  */}
+            <TableBody>
+             {/* {
+                          subcategory?.map((data)=>console.log('children data', data?.children?.[0]?.name))
+                        } */}
+          {loadCategory?.map((row) => (
 
-        {/* </TableBody> */}
+
+
+
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+              <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.children?.[0]?.img} />
+                {row?.children?.[0]?.name}
+              </TableCell>
+              <TableCell align="center"> {row?.children?.[0]?.parentName}</TableCell>
+              <TableCell align="center">{new Date(row?.children?.[0]?.createdAt).toDateString()}</TableCell>
+              {/* <TableCell align="center">On</TableCell> */}
+              <TableCell align="center">Edit</TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+            {/* here older format  */}
+   
           </Table>
         </TableContainer>
       </Box>

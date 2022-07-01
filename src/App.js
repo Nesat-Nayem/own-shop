@@ -33,8 +33,10 @@ import SubCategoryParent from "./Components/Dashboard/SubCategoryParent/SubCateg
 import ServicesSearchResult from "./Components/ServicesSearchResult/ServicesSearchResult";
 // import AdminReport from "./Components/Dashboard/AdminReport/AdminReport";
 import AdminReports from "./Components/Dashboard/AdminReport/AdminReports";
-import History from "./Components/History/History";
+// import History from "./Components/History/History";
 import VendorReport from "./Components/VendorReport/VendorReport";
+import Historys from "./Components/History/Historys";
+import VendorReports from "./Components/VendorReport/VendorReports";
 
 
 function App() {
@@ -74,9 +76,9 @@ function App() {
         <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
         <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
         <Route path="/dashboard/addservice" element={<AddAService />}></Route>
-        <Route path="/dashboard/vendorReport" element={<VendorReport />}></Route>
+        <Route path="/dashboard/vendorReport" element={<VendorReports />}></Route>
         <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
-        <Route path="/dashboard/history" element={<History />}></Route>
+        <Route path="/dashboard/history" element={<Historys />}></Route>
         {/* dashbord  */}
          </Route> 
           {/* dashbord  */}

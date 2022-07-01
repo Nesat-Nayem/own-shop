@@ -47,7 +47,7 @@ const SearchResult = () => {
     return (
         <>
         <Header></Header>
-        <div >
+        <div style={{marginTop:'100px'}} >
           {/* <div
             className="list-sec-banner d-flex align-items-center justify-content-center"
             style={{
@@ -88,7 +88,7 @@ const SearchResult = () => {
 
                   <div>
                   <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
-                      <p className='m-0'>Total Product found {searchJobs.length}</p>
+                      <p style={{color:'rgb(255, 0, 128)'}} className='m-0'>Total Product found {searchJobs.length}</p>
           
                   </div>
                   <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto mb-5">

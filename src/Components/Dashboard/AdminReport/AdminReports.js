@@ -4,6 +4,7 @@ import {
     // Breadcrumbs,
     Button,
     Container,
+    Grid,
     Table,
     TableBody,
     TableContainer,
@@ -17,13 +18,16 @@ import Paper from "@mui/material/Paper";
 import { emphasize, styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { toast } from "react-toastify";
 import dateFormat from "../../DateFormat/dateFormat";
+import { PDFExport } from "@progress/kendo-react-pdf";
 // import dateFormat from "../../Share/DateFormat/dateFormat";
 import AdminReport from "./AdminReport";
+import Swal from "sweetalert2";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -114,6 +118,17 @@ const AdminReports = () => {
             },
         };
     });
+
+    // download total report 
+      //download  in pdf format
+
+  const pdfExportComponent = useRef(null);
+  const handleOnclick = () => {
+    pdfExportComponent.current.save();
+
+    Swal.fire("Salary Sheet Downloaded Successfully!");
+  };
+    // download total report 
     return (
         <Container>
             {/* Breadcrumbs */}
@@ -121,91 +136,78 @@ const AdminReports = () => {
                 <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
                   Admin Report
                 </Typography>
-                {/* <Breadcrumbs aria-label="breadcrumb">
-                    <Link to="/dashboard">
-                        <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
-                    </Link>
-                    <Link to="/dashboard/manage_attendance">
-                        <StyledBreadcrumb component="a" href="#" label="Attendance Manages" />
-                    </Link>
-                </Breadcrumbs> */}
+          
             </Box>
 
-            {/* search box */}
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 5 }}>
-                {/* <Box
-                    sx={{
-                        textAlign: "center",
-                        width: "40%",
-                        position: "relative",
-                    }}
-                    className="id_search"
-                >
-                    <label style={{ display: "block" }}>
-                        <span style={{ display: "flex", alignItems: "start" }}>Search by Id</span>
-                    </label>
-                    <TextField
-                        placeholder="Search ID Card According to ID Number"
-                        variant="outlined"
-                        onChange={handleOnBlur}
-                        sx={{ width: "100%" }}
-                    />
-                </Box> */}
-                <Box
-                    sx={{
-                        textAlign: "center",
-                        width: "50%",
-                        margin: "0 auto",
-                        position: "relative",
-                    }}
-                    className="id_search"
-                >
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                            <Box sx={{ width: "35%" }}>
-                                <label style={{ display: "block" }}>
-                                    <span style={{ display: "flex", alignItems: "start" }}>Start Date</span>
-                                </label>
-                                <TextField
-                                    sx={{ width: "100%" }}
-                                    {...register("startDate")}
-                                    id="outlined-basic"
-                                    type="date"
-                                    variant="outlined"
-                                />
-                            </Box>
-                            <Box sx={{ width: "35%" }}>
-                                <label style={{ display: "block" }}>
-                                    <span style={{ display: "flex", alignItems: "start" }}>End Date</span>
-                                </label>
-                                <TextField
-                                    sx={{ width: "100%" }}
-                                    {...register("endDate")}
-                                    id="outlined-basic"
-                                    type="date"
-                                    variant="outlined"
-                                />
-                            </Box>
-                            <Box sx={{ width: "20%", mt: 3 }}>
-                                <Button
-                                    sx={{
-                                        background: "var(--p_color) !important",
-                                        color: "#fff !important",
-                                        width: "100%",
-                                    }}
-                                    className="btn_regular"
-                                    type="Search"
-                                >
-                                    Search
-                                </Button>
-                            </Box>
-                        </Box>
-                    </form>
-                </Box>
-            </Box>
+          
 
+            <Box sx={{ mt: 6, mb: 3 }}>
+        {/* searchbar */}
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={9}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("startDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                    label="Start Date *"
+                    focused
+                  />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("endDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                    label="End Day *"
+                    focused
+                  />
+                </Grid>
+                <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Button
+                    sx={{
+                      background: "var(--p_color) !important",
+                      color: "#fff !important",
+                      width: "50%",
+                    }}
+                    className="btn_regular"
+                    type="Search"
+                  >
+                    Search
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+
+
+          {/* Download Salary Sheet */}
+          <Grid item xs={12} md={3} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              className="btn_regular"
+              onClick={() => handleOnclick()}
+              variant="contained"
+              sx={{ width: '100%' }}
+            >
+              <FileDownloadIcon /> Total Report
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+
+
+            {/* filter date and downlod selery sheed  */}
+            <PDFExport ref={pdfExportComponent}>
+            <Box>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              
                     <TableHead>
                         <TableRow>
                             {/* <StyledTableCell>ID</StyledTableCell> */}
@@ -222,8 +224,12 @@ const AdminReports = () => {
                             <AdminReport key={attendance._id} attendance={attendance}></AdminReport>
                         ))}
                     </TableBody>
+                  
                 </Table>
-            </TableContainer>
+            </TableContainer> 
+            </Box>
+            </PDFExport>
+           
         </Container>
     );
 };

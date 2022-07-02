@@ -49,6 +49,7 @@ const AdminReports = () => {
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
+    console.log(filterData)
 
     useEffect(() => {
         // fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
@@ -65,7 +66,8 @@ const AdminReports = () => {
         const newFilterDate = attendances.filter((createdAt) => createdAt?.createdAt >= startDate && createdAt?.createdAt <= endDate);
         setFilterDates(newFilterDate);
     }, [attendances, startDate, endDate]);
-    console.log(filterDates);
+
+    // console.log(filterDates);
 
     const onSubmit = (data, e) => {
         const newStartDate = dateFormat(new Date(data.startDate), "yyyy-MM-dd");
@@ -82,6 +84,27 @@ const AdminReports = () => {
         const number = e.target.value;
         setInputValue(number);
     };
+
+
+    // search vendor get info 
+
+    const handleOnChange = data =>{
+        console.log(data.target.value)
+    }
+    
+        // click to search
+        const handleOnSearch = (e) => {
+       
+            // const filterID = employeesId.filter((data) => (data.ID) === inputValue);
+            // if (filterID.length > 0) {
+            //     setFilterData(filterID);
+            // } else {
+            //     setFilterData(employeesId);
+            // }
+        };
+
+
+
 
     // filter employees ID
     useEffect(() => {
@@ -102,23 +125,7 @@ const AdminReports = () => {
         }
     }, [inputValue, attendances, filterDates]);
 
-    // Breadcrumbs
-    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-        const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
-        return {
-            backgroundColor,
-            height: theme.spacing(3),
-            color: theme.palette.text.primary,
-            fontWeight: theme.typography.fontWeightRegular,
-            "&:hover, &:focus": {
-                backgroundColor: emphasize(backgroundColor, 0.06),
-            },
-            "&:active": {
-                boxShadow: theme.shadows[1],
-                backgroundColor: emphasize(backgroundColor, 0.12),
-            },
-        };
-    });
+ 
 
     // download total report 
       //download  in pdf format
@@ -137,11 +144,59 @@ const AdminReports = () => {
                 <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
                   Admin Report
                 </Typography>
+                <Typography sx={{ mt: 2, color: "var(--p_color)", textAlign:'center' }} variant="h4">
+                 Vendor Information
+                </Typography>
           
             </Box>
 
-          
 
+{/* Admin search  provider info */}
+<Box
+                sx={{
+                    textAlign: "center",
+                    width: { xs: "80%", sm: "90%", md: "50%" },
+                    margin: "0 auto",
+                    border:'1.4px solid Black',
+                    borderRadius:'5px',
+                    position: "relative",
+                    mb: 6,
+                }}
+                className="id_search"
+            >
+                <TextField
+                    placeholder="Search Vendor Name"
+                    variant="outlined"
+                    
+                    onChange={handleOnChange}
+                    sx={{ width: "100%",  }}
+                />
+
+                <Button
+                    sx={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "-45px",
+                   
+                        transform: "translate(-50%, -50%)",
+                    }}
+                    className="btn_regular"
+                    onClick={handleOnSearch}
+                >
+                    Search
+                </Button>
+            </Box>
+
+
+            <Box sx={{ mb: 4 }}>
+                <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
+                 Portal Total Sels Detail Report
+                </Typography>
+         
+          
+            </Box>
+          
+{/* Admin search  provider info */}
             <Box sx={{ mt: 6, mb: 3 }}>
         {/* searchbar */}
         <Grid container spacing={2}>

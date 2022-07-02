@@ -25,18 +25,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const VendorReport = ({attendance}) => {
-    const { ID, serviceName, price, email, date, serviceId, holiday } = attendance;
+    const { serviceName, price, email, createdAt, serviceId,  } = attendance;
     return (
         <StyledTableRow>
-        {/* <StyledTableCell component="th" scope="row">
-            {ID}
-        </StyledTableCell> */}
         <StyledTableCell align="left">{serviceId}</StyledTableCell>
         <StyledTableCell align="left">{serviceName}</StyledTableCell>
-        <StyledTableCell align="left">{date}</StyledTableCell>
+        <StyledTableCell align="left">{new Date(createdAt).toDateString()}</StyledTableCell>
      <StyledTableCell align="left">{email}</StyledTableCell>
          <StyledTableCell align="center">$ {price}</StyledTableCell>
-        {/* <StyledTableCell align="right">{holiday}</StyledTableCell>  */}
     </StyledTableRow>
     );
 };

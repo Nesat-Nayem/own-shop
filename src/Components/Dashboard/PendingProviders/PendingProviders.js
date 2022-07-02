@@ -24,7 +24,7 @@ const [provider,setProvider] = useState([''])
 useEffect(()=>{
     fetch('http://localhost:7070/api/getprovider')
     .then(res=>res.json())
-    .then(data=>setProvider(data))
+    .then(data=>setProvider(data.reverse()))
     // .then(data=>console.log(data.length))
 
 

@@ -25,7 +25,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const History = ({attendance}) => {
-    const { ID, serviceName, price, username, date, providerName, holiday } = attendance;
+    const { ID, serviceName, price, providerNumber, createdAt, providerEmail, holiday } = attendance;
     return (
         <>
         <StyledTableRow>
@@ -33,9 +33,9 @@ const History = ({attendance}) => {
                 {ID}
             </StyledTableCell> */}
             <StyledTableCell align="left">{serviceName}</StyledTableCell>
-            <StyledTableCell align="left">{date}</StyledTableCell>
-            <StyledTableCell align="right">{providerName}</StyledTableCell>
-         <StyledTableCell align="center">{username}</StyledTableCell>
+            <StyledTableCell align="left">{new Date(createdAt).toDateString()}</StyledTableCell>
+            <StyledTableCell align="left">{providerEmail}</StyledTableCell>
+         <StyledTableCell align="left">{providerNumber}</StyledTableCell>
              <StyledTableCell align="center">$ {price}</StyledTableCell>
             {/* <StyledTableCell align="right">{holiday}</StyledTableCell>  */}
         </StyledTableRow>

@@ -24,19 +24,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const AdminReport = ({ attendance }) => {
-    const { ID, serviceName, price, username, date, providerName, holiday } = attendance;
+    const {  serviceName, price, username, createdAt, providerName,  } = attendance;
     return (
         <>
         <StyledTableRow>
-            {/* <StyledTableCell component="th" scope="row">
-                {ID}
-            </StyledTableCell> */}
             <StyledTableCell align="left">{serviceName}</StyledTableCell>
-            <StyledTableCell align="left">{date}</StyledTableCell>
+            <StyledTableCell align="left">{new Date(createdAt).toDateString()}</StyledTableCell>
             <StyledTableCell align="right">{providerName}</StyledTableCell>
          <StyledTableCell align="center">{username}</StyledTableCell>
              <StyledTableCell align="center">$ {price}</StyledTableCell>
-            {/* <StyledTableCell align="right">{holiday}</StyledTableCell>  */}
         </StyledTableRow>
     </>
     );

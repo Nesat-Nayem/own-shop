@@ -61,7 +61,8 @@ const AdminReports = () => {
     }, []);
 
     useEffect(() => {
-        const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
+        // const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
+        const newFilterDate = attendances.filter((createdAt) => createdAt?.createdAt >= startDate && createdAt?.createdAt <= endDate);
         setFilterDates(newFilterDate);
     }, [attendances, startDate, endDate]);
     console.log(filterDates);

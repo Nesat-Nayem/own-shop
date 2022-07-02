@@ -138,7 +138,7 @@ console.log(user)
         {/* Breadcrumbs */}
         <Box sx={{ mb: 4 }}>
             <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
-            Vendor Report
+            Vendor Total Sels Report
             </Typography>
       
         </Box>

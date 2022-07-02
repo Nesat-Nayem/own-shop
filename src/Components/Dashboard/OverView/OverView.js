@@ -21,7 +21,7 @@ const OverView = () => {
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
       .then((res) => res.json())
-      .then((data) => setOrder(data));
+      .then((data) => setOrder(data.reverse()));
   });
 
 

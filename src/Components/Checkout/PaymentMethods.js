@@ -141,6 +141,10 @@ const handleSubmit = async (event) => {
 
   // console.log(data)
 
+  // date
+  // const current = new Date();
+  // const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  // date
 
 
   const orderalldata = {
@@ -148,6 +152,7 @@ const handleSubmit = async (event) => {
     username: checkoutDetails?.fullname,
     userId: user?._id,
     serviceId:data?.id,
+    // currentDate:date,
     email:checkoutDetails?.email,
     userAddress:checkoutDetails?.country,
     userRegion:checkoutDetails?.region,

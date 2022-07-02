@@ -18,6 +18,7 @@ import Paper from "@mui/material/Paper";
 import { emphasize, styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Box } from "@mui/system";
+import {  useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -30,16 +31,16 @@ import History from "./History";
 import Swal from "sweetalert2";
 import dateFormat from "../DateFormat/dateFormat";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#A3D2ED",
-        color: theme.palette.common.black,
-        fontSize: 18,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 18,
-    },
-}));
+// const StyledTableCell = styled(TableCell)(({ theme }) => ({
+//     [`&.${tableCellClasses.head}`]: {
+//         backgroundColor: "#A3D2ED",
+//         color: theme.palette.common.black,
+//         fontSize: 18,
+//     },
+//     [`&.${tableCellClasses.body}`]: {
+//         fontSize: 18,
+//     },
+// }));
 
 const Historys = () => {
     const [attendances, setAttendances] = useState([]);
@@ -51,14 +52,14 @@ const Historys = () => {
     const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
 
+    const user = useSelector((state) => state.user.user)
+
     useEffect(() => {
-        // fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
-        fetch("http://localhost:7070/api/orders/allorder")
+        // fetch("http://localhost:7070/api/orders/allorder")
+        fetch(`http://localhost:7070/api/orders/user/${user._id}`)
             .then((res) => res.json())
-            // .then((data) => setAttendances(data.data.reverse()));
             .then((data) => setAttendances(data.reverse()));
-            // .then((data) => console.log(data.data));
-            // .then((data) => console.log(data));
+          
     }, []);
 
     useEffect(() => {
@@ -127,14 +128,14 @@ const Historys = () => {
   const handleOnclick = () => {
     pdfExportComponent.current.save();
 
-    Swal.fire("Your Report Downloaded Successfully!");
+    Swal.fire("Your History Downloaded Successfully!");
   };
     // download total report 
     return (
         <Container>
         {/* Breadcrumbs */}
         <Box sx={{ mb: 4 }}>
-            <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
+            <Typography sx={{ mt: 2, color: "var(--p_color)", textAlign:'center' }} variant="h4">
              Total History
             </Typography>
       
@@ -143,9 +144,10 @@ const Historys = () => {
       
 
         <Box sx={{ mt: 6, mb: 3 }}>
-    {/* searchbar */}
+   
     <Grid container spacing={2}>
-      <Grid item xs={12} md={9}>
+
+      {/* <Grid item xs={12} md={9}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
@@ -185,39 +187,36 @@ const Historys = () => {
             </Grid>
           </Grid>
         </form>
-      </Grid>
+      </Grid> */}
 
 
-      {/* Download Salary Sheet */}
-      <Grid item xs={12} md={3} sx={{ display: 'flex', alignItems: 'center' }}>
+      <Grid item xs={12} md={3} sx={{ display: 'flex' }}>
         <Button
           className="btn_regular"
           onClick={() => handleOnclick()}
           variant="contained"
           sx={{ width: '100%' }}
         >
-          <FileDownloadIcon /> Total History
+          <FileDownloadIcon />  History
         </Button>
       </Grid>
     </Grid>
   </Box>
 
 
-        {/* filter date and downlod selery sheed  */}
         <PDFExport ref={pdfExportComponent}>
         <Box>
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700 }} aria-label="simple table">
           
                 <TableHead>
                     <TableRow>
-                        {/* <StyledTableCell>ID</StyledTableCell> */}
-                        <StyledTableCell align="left">Service Name</StyledTableCell>
-                        <StyledTableCell align="left">Date</StyledTableCell>
-                        <StyledTableCell align="right">Provider</StyledTableCell>
-                        <StyledTableCell align="center">User</StyledTableCell>
-                        <StyledTableCell align="center">Price</StyledTableCell>
-                        {/* <StyledTableCell align="right">Holiday</StyledTableCell>  */}
+         
+                        <TableCell align="left">Service Name</TableCell>
+                        <TableCell align="left">Date</TableCell>
+                        <TableCell align="left">Provider Email</TableCell>
+                        <TableCell align="left">Provider Number</TableCell>
+                        <TableCell align="center">Price</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

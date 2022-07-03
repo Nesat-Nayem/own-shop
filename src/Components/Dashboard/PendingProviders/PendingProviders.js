@@ -9,6 +9,9 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import PendingproviderStatusModal from "./PendingproviderStatusModal";
 import Swal from "sweetalert2";
+import Modal from "./Modal";
+
+// modal details
 
 const PendingProviders = () => {
   const [provider, setProvider] = useState([""]);
@@ -86,6 +89,36 @@ const PendingProviders = () => {
     });
   };
 
+  // modal
+  const [modal, setModal] = useState(false);
+  const [tampdata, setTampdata] = useState([]);
+  // console.log(tampdata)
+
+  // earning state
+  const [earning, setEarning] = useState("");
+  console.log("earning", earning);
+  const [eremail, seterEmail] = useState("");
+  console.log("outsite email", eremail);
+
+  useEffect(() => {
+    fetch(`http://localhost:7070/api/orders/provideremailorder/${eremail}`)
+      .then((res) => res.json())
+      .then((data) => setEarning(data));
+  });
+
+  // earning state
+
+  const getData = (username, photoURL, createdAt, email) => {
+    console.log(email);
+    seterEmail(email);
+
+    let tempData = [username, photoURL, createdAt];
+    // setTampdata(item =>[1, ...tempData])
+    setTampdata(tempData);
+    return setModal(true);
+  };
+  // modal
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -102,8 +135,9 @@ const PendingProviders = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {provider.map((provider) => (
+            {provider.map((provider, index) => (
               <TableRow
+                key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -121,8 +155,31 @@ const PendingProviders = () => {
                 <TableCell>{provider?.phone}</TableCell>
                 <TableCell>{provider?.email}</TableCell>
                 <TableCell>
-                  {new Date(provider.createdAt)?.toDateString()}
+                  <Button
+                    onClick={() =>
+                      getData(
+                        provider?.username,
+                        provider?.photoURL,
+                        provider.createdAt,
+                        provider?.email
+                      )
+                    }
+                  >
+                    {" "}
+                    Details{" "}
+                  </Button>
+                  {/* {new Date(provider.createdAt)?.toDateString()} */}
+                  {modal === true ? (
+                    <Modal
+                      earning={earning}
+                      data={tampdata}
+                      hide={() => setModal(false)}
+                    ></Modal>
+                  ) : (
+                    ""
+                  )}
                 </TableCell>
+                {/* modal  */}
                 <TableCell>{provider?.access}</TableCell>
                 <TableCell>
                   <Button onClick={() => openModal(provider?._id)}>

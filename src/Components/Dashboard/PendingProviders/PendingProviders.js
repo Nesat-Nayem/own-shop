@@ -10,7 +10,8 @@ import { Button } from "@mui/material";
 import PendingproviderStatusModal from "./PendingproviderStatusModal";
 import Swal from "sweetalert2";
 import Modal from "./Modal";
-
+import { totalEarning } from "../../../utilities/dataAnalize";
+console.log(totalEarning)
 // modal details
 
 const PendingProviders = () => {
@@ -98,7 +99,9 @@ const PendingProviders = () => {
   const [earning, setEarning] = useState("");
   console.log("earning", earning);
   const [eremail, seterEmail] = useState("");
-  console.log("outsite email", eremail);
+  // console.log("outsite email", eremail);
+
+
 
   useEffect(() => {
     fetch(`http://localhost:7070/api/orders/provideremailorder/${eremail}`)
@@ -109,15 +112,50 @@ const PendingProviders = () => {
   // earning state
 
   const getData = (username, photoURL, createdAt, email) => {
-    console.log(email);
+    // console.log(email);
     seterEmail(email);
-
+  
     let tempData = [username, photoURL, createdAt];
     // setTampdata(item =>[1, ...tempData])
     setTampdata(tempData);
     return setModal(true);
   };
   // modal
+
+
+   // total earning calcolation 
+//    const [allData, setAllData] = useState({
+
+//     earning: 0,
+
+
+// });
+
+// console.log('earning state', allData)
+
+// {
+
+// }
+//   useEffect(() => {
+  
+//     setAllData(state => {
+//         return {
+ 
+//             earning: totalEarning(earning),
+       
+//         }
+//     })
+
+// })
+
+
+
+
+
+
+
+  // total earning calcolation 
+
 
   return (
     <>
@@ -154,6 +192,7 @@ const PendingProviders = () => {
                 </TableCell>
                 <TableCell>{provider?.phone}</TableCell>
                 <TableCell>{provider?.email}</TableCell>
+                {/* <TableCell>{totalEarning(provider)}</TableCell> */}
                 <TableCell>
                   <Button
                     onClick={() =>
@@ -165,13 +204,14 @@ const PendingProviders = () => {
                       )
                     }
                   >
-                    {" "}
-                    Details{" "}
+             
+                    Details
                   </Button>
                   {/* {new Date(provider.createdAt)?.toDateString()} */}
                   {modal === true ? (
                     <Modal
                       earning={earning}
+                      // totalEarning={totalEarning}
                       data={tampdata}
                       hide={() => setModal(false)}
                     ></Modal>

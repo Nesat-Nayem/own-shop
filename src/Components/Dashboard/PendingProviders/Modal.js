@@ -2,9 +2,23 @@ import React from 'react';
 
 const Modal = (props) => {
     const {data,hide, earning} = props
-    // console.log('from modal',earning.length)
+    console.log('from modal',earning)
    
-    // console.log(props.data[0])
+
+  let total = 0;
+  if(earning.length > 0){
+    earning?.forEach(item => {
+      total +=item.price
+    });
+  
+   
+
+  }
+  console.log(total)
+   
+// console.log('total price here',price)
+
+
     let modalStyle = {
         display:'block',
         backgroundColor:'rgba(0,0,0,0.8) ' ,
@@ -31,7 +45,7 @@ const Modal = (props) => {
         {/* <p>{data[2]}</p> */}
         <h6 className='mt-4'>Name: {data[0]}</h6>
         <p>Register: {new Date(data[2])?.toDateString()}</p>
-        <p>Total Earning: </p>
+        <p>Total Earning: {total}</p>
         <p>Total Sels: {earning.length} </p>
       </div>
       

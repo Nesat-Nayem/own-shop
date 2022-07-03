@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import TotalReports from "../TotalReports/TotalReports";
+import AdminChart from "../AdminChart/AdminChart";
 
 const OverView = () => {
   const [order, setOrder] = useState([""]);
@@ -31,7 +32,8 @@ const OverView = () => {
   return (
     <div style={{ backgroundColor: "#F5F5F5" }}>
       <Container>
-        <TotalReports></TotalReports>
+        {/* <TotalReports></TotalReports> */}
+        <AdminChart></AdminChart>
       </Container>
 
       {/* total overview  */}

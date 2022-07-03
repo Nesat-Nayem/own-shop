@@ -263,7 +263,7 @@ const Dashboard = (props) => {
                     }}
                   >
                     <GroupIcon sx={{ mr: 2, fontSize: "24px" }} />
-                    Service Provider
+                    Vendors
                   </Button>
                 </NavLink>
 

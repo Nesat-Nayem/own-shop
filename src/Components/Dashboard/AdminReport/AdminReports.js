@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import { emphasize, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Box } from "@mui/system";
 import React, { useEffect, useRef, useState } from "react";

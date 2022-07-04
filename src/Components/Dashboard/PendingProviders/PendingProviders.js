@@ -11,8 +11,22 @@ import PendingproviderStatusModal from "./PendingproviderStatusModal";
 import Swal from "sweetalert2";
 import Modal from "./Modal";
 import { totalEarning } from "../../../utilities/dataAnalize";
-console.log(totalEarning)
+console.log(totalEarning);
 // modal details
+
+let pendingstyle ={
+  // backgroundColor: 'red',
+  color:'red',
+  fontWeight:'bold'
+
+}
+let approvestyle ={
+  // backgroundColor: 'green',
+  color:'green',
+  fontWeight:'bold'
+  
+
+}
 
 const PendingProviders = () => {
   const [provider, setProvider] = useState([""]);
@@ -101,8 +115,6 @@ const PendingProviders = () => {
   const [eremail, seterEmail] = useState("");
   // console.log("outsite email", eremail);
 
-
-
   useEffect(() => {
     fetch(`http://localhost:7070/api/orders/provideremailorder/${eremail}`)
       .then((res) => res.json())
@@ -114,48 +126,13 @@ const PendingProviders = () => {
   const getData = (username, photoURL, createdAt, email) => {
     // console.log(email);
     seterEmail(email);
-  
-    let tempData = [username, photoURL, createdAt];
+
+    let tempData = [username, photoURL, createdAt,email];
     // setTampdata(item =>[1, ...tempData])
     setTampdata(tempData);
     return setModal(true);
   };
   // modal
-
-
-   // total earning calcolation 
-//    const [allData, setAllData] = useState({
-
-//     earning: 0,
-
-
-// });
-
-// console.log('earning state', allData)
-
-// {
-
-// }
-//   useEffect(() => {
-  
-//     setAllData(state => {
-//         return {
- 
-//             earning: totalEarning(earning),
-       
-//         }
-//     })
-
-// })
-
-
-
-
-
-
-
-  // total earning calcolation 
-
 
   return (
     <>
@@ -166,7 +143,7 @@ const PendingProviders = () => {
               <TableCell>Provider Name</TableCell>
               <TableCell>Contract No</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell>Reg Date</TableCell>
+              <TableCell>Information</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>update</TableCell>
               <TableCell>Action</TableCell>
@@ -192,7 +169,6 @@ const PendingProviders = () => {
                 </TableCell>
                 <TableCell>{provider?.phone}</TableCell>
                 <TableCell>{provider?.email}</TableCell>
-                {/* <TableCell>{totalEarning(provider)}</TableCell> */}
                 <TableCell>
                   <Button
                     onClick={() =>
@@ -204,14 +180,11 @@ const PendingProviders = () => {
                       )
                     }
                   >
-             
                     Details
                   </Button>
-                  {/* {new Date(provider.createdAt)?.toDateString()} */}
                   {modal === true ? (
                     <Modal
                       earning={earning}
-                      // totalEarning={totalEarning}
                       data={tampdata}
                       hide={() => setModal(false)}
                     ></Modal>
@@ -220,7 +193,7 @@ const PendingProviders = () => {
                   )}
                 </TableCell>
                 {/* modal  */}
-                <TableCell>{provider?.access}</TableCell>
+                <TableCell style={provider.access === 'Active'?approvestyle:pendingstyle}>{provider?.access}</TableCell>
                 <TableCell>
                   <Button onClick={() => openModal(provider?._id)}>
                     updated

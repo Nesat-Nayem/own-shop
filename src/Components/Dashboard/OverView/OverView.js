@@ -18,7 +18,7 @@ import AdminChart from "../AdminChart/AdminChart";
 const OverView = () => {
   const [order, setOrder] = useState([""]);
   
-  console.log('this is from order' , order);
+  // console.log('this is from order' , order);
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
       .then((res) => res.json())

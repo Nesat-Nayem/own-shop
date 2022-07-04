@@ -20,7 +20,7 @@ const SignInForm = () => {
   const inactiveaccess = () =>{
     Swal.fire(
       'Oops...',
-      'Your access is pending at this time. admin check your info soon.',
+      'Your access is pending at this time. Please contract with admin',
       'error'
     )
     // console.log('log out clicked')

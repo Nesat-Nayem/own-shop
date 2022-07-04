@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import SpeedIcon from "@mui/icons-material/Speed";
 import GroupIcon from "@mui/icons-material/Group";
-// import TocIcon from '@mui/icons-material/Toc';
 import StorageIcon from '@mui/icons-material/Storage';
 
 import LayersIcon from "@mui/icons-material/Layers";
@@ -12,7 +11,6 @@ import Divider from "@mui/material/Divider";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import InterestsIcon from "@mui/icons-material/Interests";
 import Drawer from "@mui/material/Drawer";
-import SavedSearchOutlinedIcon from "@mui/icons-material/SavedSearchOutlined";
 import {
   Accordion,
   AccordionDetails,
@@ -84,8 +82,6 @@ const Dashboard = (props) => {
           backgroundColor: "#003366",
         }}
       >
-        {/* <Skeleton variant="circular" width={80} height={80} /> */}
-        {/* <Skeleton variant="text" width={200} /> */}
       </Box>{" "}
       <Box
         sx={{
@@ -128,10 +124,6 @@ const Dashboard = (props) => {
       <Divider />
       <List>
         {
-          // loading ? [...new Array(8)].map((ske, index) =>
-          // <Skeleton variant="rectangular" width={250} sx={{ borderRadius: 2, mb: 2 }} height={45} />
-          // ) :
-
           <Box
             sx={{
               backgroundColor: "#003366",

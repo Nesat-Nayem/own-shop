@@ -10,10 +10,6 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useDispatch, useSelector } from "react-redux";
-// import { loadCustomers } from "../../../../store/customer";
-// import { loadSuppliers } from "../../../../store/supplier";
-// import { loadProducts } from '../../../../store/products';
-// import { loadInvoices } from "../../../../store/invoice";
 
 
 const TotalReports = () => {
@@ -38,41 +34,18 @@ const TotalReports = () => {
     .then(data=> setuser(data))
   })
 
-  // Getting all customer from store
-//   const allCustomer = useSelector(
-//     (state) => state.entities.customer.allCustomer
-//   );
-
-  // Load customers from Database
   useEffect(() => {
-    // dispatch(loadCustomers());
   }, [dispatch]);
 
-  // Getting all supplier from store
-//   const allSuppliers = useSelector(
-//     (state) => state.entities.supplier.allSupplier
-//   );
-
-  // Load supplier from Database
   useEffect(() => {
-    // dispatch(loadSuppliers());
-  }, [dispatch]);
-
-//   const products = useSelector((state) => state.entities.products.allProduct);
-
-  useEffect(() => {
-    // dispatch(loadProducts());
   }, [dispatch]);
 
 
-  //  get all orders from store
-//   const invoices = useSelector(
-//     (state) => state.entities.invoice.allInvoice
-//   );
-
-  // Load orders from Database
   useEffect(() => {
-    // dispatch(loadInvoices());
+  }, [dispatch]);
+
+
+  useEffect(() => {
   }, [dispatch]);
 
   return (

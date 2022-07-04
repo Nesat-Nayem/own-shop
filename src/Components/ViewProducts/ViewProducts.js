@@ -264,7 +264,7 @@ useEffect(()=>{
         <h3 className="ms-5">More Related Services</h3>
 
         <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto my-5">
-          {relatedProducts.map((p) => {
+          {relatedProducts.slice(0,2).map((p) => {
             return <Card key={p.id} product={p} />;
           })}
         </div>

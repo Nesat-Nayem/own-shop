@@ -7,6 +7,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import StorefrontIcon from "@mui/icons-material/Storefront";
 import { recentMoment, totalApproveOrders, totalEarning, totalOrders, totalSales } from '../../../utilities/dataAnalize';
 import RecentMomentChart from '../RecentMomentChart/RecentMomentChart';
 
@@ -15,9 +16,10 @@ const AdminChart = () => {
 
     
     const [allOrders, setAllOrders] = useState([]);
-    console.log(allOrders)
+    // console.log(allOrders)
     const [allProvider, setAllProvider] = useState([]);
-    const [serviceCount, setServiceCount] = useState(0);
+    const [serviceCount, setServiceCount] = useState('');
+    // console.log('all services count', serviceCount)
     const [loading, setLoading] = useState(true);
     const [allData, setAllData] = useState({
         recentMoment: [],
@@ -34,15 +36,16 @@ const AdminChart = () => {
         let one = "http://localhost:7070/api/orders/allorder"
         // let one = "https://dry-sea-00611.herokuapp.com/orders/"
         let two = "http://localhost:7070/api/getprovider"
+        let three = "http://localhost:7070/api/products/getProduct"
         const requestOne = axios.get(one);
         const requestTwo = axios.get(two);
-        // const requestThree = axios.get(three);
-        axios.all([requestOne, requestTwo])
+        const requestThree = axios.get(three);
+        axios.all([requestOne, requestTwo, requestThree])
             .then(
                 axios.spread((...responses) => {
                     setAllOrders(responses[0].data)
                     setAllProvider(responses[1].data);
-                    // setServiceCount(responses[2].data.count)
+                    setServiceCount(responses[2].data.length)
                 })).catch(errors => {
                     // react on errors.
                 }).finally(() => setLoading(false))
@@ -82,7 +85,7 @@ const AdminChart = () => {
                                 display: 'flex',
                                 justifyContent: "space-between"
                             }}>
-                                <Typography variant='body1' >Sales</Typography>
+                                <Typography variant='body1' >Services</Typography>
                                 <IconButton
                                     sx={{
                                         background: 'hsl(215deg 69% 90%)',
@@ -90,9 +93,9 @@ const AdminChart = () => {
                                     }}
                                 > <DirectionsCarIcon></DirectionsCarIcon></IconButton>
                             </Box>
-                            <Typography variant='h5' gutterBottom><CountUp end={allData.sales} /></Typography>
-                            <Typography color='red' variant='body1' component={'span'}>Bad</Typography>
-                            <Typography variant='body1' component={'span'}> sales</Typography>
+                            <Typography variant='h5' gutterBottom><CountUp end={serviceCount} /></Typography>
+                            <Typography color='hsl(120deg 30% 75%)' variant='body1' component={'span'}>Best</Typography>
+                            <Typography variant='body1' component={'span'}> Level Services</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -145,7 +148,7 @@ const AdminChart = () => {
                                         background: 'hsl(215deg 69% 90%)',
                                         color: 'hsl(215deg 70% 71%)'
                                     }}
-                                > <LocalGroceryStoreIcon></LocalGroceryStoreIcon></IconButton>
+                                > <StorefrontIcon></StorefrontIcon></IconButton>
                             </Box>
                             <Typography variant='h5' gutterBottom><CountUp end={allData.orders} /></Typography>
                             <Typography color='red' variant='body1' component={'span'}>Bad</Typography>

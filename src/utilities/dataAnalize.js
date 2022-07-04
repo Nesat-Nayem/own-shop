@@ -1,5 +1,5 @@
 const onlyDate = date => new Date(date).toLocaleDateString().split('/')[1]
-
+console.log(onlyDate)
 export const recentMoment = (data) => {
     // console.log('form analices area',data)
     let last7DaysData = [];
@@ -15,7 +15,7 @@ export const recentMoment = (data) => {
     })
     
     for (const element of data) {
-        const orderDate = onlyDate(element.date);
+        const orderDate = onlyDate(element.createdAt);
         //
         for (const singleLast7Date of last7Dates) {
             const singleDate = onlyDate(singleLast7Date);
@@ -56,7 +56,7 @@ export const totalApproveOrders = (data) => {
     return orders.length;
 }
 export const todayEarning = (data) => {
-    const todays = data.filter(singleData => onlyDate(singleData.date) === onlyDate(new Date()))
+    const todays = data.filter(singleData => onlyDate(singleData.createdAt) === onlyDate(new Date()))
     let price = 0;
     todays.forEach(element => {
         // price = price + element.price;

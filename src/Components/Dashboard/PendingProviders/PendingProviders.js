@@ -14,19 +14,16 @@ import { totalEarning } from "../../../utilities/dataAnalize";
 console.log(totalEarning);
 // modal details
 
-let pendingstyle ={
+let pendingstyle = {
   // backgroundColor: 'red',
-  color:'red',
-  fontWeight:'bold'
-
-}
-let approvestyle ={
+  color: "red",
+  fontWeight: "bold",
+};
+let approvestyle = {
   // backgroundColor: 'green',
-  color:'green',
-  fontWeight:'bold'
-  
-
-}
+  color: "green",
+  fontWeight: "bold",
+};
 
 const PendingProviders = () => {
   const [provider, setProvider] = useState([""]);
@@ -127,7 +124,7 @@ const PendingProviders = () => {
     // console.log(email);
     seterEmail(email);
 
-    let tempData = [username, photoURL, createdAt,email];
+    let tempData = [username, photoURL, createdAt, email];
     // setTampdata(item =>[1, ...tempData])
     setTampdata(tempData);
     return setModal(true);
@@ -193,7 +190,13 @@ const PendingProviders = () => {
                   )}
                 </TableCell>
                 {/* modal  */}
-                <TableCell style={provider.access === 'Active'?approvestyle:pendingstyle}>{provider?.access}</TableCell>
+                <TableCell
+                  style={
+                    provider.access === "Active" ? approvestyle : pendingstyle
+                  }
+                >
+                  {provider?.access}
+                </TableCell>
                 <TableCell>
                   <Button onClick={() => openModal(provider?._id)}>
                     updated

@@ -42,129 +42,112 @@ const PaymentMethods = ({ checkoutDetails }) => {
   const [processing, setProcessing] = useState(false);
 
   const user = useSelector((state) => state.user.user);
-// console.log(user._id)
+  // console.log(user._id)
   const { productId } = useParams();
-
 
   // console.log(user)
   const navigate = useNavigate();
 
-
   let [data, setdata] = useState("");
 
-  //  product data get 
+  //  product data get
 
-// console.log(data);
-useEffect(() => {
-  fetch(`http://localhost:7070/api/Products/singleProduct/${productId}`)
-    .then((res) => res.json())
-    .then((data) => setdata(data));
-}, [productId]);
+  // console.log(data);
+  useEffect(() => {
+    fetch(`http://localhost:7070/api/Products/singleProduct/${productId}`)
+      .then((res) => res.json())
+      .then((data) => setdata(data));
+  }, [productId]);
 
-
-//  product data get 
+  //  product data get
 
   const { price } = data;
 
-// payment intent 
-useEffect(() => {
-  fetch("http://localhost:7070/create-payment-intent", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ price }),
-  })
-    .then((res) => res.json())
-    .then((data) => setClientSecret(data?.clientSecret));
-}, [price]);
-
-
-// payment stystem 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  if (!stripe || !elements) {
-    return;
-  }
-
-  const card = elements.getElement(CardNumberElement);
-
-  if (card == null) {
-    return;
-  }
-
-  setProcessing(true);
-  const payload = await stripe.createPaymentMethod({
-    type: "card",
-    card,
-    billing_details: {
-      name: checkoutDetails?.fullname,
-      email: checkoutDetails?.email,
-      phone: checkoutDetails?.phone,
-    },
-  });
-
-  if (payload.error) {
-    setErrorMessage(payload.error.message);
-    setPaymentMethod(null);
-  } else {
-    // cogoToast.success(payload.paymentMethod.id, { options: "bottom-right" });
-    setPaymentMethod(payload.paymentMethod);
-    setErrorMessage(null);
-  }
-
   // payment intent
-  const { paymentIntent, error } = await stripe.confirmCardPayment(
-    clientSecret,
-    {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: checkoutDetails?.fullname,
-          email: checkoutDetails?.email,
-        },
+  useEffect(() => {
+    fetch("http://localhost:7070/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
+      body: JSON.stringify({ price }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data?.clientSecret));
+  }, [price]);
+
+  // payment stystem
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!stripe || !elements) {
+      return;
     }
-  );
 
-  if (error) {
-    cogoToast.error(error.message);
-  }
-  if (paymentIntent) {
-  }
-};
+    const card = elements.getElement(CardNumberElement);
 
+    if (card == null) {
+      return;
+    }
 
-// payment stystem 
+    setProcessing(true);
+    const payload = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+      billing_details: {
+        name: checkoutDetails?.fullname,
+        email: checkoutDetails?.email,
+        phone: checkoutDetails?.phone,
+      },
+    });
 
+    if (payload.error) {
+      setErrorMessage(payload.error.message);
+      setPaymentMethod(null);
+    } else {
+      // cogoToast.success(payload.paymentMethod.id, { options: "bottom-right" });
+      setPaymentMethod(payload.paymentMethod);
+      setErrorMessage(null);
+    }
 
+    // payment intent
+    const { paymentIntent, error } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: checkoutDetails?.fullname,
+            email: checkoutDetails?.email,
+          },
+        },
+      }
+    );
 
-  // console.log(data)
+    if (error) {
+      cogoToast.error(error.message);
+    }
+    if (paymentIntent) {
+    }
+  };
 
-  // date
-  // const current = new Date();
-  // const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-  // date
-
+  // payment stystem
 
   const orderalldata = {
-   
     username: checkoutDetails?.fullname,
     userId: user?._id,
-    serviceId:data?.id,
+    serviceId: data?.id,
     // currentDate:date,
-    email:checkoutDetails?.email,
-    userAddress:checkoutDetails?.country,
-    userRegion:checkoutDetails?.region,
-    userNumber:checkoutDetails?.phone,
+    email: checkoutDetails?.email,
+    userAddress: checkoutDetails?.country,
+    userRegion: checkoutDetails?.region,
+    userNumber: checkoutDetails?.phone,
     price: data?.price,
     serviceName: data?.name,
     status: "pending",
     providerName: data?.providername,
     providerEmail: data?.provideremail,
-    providerNumber:data?.providernumber,
-    serviceImg:data?.img
-   
+    providerNumber: data?.providernumber,
+    serviceImg: data?.img,
   };
 
   const paymentbutton = () => {
@@ -182,8 +165,6 @@ const handleSubmit = async (event) => {
         cogoToast.error("Orders failed", options);
       });
   };
-
-
 
   return (
     <>

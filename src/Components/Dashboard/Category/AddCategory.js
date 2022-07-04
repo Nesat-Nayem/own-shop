@@ -74,26 +74,15 @@ const AddCategory = () => {
     setAge(event.target.value);
   };
 
+  //   fetch all category
 
-//   fetch all category 
-
-  const [newCategory, setnewCategory] = useState([''])
+  const [newCategory, setnewCategory] = useState([""]);
   // console.log(newCategory)
-  useEffect(()=>{
-    fetch('http://localhost:7070/api/category/getcategories')
-    .then(res => res.json())
-    .then(data => setnewCategory(data.categoryList))
-  })
-//   fetch all category 
-
-
-  // metrial ui data table
-//   function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-//   }
-
-  // metrial ui data table
-
+  useEffect(() => {
+    fetch("http://localhost:7070/api/category/getcategories")
+      .then((res) => res.json())
+      .then((data) => setnewCategory(data.categoryList));
+  });
   // image upload handler
   const imageUploadHandler = (e) => {
     const imageData = new FormData();
@@ -180,7 +169,6 @@ const AddCategory = () => {
                         {errors.photoURL && (
                           <span className="">category image is required</span>
                         )}
-                  
                       </div>
                     </div>
                   </div>
@@ -246,43 +234,42 @@ const AddCategory = () => {
       <h3 className="my-5">Manage Category</h3>
 
       <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Category</TableCell>
-            <TableCell align="center">Date</TableCell>
-            <TableCell align="center">Fetured</TableCell>
-            <TableCell align="right">Action</TableCell>
-         
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {newCategory?.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-              <img style={{width:'50px', height:'50px', marginRight:'10px'}} src={row?.img} />
-                {row.name}
-              </TableCell>
-              <TableCell align="center">{new Date(row?.createdAt).toDateString()}</TableCell>
-              <TableCell align="center">On</TableCell>
-              <TableCell align="right">Edit</TableCell>
-            
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Category</TableCell>
+              <TableCell align="center">Date</TableCell>
+              <TableCell align="center">Fetured</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    {/* {
-                newCategory.map((c)=>(
-                  console.log(c)
-                    // <SubCategory key={c._id} id={c._id}></SubCategory>
-                ))
-            } */}
-
+          </TableHead>
+          <TableBody>
+            {newCategory?.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      marginRight: "10px",
+                    }}
+                    src={row?.img}
+                  />
+                  {row.name}
+                </TableCell>
+                <TableCell align="center">
+                  {new Date(row?.createdAt).toDateString()}
+                </TableCell>
+                <TableCell align="center">On</TableCell>
+                <TableCell align="right">Edit</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 };

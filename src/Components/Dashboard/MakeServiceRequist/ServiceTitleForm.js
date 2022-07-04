@@ -27,32 +27,7 @@ const ServiceTitleForm = ({ handleChange }) => {
             shrink: true,
           }}
         />
-        {/* <input type="file" name="serviceImage" onChange={handleChange} ref= {imgRef}/> */}
       </Grid>
-      {/* <Grid item md={6} sm={12} xs={12}>
-        <TextField
-          id="serviceFeature"
-          label="Service Feature"
-          multiline
-          maxRows={8}
-          variant="standard"
-          name="serviceFeature"
-          fullWidth
-          onChange={handleChange}
-        /> */}
-      {/* </Grid>
-      <Grid item md={6} sm={12} xs={12}>
-        <TextField
-          id="included"
-          label="What's Included"
-          multiline
-          maxRows={8}
-          variant="standard"
-          name="whatIncluded"
-          fullWidth
-          onChange={handleChange}
-        />
-      </Grid> */}
     </Grid>
   );
 };

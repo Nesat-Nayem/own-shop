@@ -11,7 +11,6 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const TotalReports = () => {
   const [num, setNum] = useState("");
   const dispatch = useDispatch();
@@ -24,36 +23,29 @@ const TotalReports = () => {
   };
   const formatValue = (num) => num.toFixed();
 
-  // get all user 
+  // get all user
 
-  const [user,setuser] = useState('')
+  const [user, setuser] = useState("");
   // console.log(user.length)
-  useEffect(()=>{
-    fetch('http://localhost:7070/api/users/alluser')
-    .then(res=>res.json())
-    .then(data=> setuser(data))
-  })
-
   useEffect(() => {
-  }, [dispatch]);
+    fetch("http://localhost:7070/api/users/alluser")
+      .then((res) => res.json())
+      .then((data) => setuser(data));
+  });
 
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
+  useEffect(() => {}, [dispatch]);
 
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
-
-  useEffect(() => {
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mt: 3 }}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-
             <Grid xs={3}>
               <Box
                 sx={{
@@ -91,7 +83,7 @@ const TotalReports = () => {
                     <Box sx={{ color: "rgb(0, 82, 73)" }}>
                       <AnimatedNumber
                         // value={allCustomer.length}
-                        value='12'
+                        value="12"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -116,7 +108,7 @@ const TotalReports = () => {
               </Box>
             </Grid>
 
-            <Grid xs={3} >
+            <Grid xs={3}>
               <Box
                 sx={{
                   display: "flex",
@@ -154,7 +146,7 @@ const TotalReports = () => {
                     <Box sx={{ color: "rgb(4, 41, 122)" }}>
                       <AnimatedNumber
                         // value={products.length}
-                        value='10'
+                        value="10"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -250,7 +242,6 @@ const TotalReports = () => {
                   margin: "20px",
                 }}
               >
-
                 <Box className={`${styles.reportContainer}`}>
                   <Box
                     sx={{
@@ -277,7 +268,7 @@ const TotalReports = () => {
                     <Box sx={{ color: "rgb(122, 12, 46)" }}>
                       <AnimatedNumber
                         // value={invoices.length}
-                        value='88'
+                        value="88"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -297,14 +288,8 @@ const TotalReports = () => {
                     Total Orders
                   </Typography>
                 </Box>
-
               </Box>
             </Grid>
-
-
-           
-
-           
           </Grid>
         </Box>
       </Box>

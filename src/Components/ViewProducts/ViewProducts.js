@@ -6,16 +6,16 @@ import { Rating } from "react-simple-star-rating";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Rate from '@mui/material/Rating'
+import Rate from "@mui/material/Rating";
 import Box from "@mui/material/Box";
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import "./ViewProducts.css";
 import { Typography } from "@mui/material";
 import Card from "../Card/Card";
 import { addProduct, setProducts } from "../../redux/slice";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import useAuth from "../../hooks/useAuth"
+import useAuth from "../../hooks/useAuth";
 import Review from "./Review";
 
 const AntTabs = styled(Tabs)({
@@ -65,14 +65,12 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
     <div
-    
       // role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography sx={{ textAlign: "left" }}>{children}</Typography>
@@ -89,16 +87,15 @@ const ViewProducts = () => {
   const dispatch = useDispatch();
   // const {reviews} = useAuth()
 
-const [reviews,setReviews] = useState('')
+  const [reviews, setReviews] = useState("");
 
-// console.log(reviews.data)
+  // console.log(reviews.data)
 
-useEffect(()=>{
-  fetch('http://localhost:7070/api/postreview')
-  .then(res=>res.json())
-  .then(data => setReviews(data) )
-})
-
+  useEffect(() => {
+    fetch("http://localhost:7070/api/postreview")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  });
 
   // console.log("direct product comments",reviews?.reviews?.data)
   // console.log("direct product comments",reviews?.data)
@@ -108,10 +105,8 @@ useEffect(()=>{
   };
 
   const { productId } = useParams();
-  // console.log(productId)
 
   useEffect(() => {
-    // fetch("http://localhost:5000/products")
     fetch("http://localhost:7070/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => dispatch(setProducts(data)));
@@ -121,16 +116,11 @@ useEffect(()=>{
     (pro) => Number(pro.id) === Number(productId)
   );
 
-// console.log( "get product id", productView[0]?._id)
-  // const prductreviewid = productView[0]?.productId;
   const prductreviewid = productView[0]?._id;
 
-  // console.log(prductreviewid)
-
-  // const productreview = reviews?.reviews?.data?.filter((r) => r.productId === prductreviewid);
-  const productreview = reviews?.data?.filter((r) => r.productId === prductreviewid);
-  
-  // console.log("filter product comment",productreview);
+  const productreview = reviews?.data?.filter(
+    (r) => r.productId === prductreviewid
+  );
 
   const category = productView[0]?.category;
 
@@ -147,18 +137,26 @@ useEffect(()=>{
 
   return (
     <>
-     <Header></Header>
+      <Header></Header>
       <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
         <Row>
           <Col lg={8} md={8} sm={12}>
-            <h2 style={{fontWeight: 'bold', fontSize:'36px', fontFamily:'Poppins', color:'#2c3038'}} className="my-2">{productView[0]?.name}</h2>
-            <p className="my-4"> <GpsFixedIcon/> {productView[0]?.location}</p>
-            <Rating
-              // ratingValue={productView[0]?.review * 20}
-              ratingValue={5}
-              size={25}
-              readonly={true}
-            />
+            <h2
+              style={{
+                fontWeight: "bold",
+                fontSize: "36px",
+                fontFamily: "Poppins",
+                color: "#2c3038",
+              }}
+              className="my-2"
+            >
+              {productView[0]?.name}
+            </h2>
+            <p className="my-4">
+              {" "}
+              <GpsFixedIcon /> {productView[0]?.location}
+            </p>
+            <Rating ratingValue={5} size={25} readonly={true} />
             <button
               style={{
                 color: "#fff",
@@ -197,19 +195,20 @@ useEffect(()=>{
                 {productView[0]?.longdesc}
               </TabPanel>
               <TabPanel value={value} index={1}>
-              {productView[0]?.shrotdesc}
+                {productView[0]?.shrotdesc}
               </TabPanel>
               <TabPanel value={value} index={2}>
-              <Typography variant="h5" sx={{ fontWeight: 600, margin:'3px 0px 10px -25px' }}>Review of {productView[0]?.name}</Typography>
-              <Typography variant='h2'>4.67</Typography>
-                 <Rate name="read-only" value='4.5' readOnly />
-                {
-                  productreview?.map((review)=>(
-                    <Review key={review?._id} review={review}></Review>
-                  ))
-                }
-           
-
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: 600, margin: "3px 0px 10px -25px" }}
+                >
+                  Review of {productView[0]?.name}
+                </Typography>
+                <Typography variant="h2">4.67</Typography>
+                <Rate name="read-only" value="4.5" readOnly />
+                {productreview?.map((review) => (
+                  <Review key={review?._id} review={review}></Review>
+                ))}
               </TabPanel>
 
               <Box sx={{ p: 3 }} />
@@ -220,16 +219,15 @@ useEffect(()=>{
           <Col lg={4} md={4} sm={12}>
             <div className="wideget">
               <p className="widamaunt">${productView[0]?.price}</p>
-    
-              <Link to={`/products/checkout/${productView[0]?.id}`}
+
+              <Link
+                to={`/products/checkout/${productView[0]?.id}`}
                 variant="dark"
                 className=" widgetbtn btn btn-primary"
                 // onClick={() => dispatch(addToCart(productView[0]))}
               >
                 Book Services
               </Link>
-          
-            
             </div>
 
             <div className="cardcrearyfy mt-3">
@@ -250,8 +248,8 @@ useEffect(()=>{
                   <div className="providerdetails">
                     <a className="authorname">{productView[0]?.providername}</a>
                     <p>
-                    <i class="fas fa-circle online"></i>
-                    Online
+                      <i class="fas fa-circle online"></i>
+                      Online
                     </p>
                     <p className="mmmuted">Member Since Sep 2021</p>
                   </div>
@@ -264,7 +262,7 @@ useEffect(()=>{
         <h3 className="ms-5">More Related Services</h3>
 
         <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto my-5">
-          {relatedProducts.slice(0,2).map((p) => {
+          {relatedProducts.slice(0, 2).map((p) => {
             return <Card key={p.id} product={p} />;
           })}
         </div>

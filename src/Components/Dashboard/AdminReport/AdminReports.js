@@ -36,14 +36,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const AdminReports = () => {
   const [attendances, setAttendances] = useState([]);
-  console.log(attendances);
+  // console.log(attendances);
   const [inputValue, setInputValue] = useState("");
   const { register, handleSubmit } = useForm();
   const [filterDates, setFilterDates] = useState([]);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [filterData, setFilterData] = useState([]);
-  console.log(filterData);
+  // console.log(filterData);
 
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
@@ -95,9 +95,16 @@ const AdminReports = () => {
       }
     }
   }, [inputValue, attendances, filterDates]);
+  const [text, setText] = useState("");
 
-  // download total report
-  //download  in pdf format
+  const filterServicess = async (e) => {
+    setText(e.target.value);
+    const res = await fetch(
+      `http://localhost:7070/api/orders?serviceName=${text.toLowerCase()}`
+    );
+    const data = await res.json();
+    console.log(data);
+  };
 
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
@@ -108,13 +115,24 @@ const AdminReports = () => {
   // download total report
   return (
     <Container>
-      <Box sx={{ mb: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
           Portal Total Sels Detail Report
         </Typography>
-      </Box>
 
-      {/* Admin search  provider info */}
+        {/* download button  */}
+
+        <Button
+          sx={{ padding: "2px 50px !important", height: "50px !important" }}
+          className="btn_regular "
+          onClick={() => handleOnclick()}
+          variant="contained"
+        >
+          <FileDownloadIcon /> Total Report
+        </Button>
+
+        {/* download button  */}
+      </Box>
       <Box sx={{ mt: 6, mb: 3 }}>
         {/* searchbar */}
         <Grid container spacing={2}>
@@ -172,14 +190,21 @@ const AdminReports = () => {
             md={3}
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <Button
-              className="btn_regular"
-              onClick={() => handleOnclick()}
-              variant="contained"
-              sx={{ width: "100%" }}
+            <select
+              className="form-select mb-3"
+              style={{ background: "#E5E5E5" }}
+              // value={category}
+
+              onChange={filterServicess}
             >
-              <FileDownloadIcon /> Total Report
-            </Button>
+              <option value="">All Category</option>
+              <option value="construction">Construction</option>
+              <option value="computer">Computer</option>
+              <option value="interior">Interior</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="electrical">Electrical</option>
+              <option value="carWash">Car Wash</option>
+            </select>
           </Grid>
         </Grid>
       </Box>

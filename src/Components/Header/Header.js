@@ -7,11 +7,11 @@ import { signOut } from "../../redux/userSlice";
 import { Typography } from "@mui/material";
 
 const Header = () => {
-  const user = useSelector((state) => state.user.user)
+  const user = useSelector((state) => state.user.user);
   const [isSticky, setSticky] = useState(false);
   const [isCollapsed, setCollapsed] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -23,10 +23,10 @@ const Header = () => {
     });
   }, []);
 
-  const logout = () =>{
-    console.log('log out clicked')
-    dispatch(signOut())
-  }
+  const logout = () => {
+    console.log("log out clicked");
+    dispatch(signOut());
+  };
 
   return (
     <Navbar
@@ -43,17 +43,17 @@ const Header = () => {
       <Navbar.Brand className="ms-md-5 text-color" href="/">
         {/* OwnSell */}
         <Typography
-              sx={{
-                display: { xs: "none", md: "block" },
-                color: "#E60073",
-                fontSize: "30px",
-                fontWeight: "700",
+          sx={{
+            display: { xs: "none", md: "block" },
+            color: "#E60073",
+            fontSize: "30px",
+            fontWeight: "700",
 
-                fontFamily: "Cinzel",
-              }}
-            >
-              Own <span style={{ color: "#27B1FC" }}>Sell</span>
-            </Typography>
+            fontFamily: "Cinzel",
+          }}
+        >
+          Own <span style={{ color: "#27B1FC" }}>Sell</span>
+        </Typography>
       </Navbar.Brand>
 
       <Navbar.Toggle
@@ -72,35 +72,50 @@ const Header = () => {
             Home
           </Nav.Link>
 
-          <Nav.Link href="/products" className="me-md-5 nav-item text-color" active>
+          <Nav.Link
+            href="/products"
+            className="me-md-5 nav-item text-color"
+            active
+          >
             Services
           </Nav.Link>
 
-        
-
-          <Nav.Link href="/dashboard" className="me-md-5 nav-item text-color" active>
+          <Nav.Link
+            href="/dashboard"
+            className="me-md-5 nav-item text-color"
+            active
+          >
             Dashboard
           </Nav.Link>
 
-          <Nav.Link href="/contract" className="me-md-5 nav-item text-color" active>
+          <Nav.Link
+            href="/contract"
+            className="me-md-5 nav-item text-color"
+            active
+          >
             Contract
           </Nav.Link>
-          {user?.email ? 
-          (
-            <Nav.Link onClick={logout} className="me-md-5 nav-item text-color" active>
-             Log Out
-            </Nav.Link>):
-          (
-                      <Nav.Link href="/singin" className="me-md-5 nav-item text-color" active>
-                      Long in 
-                     </Nav.Link> )
-          }
+          {user?.email ? (
+            <Nav.Link
+              onClick={logout}
+              className="me-md-5 nav-item text-color"
+              active
+            >
+              Log Out
+            </Nav.Link>
+          ) : (
+            <Nav.Link
+              href="/singin"
+              className="me-md-5 nav-item text-color"
+              active
+            >
+              Long in
+            </Nav.Link>
+          )}
         </Nav>
-        {/* <h1 style={{color:'red'}}>{user?.username}</h1> */}
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
 export default Header;
-

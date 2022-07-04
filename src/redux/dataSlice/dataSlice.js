@@ -1,15 +1,9 @@
-// import { async } from '@firebase/util';
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import Swal from 'sweetalert2';
-// import firebaseInit from "./../../firebase/firebase.init";
-
-// firebaseInit();
-// cartItems: localStorage.getItem('cartItems')
-// ? JSON.parse(localStorage.getItem('cartItems'))
-// : [], 
 const initialState = {
     user: {},
     loading: true,

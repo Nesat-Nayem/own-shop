@@ -38,28 +38,19 @@ import { MdOutlineDashboard } from "react-icons/md";
 import "./Navigation.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   allData,
-//   getNotification,
-//   setNotificationCount,
-// //   updateMessageStatus,
-// } from "../../../redux/dataSlice/dataSlice";
-// import NotificationCard from './Component/NotificationCard'
-// import useFirebase from "../../../Hooks/useFirebase";
+
 import axios from "axios";
 
-const SpeechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
+const SpeechRecognition =
+  window.speechRecognition || window.webkitSpeechRecognition;
 console.log(SpeechRecognition);
 let mic;
 if (SpeechRecognition) {
-  mic = new SpeechRecognition()
+  mic = new SpeechRecognition();
   mic.continuous = true;
   mic.interimResults = true;
   mic.lang = "en-US";
 }
-
-
-
 
 const Navigation = () => {
   const navRef = useRef(null);
@@ -68,10 +59,8 @@ const Navigation = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const [state, setState] = React.useState(false);
-  const user = useSelector((state) => state.user.user)
-//   const { user, notifications, notificationCount } = useSelector(allData);
-//   const { handleSignOut } = useFirebase();
-//   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
   const [APIData, setAPIData] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -93,42 +82,11 @@ const Navigation = () => {
       });
   }, []);
 
-//   useEffect(() => {
-//     dispatch(getNotification(user));
-//   }, [user, dispatch]);
-
-  // let
-  // let MessageSeen;
-//   useEffect(() => {
-//     const filterMessage = notifications.filter(
-//       (notification) => notification.seen === false
-//     );
-
-//     setMessageSeen(filterMessage.length);
-//   }, [notifications, user]);
-
   const handleClickClose = () => {
     setAnchorEl(null);
   };
 
-  // current notifications
-//   const searchItems = (searchValue) => {
-//     setSearchInput(searchValue);
-//     if (searchInput !== "") {
-//       const filteredData = APIData.filter((item) => {
-//         return Object.values(item)
-//           .join("")
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase());
-//       });
-//       setFilteredResults(filteredData);
-//     } else {
-//       setFilteredResults(APIData);
-//     }
-//   };
-
   const handleCardClick = (id) => {
-    //console.log("card clicked");
     navigate(`/Home/service-details/${id}`);
   };
 
@@ -150,8 +108,6 @@ const Navigation = () => {
       }
     });
   }, []);
-
-  // setSearchValue("Hello world")
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -163,15 +119,6 @@ const Navigation = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  // message status change
-
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//     dispatch(updateMessageStatus(user));
-//     setIsMessageSeen(true);
-//     setMessageSeen(0);
-//   };
 
   // nav button
   const navButton = {
@@ -225,8 +172,9 @@ const Navigation = () => {
   const { navIcon, navItemContainer, navLogo, navbar } = useStyle();
 
   const list = (
-    <Box sx={{ width: 250 }} 
-    // role="presentation"
+    <Box
+      sx={{ width: 250 }}
+      // role="presentation"
     >
       <List sx={{ mt: "50%" }}>
         <Divider sx={{ color: "#98a1bc" }} />
@@ -278,20 +226,14 @@ const Navigation = () => {
       </List>
     </Box>
   );
-  // for voice command
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
-  console.log(note)
-//   const handleChage = (e) => {
-//     setNote(e.target.value)
-//     searchItems(e.target.value)
-//   }
+  console.log(note);
 
   useEffect(() => {
     if (mic) {
       handleListen();
-
     }
   }, [isListening]);
 
@@ -299,18 +241,13 @@ const Navigation = () => {
     if (isListening) {
       mic.start();
       mic.onend = () => {
-
         mic.start();
       };
     } else {
       mic.stop();
-      mic.onend = () => {
-
-      };
+      mic.onend = () => {};
     }
-    mic.onstart = () => {
-
-    };
+    mic.onstart = () => {};
 
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
@@ -319,9 +256,7 @@ const Navigation = () => {
         .join("");
 
       setNote(transcript);
-      mic.onerror = (event) => {
-
-      };
+      mic.onerror = (event) => {};
     };
   };
 
@@ -361,7 +296,7 @@ const Navigation = () => {
             <img
               onClick={goHome}
               className={navLogo}
-              src={'https://i.ibb.co/n8Wp01q/web-logo.png'}
+              src={"https://i.ibb.co/n8Wp01q/web-logo.png"}
               width="120"
               alt="weblogo"
             />
@@ -407,229 +342,27 @@ const Navigation = () => {
             sx={{ display: "flex", alignItems: "center" }}
             className={navItemContainer}
           >
-            {/* search button */}
-
-            {/* <Tooltip arrow title="Search...">
-              <SearchIcon
-                type="button"
-                onClick={handleOpen}
-                style={navButton}
-              />
-            </Tooltip> */}
-
-            {/* <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            > */}
-              {/* <Box
-                xs={12}
-                md={12}
-                sx={{
-                  top: "10%",
-                  width: "100%",
-                  bgcolor: "#F4F5F8",
-                  boxShadow: 24,
-                  p: 4,
-                  height: "200px",
-                  overflow: "scroll",
-                }}
-              > */}
-                {/* <Grid container spacing={2}>
-                  <Grid item xs={9} >
-                    <TextField
-                      icon="search"
-                      placeholder="Search Services..."
-                      // onChange={(e) => searchItems(e.target.value)}
-                      onChange={handleChage}
-                      sx={{ width: "100%", mb: 3 }}
-                      id="standard-search"
-                      type="search"
-                      variant="standard"
-                      value={note}
-                    />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Button
-                      onClick={() => setIsListening((prevState) => !prevState)}
-                      sx={{ zIndex: "1000", m: 1 }}
-                      variant="contained"
-                      disabled={mic ? false : true}
-                    >
-                      🛑🎙️
-                    </Button>
-                    <Button
-                      onClick={handleSaveNote}
-                      disabled={!note}
-                      sx={{ zIndex: "1000" }}
-                      variant="contained"
-                    >
-                      Remove
-                    </Button>
-                  </Grid>
-                </Grid> */}
-
-                {/*------------------ Mic ---------------*/}
-
-
-                {/* <Box className="box">
-                  {savedNotes.map((n) => (
-                    <p key={n}>{n}</p>
-                  ))}
-                </Box> */}
-                {/* <Grid container spacing={3}>
-                  {searchInput.length > 1
-                    ? filteredResults.map((item, i) => {
-                      return (
-                        <Grid key={i} item md={5.5} xs={10} sx={{ mr: 2 }}>
-                          <Card sx={{
-                            borderBottom: '1px solid #ffb600',
-                            borderRight: '2px solid #ffb600'
-                          }}>
-                            <CardActionArea
-                              onClick={() =>
-                                handleCardClick(item._id)
-                              }
-                            >
-                              <CardContent>
-                                <Typography>{item.Title}</Typography>
-                              </CardContent>
-                            </CardActionArea>
-                          </Card>
-                        </Grid>
-                      );
-                    })
-                    : APIData.map((item, i) => {
-                      return <Grid key={i} item md={12} xs={12}></Grid>;
-                    })}
-                </Grid> */}
-              {/* </Box> */}
-            {/* </Modal> */}
-
             {user?.email && (
               <>
-                <>
-                  {/* <Button
-                    aria-describedby={id}
-                    variant=""
-                    onClick={handleClick}
-                  >
-                    {messageSeen > 0 ? (
-                      <Badge badgeContent={messageSeen} color="primary">
-                        <NotificationsNoneIcon
-                          className="svg_icons"
-                          color="action"
-                        ></NotificationsNoneIcon>
-                      </Badge>
-                    ) : (
-                      <NotificationsNoneIcon
-                        className="svg_icons"
-                        color="action"
-                      ></NotificationsNoneIcon>
-                    )}
-                  </Button> */}
-
-                  {/* <Popover
-                    sx={{ borderRadius: 5 }}
-                    id={id}
-                    open={open2}
-                    anchorEl={anchorEl}
-                    onClose={handleClickClose}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: "300px",
-                        height: "300px",
-                        borderRadius: 5,
-                        p: 2,
-                      }}
-                    >
-                      {notifications.map((notification) => <NotificationCard notification={notification}></NotificationCard>)}
-                    </Box>
-                  </Popover> */}
-                </>
-                <Tooltip arrow title="My Account">
-                  {/* <IconButton onClick={handleOpenUserMenu}>
-                    <Avatar alt="Remy Sharp" src={user?.photoURL} />
-                  </IconButton> */}
-                </Tooltip>
+                <></>
+                <Tooltip arrow title="My Account"></Tooltip>
               </>
             )}
 
             {!user?.email && (
-              <Button variant="text" onClick={handleUserLogin}>
-                {/* <Tooltip arrow title="My account">
-                  <ManageAccountsIcon
-                    onClick={() => setOpenModal(true)}
-                    style={navButton}
-                  />
-                </Tooltip> */}
-              </Button>
+              <Button variant="text" onClick={handleUserLogin}></Button>
             )}
 
-            {user?.email && (
-              <Menu
-                // id="menu-appbar"
-                // anchorEl={anchorElUser}
-                // anchorOrigin={{
-                //   vertical: "top",
-                //   horizontal: "right",
-                // }}
-                // keepMounted
-                // transformOrigin={{
-                //   vertical: "top",
-                //   horizontal: "right",
-                // }}
-                // open={Boolean(anchorElUser)}
-                // onClose={handleCloseUserMenu}
-              >
-                {/* menu items */}
-                {/* <MenuItem
-                  sx={{ display: "grid", gap: 1, justifyContent: "center" }}
-                >
-                  <Box sx={{ display: "flex", justifyContent: "center" }}>
-                    <Avatar
-                      style={{ borderRadius: "50%", margin: "0 auto" }}
-                      src={user?.photoURL}
-                      alt="user img"
-                    />
-                  </Box>
-
-                  <Typography sx={{ textAlign: "center" }}>
-                    {user?.displayName}
-                  </Typography>
-
-                  <Typography sx={{ textAlign: "center" }}>
-                    {user?.email}
-                  </Typography>
-                </MenuItem> */}
-                {/* <MenuItem
-                  sx={{ display: "flex", justifyContent: "center" }}
-                  onClick={handleSignOut}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    <GrLogout /> Log Out
-                  </Typography>
-                </MenuItem> */}
-              </Menu>
-            )}
-
-
-
+            {user?.email && <Menu></Menu>}
           </Box>
         </Toolbar>
-      </AppBar >
+      </AppBar>
       <React.Fragment>
         <Drawer open={state} onClose={() => setState(false)}>
           {list}
         </Drawer>
       </React.Fragment>
-    </Container >
+    </Container>
   );
 };
 export default Navigation;

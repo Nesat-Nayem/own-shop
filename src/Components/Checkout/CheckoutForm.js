@@ -129,20 +129,6 @@ const CheckoutForm = ({ setIsFullFilled, setCheckoutDetails }) => {
 
           {/* check box */}
 
-          {/* <div>
-            <div className="">
-              <input
-                type="checkbox"
-                {...register("check", { required: true })}
-              />
-              <span>Please make sure you are human</span>
-            </div>
-            {errors.check && (
-              <span className="">
-                Please check the input
-              </span>
-            )}
-          </div> */}
 
           {/* submit button */}
           <div className="">

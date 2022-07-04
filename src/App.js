@@ -15,14 +15,10 @@ import NewRegister from "./Components/Authentication/NewRegister";
 import Vendor from "./Components/Authentication/Vendor/Vendor";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import OverView from "./Components/Dashboard/OverView/OverView";
-import ContactUs from "./Components/ContractUs/ContactUs"
+import ContactUs from "./Components/ContractUs/ContactUs";
 import PendingProviders from "./Components/Dashboard/PendingProviders/PendingProviders";
 import MyOrder from "./Components/Dashboard/MyOrder/MyOrder";
 import AddCategory from "./Components/Dashboard/Category/AddCategory";
-
-
-// import SubCategory from "./Components/Dashboard/SubCategory/SubCategory";
-
 
 import ProviderOverview from "./Components/Dashboard/ProviderOverview/ProviderOverview";
 import AddAService from "./Components/Dashboard/AddAService/AddAService";
@@ -31,73 +27,97 @@ import ManageServices from "./Components/Dashboard/ManageServices/ManageServices
 import AddServiceReview from "./Components/Dashboard/AddServiceReview/AddServiceReview";
 import SubCategoryParent from "./Components/Dashboard/SubCategoryParent/SubCategoryParent";
 import ServicesSearchResult from "./Components/ServicesSearchResult/ServicesSearchResult";
-// import AdminReport from "./Components/Dashboard/AdminReport/AdminReport";
 import AdminReports from "./Components/Dashboard/AdminReport/AdminReports";
-// import History from "./Components/History/History";
 import VendorReport from "./Components/VendorReport/VendorReport";
 import Historys from "./Components/History/Historys";
 import VendorReports from "./Components/VendorReport/VendorReports";
 
-
 function App() {
   const user = useSelector((state) => state.user.user);
- 
 
   return (
     <div>
       <AuthProvider>
-      <BrowserRouter>
-      <Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/products" element={<Products />}></Route>
+            <Route path="/register" element={<NewRegister />}></Route>
+            <Route path="/vendor" element={<Vendor />}></Route>
+            <Route
+              path="/products/:category"
+              element={<FilterProduct />}
+            ></Route>
+            <Route
+              path="/products/:category/:productId"
+              element={<ViewProducts />}
+            ></Route>
 
-       
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-          <Route path="/register" element={<NewRegister />}></Route>
-          <Route path="/vendor" element={<Vendor />}></Route>
-          <Route path="/products/:category" element={<FilterProduct />}></Route>
-          <Route path="/products/:category/:productId" element={<ViewProducts />}></Route>
-         
-          <Route path="/searchresult" element={<SearchResult />}></Route>
+            <Route path="/searchresult" element={<SearchResult />}></Route>
 
-          <Route path="/searchresultm" element={<ServicesSearchResult />}></Route>
-          
-          <Route element={<ProtectedRoutes />} >
-        <Route path="/products/checkout/:productId" element={<CheckoutLayout />}></Route>
-        
-      {/* dashborad route must be dashboard route  */}
-        <Route path="/dashboard" element={<Dashboard />}>
-       <Route path="/dashboard/overview" element={<OverView />}></Route> 
-       <Route path="/dashboard/addcategory" element={<AddCategory />}></Route> 
+            <Route
+              path="/searchresultm"
+              element={<ServicesSearchResult />}
+            ></Route>
 
-       <Route path="/dashboard/subcategory" element={<SubCategoryParent />}></Route> 
-       <Route path="/dashboard/report" element={<AdminReports />}></Route> 
+            <Route element={<ProtectedRoutes />}>
+              <Route
+                path="/products/checkout/:productId"
+                element={<CheckoutLayout />}
+              ></Route>
 
-        <Route path="/dashboard/review/:id" element={<AddServiceReview />}></Route>
-        <Route path="/dashboard/pendingProvider" element={<PendingProviders />}></Route>
-        <Route path="/dashboard/provideroverview" element={<ProviderOverview />}></Route>
-        <Route path="/dashboard/addservice" element={<AddAService />}></Route>
-        <Route path="/dashboard/vendorReport" element={<VendorReports />}></Route>
-        <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
-        <Route path="/dashboard/history" element={<Historys />}></Route>
-        {/* dashbord  */}
-         </Route> 
-          {/* dashbord  */}
-    {/* provate tourte */}
-         </Route>
- {/* provate tourte */}
+              {/* dashborad route must be dashboard route  */}
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route
+                  path="/dashboard/overview"
+                  element={<OverView />}
+                ></Route>
+                <Route
+                  path="/dashboard/addcategory"
+                  element={<AddCategory />}
+                ></Route>
 
-          {/* dashborad route must be dashboard route  */}
-       
-           {/* provite or protected route  */}
+                <Route
+                  path="/dashboard/subcategory"
+                  element={<SubCategoryParent />}
+                ></Route>
+                <Route
+                  path="/dashboard/report"
+                  element={<AdminReports />}
+                ></Route>
 
+                <Route
+                  path="/dashboard/review/:id"
+                  element={<AddServiceReview />}
+                ></Route>
+                <Route
+                  path="/dashboard/pendingProvider"
+                  element={<PendingProviders />}
+                ></Route>
+                <Route
+                  path="/dashboard/provideroverview"
+                  element={<ProviderOverview />}
+                ></Route>
+                <Route
+                  path="/dashboard/addservice"
+                  element={<AddAService />}
+                ></Route>
+                <Route
+                  path="/dashboard/vendorReport"
+                  element={<VendorReports />}
+                ></Route>
+                <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
+                <Route path="/dashboard/history" element={<Historys />}></Route>
+                {/* dashbord  */}
+              </Route>
+            </Route>
 
-        <Route path="/contract" element={<ContactUs />}></Route>
-         
-          <Route path="/singin" element={<SignInForm />}></Route>
-          <Route path="/singup" element={<SignupForm />}></Route>
+            <Route path="/contract" element={<ContactUs />}></Route>
 
-        </ Routes >
-      </BrowserRouter>
+            <Route path="/singin" element={<SignInForm />}></Route>
+            <Route path="/singup" element={<SignupForm />}></Route>
+          </Routes>
+        </BrowserRouter>
       </AuthProvider>
     </div>
   );

@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import Rating from "@mui/material/Rating";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import "./PopularServices.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,10 +12,10 @@ const AllProviderChild = (props) => {
   const {
     Logo,
     LogoImg,
-    ShopName,
+    name,
     about,
-    address,
-    backgroundImage,
+    location,
+    img,
     bio,
     date,
     email,
@@ -24,9 +24,9 @@ const AllProviderChild = (props) => {
     providerId,
     reviewUser,
     reviews,
-    userName,
+    providername,
     AvgRating,
-    _id
+    _id,
   } = props.provider;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -49,21 +49,25 @@ const AllProviderChild = (props) => {
       "https://i.ibb.co/Zhy4K3M/1613631861-Veneer-with-polish.jpg",
       "https://i.ibb.co/PCT5Mmp/manSalon.jpg",
     ];
-    const i = Math.floor(Math.random() * 5)
-    return urls[i]
+    const i = Math.floor(Math.random() * 5);
+    return urls[i];
   };
 
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
-  const handleSeeDetails = id => {
+  const handleSeeDetails = (id) => {
     // navigate(`/home/providerProfile/${id}`)
   };
 
   return (
-    <Card sx={{ ml: 2 }} onClick={() => handleSeeDetails(_id)} style={{ border: "none", boxShadow: "none", cursor: 'pointer' }}>
+    <Card
+      sx={{ ml: 2 }}
+      onClick={() => handleSeeDetails(_id)}
+      style={{ border: "none", boxShadow: "none", cursor: "pointer" }}
+    >
       <Box
         sx={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url(${img})`,
           width: "100%",
           height: "200px",
           backgroundSize: "cover",
@@ -90,56 +94,43 @@ const AllProviderChild = (props) => {
       </Box>
 
       <CardContent sx={{ pt: 0 }}>
-
-        <Typography gutterBottom variant="p" component="div">
-          {/* <span
-            style={{
-              backgroundColor: "#ff7043",
-              padding: "2px 5px",
-              color: "white",
-              fontSize: '12px'
-
-            }}
-          >
-            Featured
-          </span> */}
-          {/* <span
-            style={{
-              backgroundColor: "#28a745",
-              padding: "2px 5px",
-              color: "white",
-              marginLeft: "7px",
-              fontSize: '12px'
-
-            }}
-          >
-            Verified
-          </span> */}
-        </Typography>
-        <Typography variant="body2" color="#363636" fontSize={12} >
-          <span style={{ color: '#55acee' }}>{ShopName}</span>
+        <Typography gutterBottom variant="p" component="div"></Typography>
+        <Typography variant="body2" color="#363636" fontSize={12}>
+          <span style={{ color: "#55acee" }}>{name}</span>
         </Typography>
         <Typography variant="h6" color="#363636" fontSize={16} component="div">
-          {bio.slice(0, 25)}
+          {/* {bio.slice(0, 25)} */}
         </Typography>
-        <Typography gutterBottom variant="p" component="div" sx={{ display: 'flex', alignItems: 'center', }}>
+        <Typography
+          gutterBottom
+          variant="p"
+          component="div"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
           <Rating name="read-only" value={parseFloat(AvgRating)} readOnly />
-          <span style={{ color: '#767676', fontSize: '11px', marginLeft: '4px' }}>({reviewUser} Feedback)</span>
+          <span
+            style={{ color: "#767676", fontSize: "11px", marginLeft: "4px" }}
+          >
+            ({reviewUser} Feedback)
+          </span>
         </Typography>
         <Typography variant="p" color="#363636" fontSize={14} component="div">
-          By <span style={{ color: '#55acee' }}>{userName}</span>
+          By <span style={{ color: "#55acee" }}>{providername}</span>
         </Typography>
-
       </CardContent>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", px: 2, }}>
-        <p style={{ fontSize: '14px' }}>
-            {/* {address} */}
-
-            California United States
-        
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          px: 2,
+        }}
+      >
+        <p style={{ fontSize: "14px" }}>
+          {location}
         </p>
       </Box>
-    </Card >
+    </Card>
   );
 };
 

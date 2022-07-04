@@ -17,22 +17,18 @@ import AdminChart from "../AdminChart/AdminChart";
 
 const OverView = () => {
   const [order, setOrder] = useState([""]);
-  
-  // console.log('this is from order' , order);
+
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
       .then((res) => res.json())
       .then((data) => setOrder(data.reverse()));
   });
 
-
-
   // table state
 
   return (
     <div style={{ backgroundColor: "#F5F5F5" }}>
       <Container>
-        {/* <TotalReports></TotalReports> */}
         <AdminChart></AdminChart>
       </Container>
 

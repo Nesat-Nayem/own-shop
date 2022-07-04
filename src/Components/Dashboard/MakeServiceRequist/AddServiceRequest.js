@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-// import withReactContent from 'sweetalert2-react-content'
-
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Typography, TextField, Grid, Divider, Button } from "@mui/material";
@@ -9,10 +7,7 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-// import ServiceDetailsForm from "./compoent/ServiceDetailsForm";
-// import { allData } from "../../../../redux/dataSlice/dataSlice";
 import ServiceTitleForm from "./ServiceTitleForm";
-// import MakeServiceRequestStepper from "./MakeServiceRequest";
 import ServiceDetailsForm from "./ServiceDetailsForm";
 
 // initial state object
@@ -45,8 +40,6 @@ const initialService = {
     },
   ],
 };
-
-// const MySwal = withReactContent(Swal)
 
 // component
 const AddServiceRequest = () => {
@@ -236,7 +229,6 @@ const AddServiceRequest = () => {
           text: "Something went wrong!",
           timer: 1500,
         });
-
       })
       .finally(() => {
         setFormLoading(false);
@@ -247,59 +239,6 @@ const AddServiceRequest = () => {
     //
   });
   return (
-    // <>
-    //   <Typography variant="h4" component="div" gutterBottom>
-    //     Add Service Request
-    //   </Typography>
-    //   <MakeServiceRequestStepper
-    //     activeStep={activeStep}
-    //     handleNext={handleNext}
-    //     handleBack={handleBack}
-    //     handleReset={handleReset}
-    //   />
-    //   <form encType="multipart/form-data">
-    //     <Grid container spacing={3}>
-    //       <ServiceTitleForm handleChange={handleChange} />
-    //       <Divider />
-    //       <Grid item>
-    //         {/* <Typography variant="subtitle1" gutterBottom component="div">
-    //           Service Details
-    //         </Typography> */}
-    //         {serviceOptions.map((item, index) => {
-    //           return (
-    //             <ServiceDetailsForm
-    //               key={index}
-    //               handleAddMoreDetails={handleAddMoreDetails}
-    //               totalRow={item.Key.length}
-    //               pos={item.optionId}
-    //               serviceOption={item}
-    //               handleServiceOptons={handleServiceOptons}
-    //               handleServiceChange={handleServiceChange}
-    //             />
-    //           );
-    //         })}
-    //       </Grid>
-    //       <Box
-    //         sx={{ display: "flex", justifyContent: "center", width: "100%" }}
-    //       >
-    //         <Button
-    //           variant="outlined"
-    //           sx={{ marginTop: "15px", marginLeft: "10px" }}
-    //           onClick={handleAddServiceField}
-    //         >
-    //           Add More Service
-    //         </Button>
-    //       </Box>
-    //     </Grid>
-    //     <Button
-    //       variant="outlined"
-    //       sx={{ marginTop: "15px", marginLeft: "10px" }}
-    //       onClick={handleSubmit}
-    //     >
-    //       Submit form
-    //     </Button>
-    //   </form>
-    // </>
     <>
       <Box sx={{ width: "100%" }}>
         <Stepper activeStep={activeStep} sx={{ marginBottom: "30px" }}>
@@ -320,7 +259,9 @@ const AddServiceRequest = () => {
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset} color='warning' variant="outlined">Reset</Button>
+              <Button onClick={handleReset} color="warning" variant="outlined">
+                Reset
+              </Button>
             </Box>
           </React.Fragment>
         ) : (
@@ -366,16 +307,7 @@ const AddServiceRequest = () => {
                     justifyContent: "center",
                     width: "100%",
                   }}
-                >
-                  {/* <Button
-                    variant="outlined"
-                    color='warning'
-                    sx={{ marginTop: "15px", marginLeft: "10px" }}
-                    onClick={handleAddServiceField}
-                  >
-                    Add More Service
-                  </Button> */}
-                </Box>
+                ></Box>
               </>
             )}
             {activeStep === 2 && (
@@ -389,7 +321,7 @@ const AddServiceRequest = () => {
                 >
                   <Button
                     variant="contained"
-                    color='warning'
+                    color="warning"
                     sx={{ marginTop: "15px", marginLeft: "10px" }}
                     onClick={handleSubmit}
                   >
@@ -400,12 +332,11 @@ const AddServiceRequest = () => {
             )}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
-                color='warning'
+                color="warning"
                 variant="outlined"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{ mr: 1 }}
-
               >
                 Back
               </Button>
@@ -414,7 +345,7 @@ const AddServiceRequest = () => {
               <Button
                 onClick={handleNext}
                 variant="outlined"
-                color='warning'
+                color="warning"
                 disabled={activeStep === steps.length - 1}
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}

@@ -14,7 +14,6 @@ const Products = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // fetch('http://localhost:5000/products')
     fetch("http://localhost:7070/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => dispatch(setProducts(data)));
@@ -27,45 +26,16 @@ const Products = () => {
   return (
     <div>
       <Header></Header>
-      {/* <img
-        className=" product-banner img-fluid"
-        src="https://i.postimg.cc/9X7ZHsYd/services-banner.webp"
-      /> */}
 
       <MultiServicesFilter></MultiServicesFilter>
       <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
         <h6 style={{ color: "#FF0080" }} className="m-0 mt-5">
           Total services found {products.length}
         </h6>
-
-        {/* <select
-          style={{
-            padding: "10px 30px",
-            backgroundColor: "#85F4FF",
-            border: "none",
-            outline: "none",
-          }}
-          name=""
-          id=""
-          // value={category}
-          className=" px-2 py-2 "
-          onChange={filterJobs}
-        >
-          <option value="all">All Services</option>
-          <option value="Intriory"> Intriory</option>
-          <option value="Computer">Computer</option>
-          <option value="Construction">Construction</option>
-          <option value="Carwash">Carwash</option>
-          <option value="Cleaning">Cleaning</option>
-          <option value="Electrical">Electrical</option>
-        </select> */}
       </div>
       <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto mb-5">
         {products?.map((pro) => {
-          return (
-            <Card key={pro.id} product={pro}></Card>
-            // {/* <Card products={products} ></Card> */}
-          );
+          return <Card key={pro.id} product={pro}></Card>;
         })}
       </div>
       <Footer></Footer>

@@ -2,7 +2,7 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import SpeedIcon from "@mui/icons-material/Speed";
 import GroupIcon from "@mui/icons-material/Group";
-import StorageIcon from '@mui/icons-material/Storage';
+import StorageIcon from "@mui/icons-material/Storage";
 
 import LayersIcon from "@mui/icons-material/Layers";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
@@ -25,8 +25,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import HailIcon from '@mui/icons-material/Hail';
-import AutoModeIcon from '@mui/icons-material/AutoMode';
+import HailIcon from "@mui/icons-material/Hail";
+import AutoModeIcon from "@mui/icons-material/AutoMode";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -81,8 +81,7 @@ const Dashboard = (props) => {
           // mt: 2,
           backgroundColor: "#003366",
         }}
-      >
-      </Box>{" "}
+      ></Box>{" "}
       <Box
         sx={{
           display: "flex",
@@ -94,7 +93,6 @@ const Dashboard = (props) => {
       >
         <Avatar
           sx={{ width: 90, height: 90 }}
-          //  src='https://i.ibb.co/1qdnh78/img-1.jpg'
           src="https://i.ibb.co/5Fdfdxw/Ellipse-91.png"
           alt="admin img"
         />
@@ -276,7 +274,7 @@ const Dashboard = (props) => {
                     }}
                   >
                     <StorageIcon sx={{ mr: 2, fontSize: "24px" }} />
-                   Total Report
+                    Total Report
                   </Button>
                 </NavLink>
 
@@ -387,7 +385,7 @@ const Dashboard = (props) => {
                     }}
                   >
                     <HailIcon sx={{ mr: 2, fontSize: "24px" }} />
-                   Give Feedback
+                    Give Feedback
                   </Button>
                 </NavLink>
 
@@ -408,7 +406,7 @@ const Dashboard = (props) => {
                     }}
                   >
                     <AutoModeIcon sx={{ mr: 2, fontSize: "24px" }} />
-                  History
+                    History
                   </Button>
                 </NavLink>
               </>
@@ -465,7 +463,6 @@ const Dashboard = (props) => {
             >
               Own <span style={{ color: "#27B1FC" }}>Sell</span>
             </Typography>
-            {/* <img onClick={goHome} src="https://i.ibb.co/n8Wp01q/web-logo.png" width="120" alt="weblogo" /> */}
           </Box>
           <Typography sx={{ display: { xs: "none", md: "block" } }}>
             <NavLink
@@ -503,14 +500,13 @@ const Dashboard = (props) => {
         }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },

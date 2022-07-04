@@ -19,7 +19,6 @@ const ServiceDetailsForm = ({
   handleServiceOptons,
   handleServiceChange,
 }) => {
-  // const optionRow = Array.from({ length: totalRow }, (v, i) => i);
   const optionRow = serviceOption.Key;
   //
   return (
@@ -44,7 +43,7 @@ const ServiceDetailsForm = ({
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
-        <TextField
+          <TextField
             id="serviceOptionsTitle"
             label="Service Category"
             variant="standard"
@@ -62,15 +61,6 @@ const ServiceDetailsForm = ({
           pos={pos}
         />
       ))}
-      {/* <Button
-        variant="outlined"
-        sx={{ marginTop: "15px", marginLeft: "10px", marginBottom: "20px" }}
-        onClick={() => handleAddMoreDetails(pos)}
-        color='warning'
-      >
-        Add More Service Details
-      </Button> */}
-      {/* 2nd options for name quantiry price */}
     </Grid>
   );
 };

@@ -10,70 +10,34 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useDispatch, useSelector } from "react-redux";
-// import { loadCustomers } from "../../../../store/customer";
-// import { loadSuppliers } from "../../../../store/supplier";
-// import { loadProducts } from '../../../../store/products';
-// import { loadInvoices } from "../../../../store/invoice";
-
 
 const ProviderTotalReport = () => {
   const [num, setNum] = useState("");
   const dispatch = useDispatch();
-
-  // const user = useSelector((state)=> state.user.user)
-  // console.log(user)
 
   const handleChange = (e) => {
     setNum(e.target.value);
   };
   const formatValue = (num) => num.toFixed();
 
-  // get all user 
+  // get all user
 
-  const [user,setuser] = useState('')
+  const [user, setuser] = useState("");
   // console.log(user.length)
-  useEffect(()=>{
-    fetch('http://localhost:7070/api/users/alluser')
-    .then(res=>res.json())
-    .then(data=> setuser(data))
-  })
-
-  // Getting all customer from store
-//   const allCustomer = useSelector(
-//     (state) => state.entities.customer.allCustomer
-//   );
-
-  // Load customers from Database
   useEffect(() => {
-    // dispatch(loadCustomers());
-  }, [dispatch]);
+    fetch("http://localhost:7070/api/users/alluser")
+      .then((res) => res.json())
+      .then((data) => setuser(data));
+  });
 
-  // Getting all supplier from store
-//   const allSuppliers = useSelector(
-//     (state) => state.entities.supplier.allSupplier
-//   );
+  useEffect(() => {}, [dispatch]);
 
-  // Load supplier from Database
-  useEffect(() => {
-    // dispatch(loadSuppliers());
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
-//   const products = useSelector((state) => state.entities.products.allProduct);
-
-  useEffect(() => {
-    // dispatch(loadProducts());
-  }, [dispatch]);
-
-
-  //  get all orders from store
-//   const invoices = useSelector(
-//     (state) => state.entities.invoice.allInvoice
-//   );
+  useEffect(() => {}, [dispatch]);
 
   // Load orders from Database
-  useEffect(() => {
-    // dispatch(loadInvoices());
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -117,7 +81,7 @@ const ProviderTotalReport = () => {
                     <Box sx={{ color: "rgb(0, 82, 73)" }}>
                       <AnimatedNumber
                         // value={allCustomer.length}
-                        value='12'
+                        value="12"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -142,7 +106,7 @@ const ProviderTotalReport = () => {
               </Box>
             </Grid>
 
-            <Grid xs={3} >
+            <Grid xs={3}>
               <Box
                 sx={{
                   display: "flex",
@@ -180,7 +144,7 @@ const ProviderTotalReport = () => {
                     <Box sx={{ color: "rgb(4, 41, 122)" }}>
                       <AnimatedNumber
                         // value={products.length}
-                        value='10'
+                        value="10"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -202,9 +166,6 @@ const ProviderTotalReport = () => {
                 </Box>
               </Box>
             </Grid>
-
-           
-
 
             <Grid xs={3}>
               <Box
@@ -244,7 +205,7 @@ const ProviderTotalReport = () => {
                     <Box sx={{ color: "rgb(122, 12, 46)" }}>
                       <AnimatedNumber
                         // value={invoices.length}
-                        value='88'
+                        value="88"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}

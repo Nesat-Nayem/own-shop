@@ -47,19 +47,15 @@ const Modal = (props) => {
                 <h5 className="mt-3">Social Links</h5>
                 <div class="socialLinks ">
                   <span>
-                 
                     <i class="fab fa-facebook-f"></i>
                   </span>
                   <span>
-                 
                     <i class="fab fa-twitter"></i>
                   </span>
                   <span>
-                 
                     <i class="fab fa-instagram"></i>
                   </span>
                   <span>
-                  
                     <i class="fab fa-google"></i>
                   </span>
                 </div>

@@ -73,7 +73,7 @@ const Header = () => {
           </Nav.Link>
 
           <Nav.Link
-            href="/products"
+            href="/services"
             className="me-md-5 nav-item text-color"
             active
           >

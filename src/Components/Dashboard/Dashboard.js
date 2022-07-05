@@ -42,9 +42,10 @@ import { signOut } from "../../redux/userSlice";
 
 const drawerWidth = 260;
 const Dashboard = (props) => {
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  // console.log(user)
+  console.log(user)
   const navigate = useNavigate();
   //   const { handleSignOut } = useFirebase()
   const { window } = props;
@@ -92,13 +93,14 @@ const Dashboard = (props) => {
         }}
       >
         <Avatar
-          sx={{ width: 90, height: 90 }}
-          src="https://i.ibb.co/5Fdfdxw/Ellipse-91.png"
-          alt="admin img"
+          sx={{ width: 90, height: 90,marginTop: '20px' }}
+          // src="https://i.ibb.co/5Fdfdxw/Ellipse-91.png"
+          src={user.photoURL}
+          alt="img"
         />
-        <Typography sx={{ color: "#FF0080" }} variant="h6" gutterBottom mt={1}>
+        <Typography sx={{ color: "#FF0080", fontSize:'14px', fontFamily: "Cinzel", fontWeight:'700', textAlign:'center', marginTop:'14px' }} variant="h6" gutterBottom mt={1}>
           {/* {user?.username} */}
-          Welcome Back! Janin
+          Welcome Back! {user?.username} 
           {/* David */}
         </Typography>
       </Box>
@@ -242,7 +244,7 @@ const Dashboard = (props) => {
                     marginTop: "0 !important",
                     marginLeft: "15px",
                   }}
-                  to={`/dashboard/pendingProvider`}
+                  to={`/dashboard/vendor`}
                 >
                   <Button
                     sx={{

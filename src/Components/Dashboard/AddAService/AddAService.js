@@ -36,6 +36,7 @@ const AddProducts = () => {
       shrotdesc: data.shrotdesc,
       providername: user.username,
       provideremail: user.email,
+      providerPhoto:user.photoURL,
       providernumber: user.phone,
     };
     console.log(serviceinfo);

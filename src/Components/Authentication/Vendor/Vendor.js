@@ -227,7 +227,7 @@ const Vendor = () => {
               {/* phone number */}
               <div className="generalifo">
                 <p style={{ marginLeft: "-70px" }} className="">
-                  Enter your phobe number
+                  Enter your phone number
                 </p>
                 <input
                   className=" "
@@ -325,7 +325,7 @@ const Vendor = () => {
                 {/* liceance  */}
                 {/* photo upload */}
                 <div className="profisinfo">
-                  <p>Upload Your business License</p>
+                  <p>Upload Your National Id card</p>
                   <input
                     style={{ border: "1px solid black" }}
                     className=""

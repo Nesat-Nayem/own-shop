@@ -240,7 +240,12 @@ const ViewProducts = () => {
                         <img
                           className="img-fluid rounded-circle"
                           // src={productView[0]?.providername}
-                          src="https://truelysell.com/uploads/profile_img/1631787916.jpg"
+                       
+                            src={productView[0]?.providerPhoto} 
+
+                            //  src="https://truelysell.com/uploads/profile_img/1631787916.jpg"
+                         
+                         
                         />
                       </a>
                     </div>

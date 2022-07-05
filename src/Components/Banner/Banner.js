@@ -88,10 +88,10 @@ const Banner = () => {
                 Popular Searches
               </p>
             </div>
-            <a href="/products/carwash">Car Repair Services</a>
+            <a href="/services/carwash">Car Repair Services</a>
 
-            <a href="/products/electrical"> Toughened Glass Fitting Services</a>
-            <a href="/products/computer">Computer & Server AMC Service</a>
+            <a href="/services/electrical"> Toughened Glass Fitting Services</a>
+            <a href="/services/computer">Computer & Server AMC Service</a>
           </div>
         </div>
       </div>

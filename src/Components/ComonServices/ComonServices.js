@@ -8,7 +8,7 @@ const ComonServices = ({ service, single }) => {
   const navigate = useNavigate();
 
   const handleRouteChange = () => {
-    id && navigate(`/products/${category}/${id}`);
+    id && navigate(`/services/${category}/${id}`);
   };
 
   return (

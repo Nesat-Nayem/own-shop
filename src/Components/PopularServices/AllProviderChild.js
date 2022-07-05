@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const AllProviderChild = (props) => {
   const {
-    Logo,
+    providerPhoto,
     LogoImg,
     name,
     about,
@@ -78,7 +78,7 @@ const AllProviderChild = (props) => {
         sx={{
           height: 50,
           width: 50,
-          p: 0.5,
+          p: 0.1,
           ml: 2,
           mt: -3,
           zIndex: 5500,
@@ -87,7 +87,7 @@ const AllProviderChild = (props) => {
         }}
       >
         <Avatar
-          src={Logo}
+          src={providerPhoto}
           sx={{ borderRadius: "50%", height: 50, width: 50 }}
           alt="prvodierImage"
         />

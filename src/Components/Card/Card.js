@@ -15,7 +15,7 @@ const Card = ({ product }) => {
         <img src={img} className="card-img-top" alt={name} />
 
         <NavLink
-          to={`/products/${category}/${id}`}
+          to={`/services/${category}/${id}`}
           className="text-decoration-none"
         >
           <div className="card-body d-flex flex-column align-items-start">

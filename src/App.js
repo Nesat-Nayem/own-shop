@@ -41,15 +41,15 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/products" element={<Products />}></Route>
+            <Route path="/services" element={<Products />}></Route>
             <Route path="/register" element={<NewRegister />}></Route>
             <Route path="/vendor" element={<Vendor />}></Route>
             <Route
-              path="/products/:category"
+              path="/services/:category"
               element={<FilterProduct />}
             ></Route>
             <Route
-              path="/products/:category/:productId"
+              path="/services/:category/:productId"
               element={<ViewProducts />}
             ></Route>
 
@@ -91,7 +91,7 @@ function App() {
                   element={<AddServiceReview />}
                 ></Route>
                 <Route
-                  path="/dashboard/pendingProvider"
+                  path="/dashboard/vendor"
                   element={<PendingProviders />}
                 ></Route>
                 <Route

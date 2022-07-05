@@ -209,7 +209,7 @@ const AdminReports = () => {
               <option value="">All Category</option>
               <option value="Construction">Construction</option>
               <option value="Computer">Computer</option>
-              <option value="Interior">Interior</option>
+              <option value="Intriory">Interior</option>
               <option value="Cleaning">Cleaning</option>
               <option value="Electrical">Electrical</option>
               <option value="carwash">Car Wash</option>

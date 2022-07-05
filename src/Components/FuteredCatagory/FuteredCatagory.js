@@ -40,7 +40,7 @@ const FuteredCatagory = () => {
           <div className="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
               <div class="card h-100 cataoryimg">
-                <Nav.Item as={NavLink} to="/products/intriory">
+                <Nav.Item as={NavLink} to="/services/intriory">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720887category-02_381_286.jpg"
                     class="card-img-top"
@@ -55,7 +55,7 @@ const FuteredCatagory = () => {
             </div>
             <div class="col">
               <div class="card h-100">
-                <Nav.Item as={NavLink} to="/products/computer">
+                <Nav.Item as={NavLink} to="/services/computer">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720857category-01_381_286.jpg"
                     class="card-img-top"
@@ -70,7 +70,7 @@ const FuteredCatagory = () => {
             </div>
             <div class="col">
               <div class="card h-100">
-                <Nav.Item as={NavLink} to="/products/carwash">
+                <Nav.Item as={NavLink} to="/services/carwash">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720916category-03_381_286.jpg"
                     class="card-img-top"
@@ -85,7 +85,7 @@ const FuteredCatagory = () => {
             </div>
             <div class="col">
               <div class="card h-100">
-                <Nav.Item as={NavLink} to="/products/cleaning">
+                <Nav.Item as={NavLink} to="/services/cleaning">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720937category-04_381_286.jpg"
                     class="card-img-top"
@@ -100,7 +100,7 @@ const FuteredCatagory = () => {
             </div>
             <div class="col">
               <div class="card h-100">
-                <Nav.Item as={NavLink} to="/products/electrical">
+                <Nav.Item as={NavLink} to="/services/electrical">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720955category-05_381_286.jpg"
                     class="card-img-top"
@@ -115,7 +115,7 @@ const FuteredCatagory = () => {
             </div>
             <div class="col">
               <div class="card h-100">
-                <Nav.Item as={NavLink} to="/products/construction">
+                <Nav.Item as={NavLink} to="/services/construction">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720973category-06_381_286.jpg"
                     class="card-img-top"

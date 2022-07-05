@@ -7,6 +7,7 @@ import AnimatedNumber from "animated-number-react";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ShopTwoIcon from "@mui/icons-material/ShopTwo";
 import GroupsIcon from "@mui/icons-material/Groups";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,21 +15,44 @@ import { useDispatch, useSelector } from "react-redux";
 const ProviderTotalReport = () => {
   const [num, setNum] = useState("");
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user.user);
+  // console.log(user)
   const handleChange = (e) => {
     setNum(e.target.value);
   };
   const formatValue = (num) => num.toFixed();
 
-  // get all user
 
-  const [user, setuser] = useState("");
-  // console.log(user.length)
-  useEffect(() => {
-    fetch("http://localhost:7070/api/users/alluser")
-      .then((res) => res.json())
-      .then((data) => setuser(data));
-  });
+
+  const [orders,setOrders] = useState('')
+
+  useEffect(()=>{
+    fetch(`http://localhost:7070/api/orders/provideremailorder/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>setOrders(data))
+  })
+
+
+  // total earning 
+
+  let total = 0;
+  if (orders.length > 0) {
+    orders?.forEach((item) => {
+      total += item.price;
+    });
+  }
+  // console.log(total);
+
+  // total provider services 
+
+  const [services,setServices] = useState('')
+  useEffect(()=>{
+    fetch(`http://localhost:7070/api/products/providerservices/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>setServices(data))
+  })
+
+
 
   useEffect(() => {}, [dispatch]);
 
@@ -69,19 +93,19 @@ const ProviderTotalReport = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <PeopleAltIcon
+                    <GroupsIcon
                       sx={{
                         display: "block",
                         margin: "auto",
                         color: "rgb(0, 123, 85)",
                       }}
-                    ></PeopleAltIcon>
+                    ></GroupsIcon>
                   </Box>
                   <Box className={`${styles.reports}`}>
                     <Box sx={{ color: "rgb(0, 82, 73)" }}>
                       <AnimatedNumber
-                        // value={allCustomer.length}
-                        value="12"
+                         value={orders.length}
+                       
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -100,7 +124,7 @@ const ProviderTotalReport = () => {
                     sx={{ color: "rgb(0, 123, 85)", fontSize: "13px" }}
                     variant="small"
                   >
-                    Total Sels
+                    Total Customer
                   </Typography>
                 </Box>
               </Box>
@@ -143,8 +167,8 @@ const ProviderTotalReport = () => {
                   <Box className={`${styles.reports}`}>
                     <Box sx={{ color: "rgb(4, 41, 122)" }}>
                       <AnimatedNumber
-                        // value={products.length}
-                        value="10"
+                        value={services.length}
+                       
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -204,8 +228,8 @@ const ProviderTotalReport = () => {
                   <Box className={`${styles.reports}`}>
                     <Box sx={{ color: "rgb(122, 12, 46)" }}>
                       <AnimatedNumber
-                        // value={invoices.length}
-                        value="88"
+                        value={orders.length}
+                        // value="88"
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -252,20 +276,20 @@ const ProviderTotalReport = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <GroupsIcon
+                    <CurrencyExchangeIcon
                       sx={{
                         display: "block",
                         margin: "auto",
                         color: "rgb(183, 129, 3)",
                       }}
-                    ></GroupsIcon>
+                    ></CurrencyExchangeIcon>
                   </Box>
 
                   <Box className={`${styles.reports}`}>
                     <Box sx={{ color: "rgb(183, 129, 3)" }}>
                       <AnimatedNumber
-                        value={user?.length}
-                        // value='44'
+                        // value={totalUser?.length}
+                        value={total}
                         formatValue={formatValue}
                         onChange={handleChange}
                         className={`${styles.animatedNum}`}
@@ -282,7 +306,7 @@ const ProviderTotalReport = () => {
                     sx={{ color: "rgb(183, 129, 3)", fontSize: "13px" }}
                     variant="small"
                   >
-                    Others
+                    Total Earning
                   </Typography>
                 </Box>
               </Box>

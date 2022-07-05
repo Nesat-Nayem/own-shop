@@ -43,7 +43,8 @@ const AdminReports = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [filterData, setFilterData] = useState([]);
-  // console.log(filterData);
+
+  console.log('filterdata',filterData);
 
   useEffect(() => {
     fetch("http://localhost:7070/api/orders/allorder")
@@ -97,14 +98,22 @@ const AdminReports = () => {
   }, [inputValue, attendances, filterDates]);
   const [text, setText] = useState("");
 
-  const filterServicess = async (e) => {
-    setText(e.target.value);
-    const res = await fetch(
-      `http://localhost:7070/api/orders?serviceName=${text.toLowerCase()}`
-    );
-    const data = await res.json();
-    console.log(data);
-  };
+ const [category,setCategory]= useState([])
+ console.log(category)
+
+ const filterServicess = (e) =>{
+  setCategory(e.target.value)
+ }
+
+ useEffect(()=>{
+  fetch(`http://localhost:7070/api/orders/category/${category}`)
+  .then(res=>res.json())
+  .then(data=>setFilterData(data))
+ })
+ 
+
+  
+
 
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
@@ -198,12 +207,12 @@ const AdminReports = () => {
               onChange={filterServicess}
             >
               <option value="">All Category</option>
-              <option value="construction">Construction</option>
-              <option value="computer">Computer</option>
-              <option value="interior">Interior</option>
-              <option value="cleaning">Cleaning</option>
-              <option value="electrical">Electrical</option>
-              <option value="carWash">Car Wash</option>
+              <option value="Construction">Construction</option>
+              <option value="Computer">Computer</option>
+              <option value="Interior">Interior</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Electrical">Electrical</option>
+              <option value="carwash">Car Wash</option>
             </select>
           </Grid>
         </Grid>

@@ -143,6 +143,7 @@ const PaymentMethods = ({ checkoutDetails }) => {
     userNumber: checkoutDetails?.phone,
     price: data?.price,
     serviceName: data?.name,
+    category:data?.category,
     status: "pending",
     providerName: data?.providername,
     providerEmail: data?.provideremail,

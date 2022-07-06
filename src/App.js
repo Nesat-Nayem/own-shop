@@ -31,6 +31,7 @@ import AdminReports from "./Components/Dashboard/AdminReport/AdminReports";
 import VendorReport from "./Components/VendorReport/VendorReport";
 import Historys from "./Components/History/Historys";
 import VendorReports from "./Components/VendorReport/VendorReports";
+import ManageOrder from "./Components/Dashboard/ManageOrder/ManageOrder";
 
 function App() {
   const user = useSelector((state) => state.user.user);
@@ -105,6 +106,10 @@ function App() {
                 <Route
                   path="/dashboard/vendorReport"
                   element={<VendorReports />}
+                ></Route>
+                <Route
+                  path="/dashboard/manageorder"
+                  element={<ManageOrder />}
                 ></Route>
                 <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
                 <Route path="/dashboard/history" element={<Historys />}></Route>

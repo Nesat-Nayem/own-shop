@@ -347,6 +347,26 @@ const Dashboard = (props) => {
                     Vendor Report
                   </Button>
                 </NavLink>
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/manageorder`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    Manage Order
+                  </Button>
+                </NavLink>
               </>
             ) : (
               <>
@@ -477,7 +497,7 @@ const Dashboard = (props) => {
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
               // to="/services"
-              to=""
+              to="/services"
             >
               <Button color="inherit">SERVICES</Button>
             </NavLink>

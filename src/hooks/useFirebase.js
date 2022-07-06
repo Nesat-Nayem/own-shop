@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const useFirebase = () => {
   
     const [searchKey, setSearchKey] = useState("");
-    console.log('form auth area on context main search', searchKey)
+    // console.log('form auth area on context main search', searchKey)
     const [searchId, setSearchId] = useState("")
     const [searchLocation, setSearchLocation] = useState("");
     const [provider, setProvider] = useState("");

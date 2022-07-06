@@ -14,20 +14,28 @@ import { useEffect } from "react";
 import { Box } from "@mui/material";
 import TotalReports from "../TotalReports/TotalReports";
 import AdminChart from "../AdminChart/AdminChart";
+import Loading from "../../Loader/loading";
 
 const OverView = () => {
   const [order, setOrder] = useState([""]);
+  const [loading,setLoading] = useState(false)
+  // console.log(loading)
 
   useEffect(() => {
+    setLoading(true)
     fetch("http://localhost:7070/api/orders/allorder")
       .then((res) => res.json())
       .then((data) => setOrder(data.reverse()));
+      setLoading(false)
   });
 
   // table state
 
   return (
-    <div style={{ backgroundColor: "#F5F5F5" }}>
+   <div>
+    {
+      loading === true ? <Loading></Loading>:
+      <div style={{ backgroundColor: "#F5F5F5" }}>
       <Container>
         <AdminChart></AdminChart>
       </Container>
@@ -126,6 +134,8 @@ const OverView = () => {
         </Box>
       </Container>
     </div>
+    }
+   </div>
   );
 };
 

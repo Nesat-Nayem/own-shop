@@ -4,6 +4,7 @@ import { setProducts } from "../../redux/slice";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import Loading from "../Loader/loading";
 import MultiServicesFilter from "../MultiServicesFilter/MultiServicesFilter";
 import "./Products.css";
 
@@ -27,7 +28,11 @@ const Products = () => {
     <div>
       <Header></Header>
 
-      <MultiServicesFilter></MultiServicesFilter>
+{    products.length === 0 ? <Loading></Loading> :
+ 
+<div>
+  
+<MultiServicesFilter></MultiServicesFilter>
       <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
         <h6 style={{ color: "#FF0080" }} className="m-0 mt-5">
           Total services found {products.length}
@@ -37,7 +42,12 @@ const Products = () => {
         {products?.map((pro) => {
           return <Card key={pro.id} product={pro}></Card>;
         })}
-      </div>
+      </div> 
+
+</div>
+      
+      }
+
       <Footer></Footer>
     </div>
   );

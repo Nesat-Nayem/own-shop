@@ -6,8 +6,10 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import useAuth from "../../hooks/useAuth";
 import MultiServicesFilter from "../MultiServicesFilter/MultiServicesFilter";
+import Loading from "../Loader/loading";
 
 const ServicesSearchResult = () => {
+  const [loading,setLoading] = useState(false)
   const [searchJobs, setSearchJobs] = useState([]);
   const {
     searchId,
@@ -23,6 +25,7 @@ const ServicesSearchResult = () => {
   const resetKey = () => {};
 
   useEffect(() => {
+    setLoading(true)
     fetch("http://localhost:7070/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => {
@@ -36,45 +39,53 @@ const ServicesSearchResult = () => {
             Products.name.toLowerCase().includes(service.toLowerCase())
         );
         setSearchJobs(result);
+        setLoading(false)
         resetKey();
       });
   }, []);
 
   return (
     <>
-      <Header></Header>
+    <Header></Header>
+    <div style={{ marginTop: "100px" }}>
+      <div className="container py-5">
 
-      <div>
-        <div style={{ marginTop: "100px" }} className="container py-5 mb-5">
-          <div className="row">
-            {searchJobs.length == 0 ? (
-              <div>
-                <h1
-                  className="text-center"
-                  style={{ color: "brown", marginTop: "120px" }}
-                >
-                  No Result Found
-                </h1>
-              </div>
-            ) : (
-              <div>
-                <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
-                  <p style={{ color: "rgb(58, 144, 70)" }} className="m-0">
-                    Total Product found {searchJobs.length}
-                  </p>
-                </div>
-                <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto ">
-                  {searchJobs?.map((pro) => {
-                    return <Card key={pro.id} product={pro}></Card>;
-                  })}
-                </div>
-              </div>
-            )}
+       {
+        loading === true ? <Loading></Loading> :
+
+        
+        <div className="row">
+
+        {searchJobs.length == 0 ? (
+          <div>
+            <h1
+              className="text-center"
+              style={{ color: "brown", margin: "120px 120px" }}
+            >
+              No Result Found
+            </h1>
           </div>
-        </div>
+        ) : (
+          <div>
+            <div className="container mx-auto procontrol d-flex justify-content-between  align-items-center">
+              <p style={{ color: "rgb(255, 0, 128)" }} className="m-0">
+                Total Product found {searchJobs.length}
+              </p>
+            </div>
+            <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto mb-5">
+              {searchJobs?.map((pro) => {
+                return <Card key={pro.id} product={pro}></Card>;
+              })}
+            </div>
+          </div>
+        )}
       </div>
-      <Footer></Footer>
-    </>
+       }
+
+      </div>
+    </div>
+    <Footer></Footer>
+  </>
   );
 };
 

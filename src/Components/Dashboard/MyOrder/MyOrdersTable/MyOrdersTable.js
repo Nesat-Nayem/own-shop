@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MessageIcon from "@mui/icons-material/Message";
 import { NavLink } from "react-router-dom";
 import MyOrdersCard from "../MyOrdersCard/MyOrdersCard";
+import Loading from "../../../Loader/loading";
 
 const MyOrdersTable = () => {
   const user = useSelector((state) => state.user.user);
@@ -33,6 +34,9 @@ const MyOrdersTable = () => {
   const [savedService, setSavedService] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading,setLoading] = useState(false);
+
+  console.log(loading);
 
   useEffect(() => {
     dispatch(singleService());
@@ -40,10 +44,12 @@ const MyOrdersTable = () => {
 
   // data load
   useEffect(() => {
+    setLoading(true)
     fetch(`http://localhost:7070/api/orders/user/${user?._id}`)
       .then((res) => res.json())
       .then((data) => {
         setSavedService(data);
+        setLoading(false)
       });
   }, [user]);
 
@@ -58,28 +64,41 @@ const MyOrdersTable = () => {
     dispatch(parentServiceId(data));
   };
 
-  if (savedService.length < 1) {
-    return (
-      <Typography
-        sx={{ fontSize: 22 }}
-        gutterBottom
-        variant="h5"
-        component="div"
-      >
-        There is no orders at this momemnt.
-      </Typography>
-    );
+  if(loading === true){
+    return(
+      <Loading></Loading>
+    )
+  }else{
+    if (savedService.length < 1) {
+      return (
+        <Typography
+          sx={{ fontSize: 22 }}
+          gutterBottom
+          variant="h5"
+          component="div"
+        >
+          There is no orders at this momemnt.
+        </Typography>
+      );
+    }
   }
+
+
 
   return (
     <>
-      <Grid container spacing={2}>
-        {savedService?.map((service, index) => (
-          <Grid item key={service._id} xs={12} md={6} lg={4}>
-            <MyOrdersCard service={service} index={index}></MyOrdersCard>
-          </Grid>
-        ))}
+  {
+    loading === true ? <Loading></Loading>:
+
+    <Grid container spacing={2}>
+    {savedService?.map((service, index) => (
+      <Grid item key={service._id} xs={12} md={6} lg={4}>
+        <MyOrdersCard service={service} index={index}></MyOrdersCard>
       </Grid>
+    ))}
+  </Grid>
+
+  }
     </>
   );
 };

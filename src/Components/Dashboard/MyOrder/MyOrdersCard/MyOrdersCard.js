@@ -19,7 +19,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 const MyOrdersCard = ({ service, notShow, index }) => {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleRouteChange = (serviceId, index, service) => {

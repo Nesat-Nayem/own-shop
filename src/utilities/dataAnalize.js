@@ -1,5 +1,5 @@
 const onlyDate = (date) => new Date(date).toLocaleDateString().split("/")[1];
-console.log(onlyDate);
+// console.log(onlyDate);
 export const recentMoment = (data) => {
   // console.log('form analices area',data)
   let last7DaysData = [];

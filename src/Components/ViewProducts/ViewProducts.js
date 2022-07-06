@@ -253,7 +253,7 @@ const ViewProducts = () => {
                   <div className="providerdetails">
                     <a className="authorname">{productView[0]?.providername}</a>
                     <p>
-                      <i class="fas fa-circle online"></i>
+                      <i className="fas fa-circle online"></i>
                       Online
                     </p>
                     <p className="mmmuted">Member Since Sep 2021</p>

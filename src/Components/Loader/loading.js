@@ -8,8 +8,9 @@ const Loading = () => {
 
         <Box sx={{ width: '100%', height: '100vh', display: "flex", justifyContent: 'center', alignItems: 'center' }}>
             <Box>
-                <img width="300" src="https://ibb.co/1G3Ytvm" alt="loadergif" />
-                <Typography style={{ textAlign: "center", marginBottom: "10px" }} variant='h4'>Please Wait</Typography>
+            <Typography style={{ textAlign: "center", marginTop: "100px" }} variant='h4'>Please Wait</Typography>
+                <img width="300" src="https://cdn.dribbble.com/users/3148081/screenshots/6176842/rocket.gif" alt="loadergif" />
+               
                
             </Box>
 

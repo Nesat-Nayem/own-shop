@@ -7,7 +7,8 @@ const Card = ({ product }) => {
   const { id, name, img, category, price, review } = product;
 
   return (
-    <div
+
+     <div
       style={{ marginTop: "80px" }}
       className="col-lg-3 col-md-4 col-sm-6 col-xs-12 "
     >
@@ -54,6 +55,7 @@ const Card = ({ product }) => {
         </NavLink>
       </div>
     </div>
+  
   );
 };
 

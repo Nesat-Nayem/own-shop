@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 const Footer = () => {
   return (
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col col-md-3 col-12">
+    <footer className="footer">
+      <div className="container">
+        <div className="row">
+          <div className="footer-col col-md-3 col-12">
             <h4>Categories</h4>
             <ul>
               <li>Conputer</li>
@@ -16,7 +16,7 @@ const Footer = () => {
               <li>Cleaning</li>
             </ul>
           </div>
-          <div class="footer-col col-md-3 col-12">
+          <div className="footer-col col-md-3 col-12">
             <h4>Quick Links</h4>
             <ul>
               <li>About Us</li>
@@ -24,50 +24,50 @@ const Footer = () => {
               <li>FAQ</li>
             </ul>
           </div>
-          <div class="footer-col col-md-3 col-12">
+          <div className="footer-col col-md-3 col-12">
             <h4>Contract Us</h4>
             <ul>
               <li>
                 {" "}
                 <span style={{ color: "#ff0080", marginRight: "10px" }}>
-                  <i class="far fa-building"></i>
+                  <i className="far fa-building"></i>
                 </span>{" "}
                 367 Hillcrest, California, USA
               </li>
               <li>
                 {" "}
                 <span style={{ color: "#ff0080", marginRight: "10px" }}>
-                  <i class="fas fa-headphones"></i>
+                  <i className="fas fa-headphones"></i>
                 </span>{" "}
                 321 546 8764
               </li>
               <li>
                 {" "}
                 <span style={{ color: "#ff0080", marginRight: "10px" }}>
-                  <i class="fas fa-envelope"></i>
+                  <i className="fas fa-envelope"></i>
                 </span>{" "}
                 ownsell@sell.com
               </li>
             </ul>
           </div>
-          <div class="footer-col col-md-3 col-12">
+          <div className="footer-col col-md-3 col-12">
             <h4 id="fowllowus">follow us</h4>
-            <div class="social-links">
+            <div className="social-links">
               <span>
                 {" "}
-                <i class="fab fa-facebook-f"></i>
+                <i className="fab fa-facebook-f"></i>
               </span>
               <span>
                 {" "}
-                <i class="fab fa-twitter"></i>
+                <i className="fab fa-twitter"></i>
               </span>
               <span>
                 {" "}
-                <i class="fab fa-instagram"></i>
+                <i className="fab fa-instagram"></i>
               </span>
               <span>
                 {" "}
-                <i class="fab fa-google"></i>
+                <i className="fab fa-google"></i>
               </span>
             </div>
           </div>

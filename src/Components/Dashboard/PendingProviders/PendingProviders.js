@@ -11,7 +11,7 @@ import PendingproviderStatusModal from "./PendingproviderStatusModal";
 import Swal from "sweetalert2";
 import Modal from "./Modal";
 import { totalEarning } from "../../../utilities/dataAnalize";
-console.log(totalEarning);
+// console.log(totalEarning);
 // modal details
 
 let pendingstyle = {
@@ -26,12 +26,16 @@ let approvestyle = {
 };
 
 const PendingProviders = () => {
+  const [loading,setLoading] = useState(false)
+  console.log(loading)
   const [provider, setProvider] = useState([""]);
   // console.log(provider)
   useEffect(() => {
+    setLoading(true)
     fetch("http://localhost:7070/api/getprovider")
       .then((res) => res.json())
       .then((data) => setProvider(data.reverse()));
+      setLoading(false)
     // .then(data=>console.log(data.length))
   }, []);
 
@@ -108,7 +112,7 @@ const PendingProviders = () => {
 
   // earning state
   const [earning, setEarning] = useState("");
-  console.log("earning", earning);
+  // console.log("earning", earning);
   const [eremail, seterEmail] = useState("");
   // console.log("outsite email", eremail);
 
@@ -133,93 +137,96 @@ const PendingProviders = () => {
 
   return (
     <>
+     {
+      loading === true ? <h1 style={{textAlign:'center', color:'red', marginTop:'220px'}}>it's loading</h1> :
       <TableContainer component={Paper}>
-        <Table sx={{ width: "100%" }} aria-label="simple table">
-          <TableHead sx={{ boxShadow: 2 }}>
-            <TableRow>
-              <TableCell>Provider Name</TableCell>
-              <TableCell>Contract No</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Information</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>update</TableCell>
-              <TableCell>Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {provider.map((provider, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <img
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      marginRight: "10px",
-                    }}
-                    src={provider?.photoURL}
-                  />
-                  {provider?.username}
-                </TableCell>
-                <TableCell>{provider?.phone}</TableCell>
-                <TableCell>{provider?.email}</TableCell>
-                <TableCell>
-                  <Button
-                    onClick={() =>
-                      getData(
-                        provider?.username,
-                        provider?.photoURL,
-                        provider.createdAt,
-                        provider?.email
-                      )
-                    }
-                  >
-                    Details
-                  </Button>
-                  {modal === true ? (
-                    <Modal
-                      earning={earning}
-                      data={tampdata}
-                      hide={() => setModal(false)}
-                    ></Modal>
-                  ) : (
-                    ""
-                  )}
-                </TableCell>
-                {/* modal  */}
-                <TableCell
-                  style={
-                    provider.access === "Active" ? approvestyle : pendingstyle
+      <Table sx={{ width: "100%" }} aria-label="simple table">
+        <TableHead sx={{ boxShadow: 2 }}>
+          <TableRow>
+            <TableCell>Provider Name</TableCell>
+            <TableCell>Contract No</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Information</TableCell>
+            <TableCell>Status</TableCell>
+            <TableCell>update</TableCell>
+            <TableCell>Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {provider.map((provider, index) => (
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                <img
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                    marginRight: "10px",
+                  }}
+                  src={provider?.photoURL}
+                />
+                {provider?.username}
+              </TableCell>
+              <TableCell>{provider?.phone}</TableCell>
+              <TableCell>{provider?.email}</TableCell>
+              <TableCell>
+                <Button
+                  onClick={() =>
+                    getData(
+                      provider?.username,
+                      provider?.photoURL,
+                      provider.createdAt,
+                      provider?.email
+                    )
                   }
                 >
-                  {provider?.access}
-                </TableCell>
-                <TableCell>
-                  <Button onClick={() => openModal(provider?._id)}>
-                    updated
-                  </Button>
+                  Details
+                </Button>
+                {modal === true ? (
+                  <Modal
+                    earning={earning}
+                    data={tampdata}
+                    hide={() => setModal(false)}
+                  ></Modal>
+                ) : (
+                  ""
+                )}
+              </TableCell>
+              {/* modal  */}
+              <TableCell
+                style={
+                  provider.access === "Active" ? approvestyle : pendingstyle
+                }
+              >
+                {provider?.access}
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => openModal(provider?._id)}>
+                  updated
+                </Button>
 
-                  <PendingproviderStatusModal
-                    modalIsOpen={modalIsOpen}
-                    closeModal={closeModal}
-                    userStatusid={userstatusupdate}
-                    jobTitle={provider?.username}
-                    id={blogId}
-                  />
-                </TableCell>
-                <TableCell>
-                  <Button onClick={() => handleDeleteCustomer(provider?._id)}>
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                <PendingproviderStatusModal
+                  modalIsOpen={modalIsOpen}
+                  closeModal={closeModal}
+                  userStatusid={userstatusupdate}
+                  jobTitle={provider?.username}
+                  id={blogId}
+                />
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => handleDeleteCustomer(provider?._id)}>
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+     }
     </>
   );
 };

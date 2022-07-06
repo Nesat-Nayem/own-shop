@@ -52,7 +52,7 @@ const FeaturedServices = () => {
                   <a href="#">
                     VIEW ALL
                     <span>
-                      <i class="fas fa-angle-right"></i>
+                      <i className="fas fa-angle-right"></i>
                     </span>
                   </a>
                   <h1>Latest Services</h1>

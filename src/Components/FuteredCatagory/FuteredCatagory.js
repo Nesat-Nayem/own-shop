@@ -25,7 +25,7 @@ const FuteredCatagory = () => {
               <a href="#">
                 VIEW ALL
                 <span>
-                  <i class="fas fa-angle-right"></i>
+                  <i className="fas fa-angle-right"></i>
                 </span>
               </a>
               <h1>Featured Categories</h1>
@@ -38,12 +38,12 @@ const FuteredCatagory = () => {
       <div>
         <div className="container">
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-              <div class="card h-100 cataoryimg">
+            <div className="col">
+              <div className="card h-100 cataoryimg">
                 <Nav.Item as={NavLink} to="/services/intriory">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720887category-02_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">
@@ -53,12 +53,12 @@ const FuteredCatagory = () => {
                 </Nav.Item>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
+            <div className="col">
+              <div className="card h-100">
                 <Nav.Item as={NavLink} to="/services/computer">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720857category-01_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">
@@ -68,12 +68,12 @@ const FuteredCatagory = () => {
                 </Nav.Item>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
+            <div className="col">
+              <div className="card h-100">
                 <Nav.Item as={NavLink} to="/services/carwash">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720916category-03_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">
@@ -83,12 +83,12 @@ const FuteredCatagory = () => {
                 </Nav.Item>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
+            <div className="col">
+              <div className="card h-100">
                 <Nav.Item as={NavLink} to="/services/cleaning">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720937category-04_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">
@@ -98,12 +98,12 @@ const FuteredCatagory = () => {
                 </Nav.Item>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
+            <div className="col">
+              <div className="card h-100">
                 <Nav.Item as={NavLink} to="/services/electrical">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720955category-05_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">
@@ -113,12 +113,12 @@ const FuteredCatagory = () => {
                 </Nav.Item>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
+            <div className="col">
+              <div className="card h-100">
                 <Nav.Item as={NavLink} to="/services/construction">
                   <img
                     src="https://truelysell.com/uploads/category_images/1631720973category-06_381_286.jpg"
-                    class="card-img-top"
+                    className="card-img-top"
                     alt="..."
                   />
                   <div className="catagorycardrap d-flex">

@@ -45,7 +45,7 @@ const Dashboard = (props) => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  console.log(user)
+  // console.log(user)
   const navigate = useNavigate();
   //   const { handleSignOut } = useFirebase()
   const { window } = props;

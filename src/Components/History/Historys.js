@@ -28,10 +28,12 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 import History from "./History";
 import Swal from "sweetalert2";
 import dateFormat from "../DateFormat/dateFormat";
+import Loading from "../Loader/loading";
 
 const Historys = () => {
+
   const [attendances, setAttendances] = useState([]);
-  console.log(attendances);
+  // console.log(attendances);
   const [inputValue, setInputValue] = useState("");
   const { register, handleSubmit } = useForm();
   const [filterDates, setFilterDates] = useState([]);
@@ -40,11 +42,15 @@ const Historys = () => {
   const [filterData, setFilterData] = useState([]);
 
   const user = useSelector((state) => state.user.user);
+  const [loading,setLoading] = useState(false)
+  console.log(loading)
 
   useEffect(() => {
+    setLoading(true)
     fetch(`http://localhost:7070/api/orders/user/${user._id}`)
       .then((res) => res.json())
       .then((data) => setAttendances(data.reverse()));
+      setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -53,7 +59,7 @@ const Historys = () => {
     );
     setFilterDates(newFilterDate);
   }, [attendances, startDate, endDate]);
-  console.log(filterDates);
+  // console.log(filterDates);
 
   const onSubmit = (data, e) => {
     const newStartDate = dateFormat(new Date(data.startDate), "yyyy-MM-dd");
@@ -122,7 +128,10 @@ const Historys = () => {
   };
   // download total report
   return (
-    <Container>
+    <>
+    {
+      loading === true ? <Loading></Loading> : 
+      <Container>
       {/* Breadcrumbs */}
       <Box sx={{ mb: 4 }}>
         <Typography
@@ -174,6 +183,9 @@ const Historys = () => {
         </Box>
       </PDFExport>
     </Container>
+    }
+    
+    </>
   );
 };
 

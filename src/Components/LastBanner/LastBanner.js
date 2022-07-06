@@ -75,13 +75,12 @@ const LastBanner = () => {
                       variant="h4"
                       sx={{ fontWeight: "900" }}
                     >
-                      Let's be a provider
+                      Let's be a vendor
                     </Typography>
                     <Typography color="#ffffffed" variant="body1" sx={{}}>
-                      We have most hard working and honest provider who are got
-                      more than 4.5 star review from our customer . It easy to
-                      be a provider and get paid after your appointment done.
-                      Joint with us
+                      We have most hard working and best vendor who are got
+                      more than 4.5 star review from our customer.
+                      let's connect with us
                     </Typography>
                   </Box>
                 </Grid>

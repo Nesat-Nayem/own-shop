@@ -45,18 +45,18 @@ const Modal = (props) => {
               </div>
               <div className="col-md-6">
                 <h5 className="mt-3">Social Links</h5>
-                <div class="socialLinks ">
+                <div className="socialLinks ">
                   <span>
-                    <i class="fab fa-facebook-f"></i>
+                    <i className="fab fa-facebook-f"></i>
                   </span>
                   <span>
-                    <i class="fab fa-twitter"></i>
+                    <i className="fab fa-twitter"></i>
                   </span>
                   <span>
-                    <i class="fab fa-instagram"></i>
+                    <i className="fab fa-instagram"></i>
                   </span>
                   <span>
-                    <i class="fab fa-google"></i>
+                    <i className="fab fa-google"></i>
                   </span>
                 </div>
               </div>

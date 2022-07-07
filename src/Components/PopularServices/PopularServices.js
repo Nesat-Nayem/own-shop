@@ -17,7 +17,7 @@ import AllProviderChild from "./AllProviderChild";
 
 const PopularServices = () => {
   const [providers, setProviders] = useState([]);
-  console.log(providers)
+  // console.log(providers)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

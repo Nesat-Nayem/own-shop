@@ -1,9 +1,22 @@
 // import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./Banner.css";
 
 const Banner = () => {
+  const [service,setService] = useState([])
+  // console.log(service)
+  useEffect(()=>{
+    fetch('http://localhost:7070/api/products/getProduct')
+    .then(res=>res.json())
+    .then(data => setService(data) )
+  })
+
+
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+
   const { searchKey, setSearchKey, searchLocation, setSearchLocation } =
     useAuth();
 
@@ -11,8 +24,27 @@ const Banner = () => {
     e.preventDefault();
     const searchText = e.target.value;
     setSearchKey(searchText);
-    console.log(searchText);
+    // console.log(searchText);
+
+// search sussion show
+const searchWord = e.target.value;
+setWordEntered(searchWord);
+const newFilter = service.filter((value) => {
+
+  return value.name.toLowerCase().includes(searchWord.toLowerCase());
+});
+
+if (searchWord === "") {
+  setFilteredData([]);
+} else {
+  setFilteredData(newFilter);
+}
+// search sussion show 
+
+
   };
+
+ 
 
   const handleSearchByLocation = (e) => {
     e.preventDefault();
@@ -56,6 +88,20 @@ const Banner = () => {
                 onChange={handleSearchByKey}
                 // required
               />
+
+              {/* search sussion show  */}
+              {filteredData.length != 0 && (
+        <div className="dataResult">
+          {filteredData.slice(0, 15).map((value, key) => {
+            return (
+              <a className="dataItem"  target="_blank">
+                <p className="sesionp">{value.name} </p>
+              </a>
+            );
+          })}
+        </div>
+    )} 
+              {/* search sussion show  */}
 
               <input
                 type="text"

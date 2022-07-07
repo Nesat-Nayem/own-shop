@@ -9,7 +9,8 @@ import Paper from '@mui/material/Paper';
 import OrdersTableRow from './OrdersTableRow';
 
 const OrdersTable = ({ allOrders, all }) => {
-    const pendingOrders = allOrders?.filter(data => data.status === 'pending');
+
+    // const pendingOrders = allOrders?.filter(data => data.status === 'pending');
 
     return (
         < >
@@ -18,15 +19,21 @@ const OrdersTable = ({ allOrders, all }) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Service Name</TableCell>
+                            <TableCell>Vendor</TableCell>
                             {/* <TableCell>Provider</TableCell> */}
                             <TableCell>User</TableCell>
                             <TableCell>Price</TableCell>
                             <TableCell>Status</TableCell>
+                            <TableCell>Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {
+                        {/* {
                             all ? pendingOrders.map(data => <OrdersTableRow key={data._id} data={data}></OrdersTableRow>) : pendingOrders.slice(0, 6).map(data => <OrdersTableRow key={data._id} data={data}></OrdersTableRow>)
+
+                        } */}
+                        {
+                            allOrders.map(data =>  <OrdersTableRow key={data._id} data={data}></OrdersTableRow>)
 
                         }
                     </TableBody>

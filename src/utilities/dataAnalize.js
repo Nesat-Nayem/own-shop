@@ -49,8 +49,9 @@ export const totalSales = (data) => {
   return data.length;
 };
 export const totalOrders = (data) => {
-  const orders = data.filter((singleData) => singleData.status === "pending");
-  return orders.length;
+  // const orders = data.filter((singleData) => singleData.status === "pending");
+  // return orders.length;
+  return data.length;
 };
 export const totalApproveOrders = (data) => {
   const orders = data.filter((singleData) => singleData.status === "approved");

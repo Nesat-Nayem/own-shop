@@ -123,13 +123,13 @@ const AddProducts = () => {
                   color: "green",
                 }}
               >
-                Soft Name
+                Shop Name
               </p>
               <input
                 type="text"
                 //   onBlur={handleBlur}
                 //   name="name"
-                placeholder="Soft Name"
+                placeholder="Shop Name"
                 required
                 {...register("name", { required: true })}
               />

@@ -13,7 +13,7 @@ const Card = ({ product }) => {
       className="col-lg-3 col-md-4 col-sm-6 col-xs-12 "
     >
       <div className="card h-100">
-        <img src={img} className="card-img-top" alt={name} />
+        <img id="cardImage" src={img} className="card-img-top" alt={name} />
 
         <NavLink
           to={`/services/${category}/${id}`}

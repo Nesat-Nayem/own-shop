@@ -85,20 +85,14 @@ const ViewProducts = () => {
   const cart = useSelector((state) => state.products.cart);
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
-  // const {reviews} = useAuth()
 
   const [reviews, setReviews] = useState("");
-
-  // console.log(reviews.data)
 
   useEffect(() => {
     fetch("http://localhost:7070/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   });
-
-  // console.log("direct product comments",reviews?.reviews?.data)
-  // console.log("direct product comments",reviews?.data)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -141,42 +135,12 @@ const ViewProducts = () => {
       <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
         <Row>
           <Col lg={8} md={8} sm={12}>
-            <h2
-              style={{
-                fontWeight: "bold",
-                fontSize: "36px",
-                fontFamily: "Poppins",
-                color: "#2c3038",
-              }}
-              className="my-2"
-            >
-              {productView[0]?.name}
-            </h2>
-            <p className="my-4">
-              {" "}
-              <GpsFixedIcon /> {productView[0]?.location}
-            </p>
-            <Rating ratingValue={5} size={25} readonly={true} />
-            <button
-              style={{
-                color: "#fff",
-                padding: "2px 10px",
-                textTransform: "uppercase",
-                background: "#d9c505",
-                borderRadius: "4px",
-                fontSize: "0.8125rem",
-                display: "block",
-                border: "none",
-                cursor: "text",
-              }}
-              className="my-2"
-            >
-              {productView[0]?.category}
-            </button>
+           
             <img
               src={productView[0]?.img}
               alt=""
-              className="img-responsive w-100"
+              id="viewImage"
+              className="img-responsive img-fluid"
             />
 
             {/* dascripttion tabs  */}
@@ -217,7 +181,42 @@ const ViewProducts = () => {
             {/* dascripttion tabs  */}
           </Col>
           <Col lg={4} md={4} sm={12}>
-            <div className="wideget">
+          <div>
+            <h2
+              style={{
+                fontWeight: "bold",
+                fontSize: "36px",
+                fontFamily: "Poppins",
+                color: "#2c3038",
+              }}
+              className="my-2"
+            >
+              {productView[0]?.name}
+            </h2>
+            <p className="my-4">
+              {" "}
+              <GpsFixedIcon /> {productView[0]?.location}
+            </p>
+            <Rating ratingValue={5} size={25} readonly={true} />
+            <button
+              style={{
+                color: "#fff",
+                padding: "2px 10px",
+                textTransform: "uppercase",
+                background: "#d9c505",
+                borderRadius: "4px",
+                fontSize: "0.8125rem",
+                display: "block",
+                border: "none",
+                cursor: "text",
+              }}
+              className="my-2 "
+            >
+              {productView[0]?.category}
+            </button>
+            </div>
+
+            <div className="wideget mt-5">
               <p className="widamaunt">${productView[0]?.price}</p>
 
               <Link
@@ -239,13 +238,7 @@ const ViewProducts = () => {
                       <a className="ancortt">
                         <img
                           className="img-fluid rounded-circle"
-                          // src={productView[0]?.providername}
-                       
-                            src={productView[0]?.providerPhoto} 
-
-                            //  src="https://truelysell.com/uploads/profile_img/1631787916.jpg"
-                         
-                         
+                          src={productView[0]?.providerPhoto}
                         />
                       </a>
                     </div>
@@ -261,6 +254,8 @@ const ViewProducts = () => {
                 </div>
               </div>
             </div>
+
+           
           </Col>
         </Row>
 

@@ -33,6 +33,7 @@ import Historys from "./Components/History/Historys";
 import VendorReports from "./Components/VendorReport/VendorReports";
 import ManageOrder from "./Components/Dashboard/ManageOrder/ManageOrder";
 import ProviderManageOrder from "./Components/Dashboard/ProviderManageOrder/ProviderManageOrder";
+import VendorProfile from "./Components/Dashboard/VendorProfile/VendorProfile";
 
 function App() {
   const user = useSelector((state) => state.user.user);
@@ -116,6 +117,11 @@ function App() {
                   path="/dashboard/providerManageOrder"
                   element={<ProviderManageOrder />}
                 ></Route>
+                <Route
+                  path="/dashboard/vendorprofile"
+                  element={<VendorProfile />}
+                ></Route>
+
                 <Route path="/dashboard/myorder" element={<MyOrder />}></Route>
                 <Route path="/dashboard/history" element={<Historys />}></Route>
                 {/* dashbord  */}

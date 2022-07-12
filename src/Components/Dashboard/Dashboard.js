@@ -1,6 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import SpeedIcon from "@mui/icons-material/Speed";
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import GroupIcon from "@mui/icons-material/Group";
 import StorageIcon from "@mui/icons-material/Storage";
 
@@ -10,6 +11,9 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import InterestsIcon from "@mui/icons-material/Interests";
+import RuleIcon from '@mui/icons-material/Rule';
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import Drawer from "@mui/material/Drawer";
 import {
   Accordion,
@@ -296,7 +300,7 @@ const Dashboard = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    <RuleIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Manage Order
                   </Button>
                 </NavLink>
@@ -324,7 +328,28 @@ const Dashboard = (props) => {
                     }}
                   >
                     <SpeedIcon sx={{ mr: 2, fontSize: "24px" }} />
-                    Provider Overview
+                    Vendor Overview
+                  </Button>
+                </NavLink>
+
+                <NavLink
+                  style={{
+                    textDecoration: "none",
+                    marginTop: "0 !important",
+                    marginLeft: "15px",
+                  }}
+                  to={`/dashboard/vendorprofile`}
+                >
+                  <Button
+                    sx={{
+                      color: "#fff !important",
+                      textTransform: "capitalize",
+                      fontWeight: "300",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <HowToRegIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    Vendor Profile
                   </Button>
                 </NavLink>
 
@@ -364,7 +389,7 @@ const Dashboard = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    <LibraryBooksIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Vendor Report
                   </Button>
                 </NavLink>
@@ -384,7 +409,7 @@ const Dashboard = (props) => {
                       fontSize: "16px",
                     }}
                   >
-                    <InterestsIcon sx={{ mr: 2, fontSize: "24px" }} />
+                    <RuleIcon sx={{ mr: 2, fontSize: "24px" }} />
                    ManageOrder
                   </Button>
                 </NavLink>

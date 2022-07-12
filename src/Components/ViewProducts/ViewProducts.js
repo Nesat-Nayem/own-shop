@@ -129,6 +129,22 @@ const ViewProducts = () => {
     dispatch(addProduct(obj));
   };
 
+  // image galary 
+
+  const [newImg,setNewImg] = useState([])
+  console.log(newImg[1])
+
+  const [selectedImg,setSelectedImg] = useState(newImg[1])
+  console.log(selectedImg)
+
+  useEffect(()=>{
+    fetch('http://localhost:7070/api/products/getProduct')
+    .then(res =>res.json())
+    .then(data =>setNewImg(data[11]?.images))
+  })
+
+  // image galary 
+
   return (
     <>
       <Header></Header>
@@ -136,12 +152,40 @@ const ViewProducts = () => {
         <Row>
           <Col lg={8} md={8} sm={12}>
            
-            <img
+           {/* image galary  */}
+           <div>
+      <div className="cscontainer">
+        {
+            selectedImg === undefined ?  <img src={newImg[1]} alt="selected" className="selected imgstyle" /> :
+            <img src={selectedImg} alt="selected" className="selected imgstyle" />
+        }
+        {/* <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
+        <h6 className="my-4" style={{color:'purple'}}>Image Gallary</h6>
+        <div className="imgContainer">
+          {
+            newImg?.map((img, index)=>(
+                <img style={{border: selectedImg === img ? "4px solid purple" : ''}}
+                 key={index} 
+                 className="imgstyle"
+                 src={img}
+                  alt="img"
+                  onClick={() => setSelectedImg(img)}
+                  />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+           {/* image galary  */}
+
+
+            {/* <img
               src={productView[0]?.img}
               alt=""
               id="viewImage"
               className="img-responsive img-fluid"
-            />
+            /> */}
 
             {/* dascripttion tabs  */}
 

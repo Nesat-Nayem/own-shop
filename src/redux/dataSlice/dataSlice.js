@@ -8,7 +8,8 @@ const initialState = {
     loading: true,
     getLoad: false,
     allServices: [],
-    allUser: [],
+    // allUser: [],
+    allOrder:[],
     serviceIsLoading: false,
     cartItems: [],
     cartTotalQuantity: 0,
@@ -40,41 +41,16 @@ const initialState = {
 // async task
 
 
-export const saveUserToDb = createAsyncThunk(
-    'saveUserToDb/user',
-    async (info) => {
-        const response = await axios.post(`https://dry-sea-00611.herokuapp.com/users/register`, info);
+export const getAllOrders = createAsyncThunk(
+   
+    'order/getAllOrders',
+    async () => {
+        const response = await axios.get(`http://localhost:7070/api/orders/allorder`);
         return response.data
+      
+      
     }
-)
-export const putUserToDb = createAsyncThunk(
-    'data/putUserToDb',
-    async (info) => {
-        const response = await axios.put(`https://dry-sea-00611.herokuapp.com/users/register `, info);
-        return response.data
-    }
-)
-export const makeAdmin = createAsyncThunk(
-    'data/makeAdmin',
-    async (info) => {
-        //
-        const response = await axios.put(`https://dry-sea-00611.herokuapp.com/admin/makeadmin/${info.email} `, info);
-        return response.data
-    }
-)
-export const isAdmin = createAsyncThunk(
-    'data/isAdmin',
-    async (info) => {
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/admin/checkadmin/${info.email}`);
-        return response.data
-    }
-)
-export const getAllUser = createAsyncThunk(
-    'data/getAllUser',
-    async (info) => {
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/users/allusers`);
-        return response.data
-    }
+ 
 )
 
 
@@ -227,11 +203,11 @@ export const dataSlice = createSlice({
         logout: (state, action) => {
             state.user = {}
         },
-        changeRole: (state, { payload }) => {
-            const email = payload.email;
-            const role = payload.role;
-            state.allUser.find(data => data.email === email)['role'] = role;
-        },
+        // changeRole: (state, { payload }) => {
+        //     const email = payload.email;
+        //     const role = payload.role;
+        //     state.allUser.find(data => data.email === email)['role'] = role;
+        // },
         setLoading: (state, action) => {
             console.log('calling ');
             state.loading = action.payload;
@@ -282,13 +258,13 @@ export const dataSlice = createSlice({
         addOrderChat: (state, { payload }) => {
             state.orderChats = [...state.orderChats, payload];
         },
-        changeUserPosition: (state, { payload }) => {
-            //
-            const uid = payload?.uid;
-            const getUser = state.allUser.filter(user => user.uid === uid)[0];
-            const withoutUser = state.allUser.filter(user => user.uid !== uid);
-            state.allUser = [getUser, ...withoutUser]
-        },
+        // changeUserPosition: (state, { payload }) => {
+        //     //
+        //     const uid = payload?.uid;
+        //     const getUser = state.allUser.filter(user => user.uid === uid)[0];
+        //     const withoutUser = state.allUser.filter(user => user.uid !== uid);
+        //     state.allUser = [getUser, ...withoutUser]
+        // },
         changeOtherOrdersPosition: (state, { payload }) => {
             //
             const id = payload?.id;
@@ -312,23 +288,23 @@ export const dataSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(makeAdmin.fulfilled, (state, action) => {
-                //
-            })
-            .addCase(isAdmin.pending, (state, action) => {
-                state.loading = true;
-                console.log('add case pending');
-            })
-            .addCase(isAdmin.fulfilled, (state, action) => {
+            // .addCase(makeAdmin.fulfilled, (state, action) => {
+            //     //
+            // })
+            // .addCase(isAdmin.pending, (state, action) => {
+            //     state.loading = true;
+            //     console.log('add case pending');
+            // })
+            // .addCase(isAdmin.fulfilled, (state, action) => {
 
-                state.user.role = action.payload.role;
-                console.log('add case false');
-                state.loading = false;
-            })
-            .addCase(isAdmin.rejected, (state, action) => {
-                state.loading = false;
-                console.log('add case reject');
-            })
+            //     state.user.role = action.payload.role;
+            //     console.log('add case false');
+            //     state.loading = false;
+            // })
+            // .addCase(isAdmin.rejected, (state, action) => {
+            //     state.loading = false;
+            //     console.log('add case reject');
+            // })
             .addCase(loadServiceCategory.pending, (state, action) => {
                 state.serviceIsLoading = true;
             })
@@ -361,14 +337,15 @@ export const dataSlice = createSlice({
                 state.serviceProviderLoading = false;
                 state.providers = payload;
             })
-            .addCase(getAllUser.pending, (state, { payload }) => {
+            .addCase(getAllOrders.pending, (state, { payload }) => {
                 state.getLoad = true;
             })
-            .addCase(getAllUser.rejected, (state, { payload }) => {
+            .addCase(getAllOrders.rejected, (state, { payload }) => {
                 state.getLoad = false;
             })
-            .addCase(getAllUser.fulfilled, (state, { payload }) => {
-                state.allUser = payload;
+            .addCase(getAllOrders.fulfilled, (state, { payload }) => {
+                // state.allUser = payload;
+                state.allOrder = payload;
                 state.getLoad = false;
             })
 

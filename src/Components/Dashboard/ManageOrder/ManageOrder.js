@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import OrdersTable from './OrdersTable'
 import { CircularProgress, Stack } from '@mui/material';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllOrders,allData } from '../../../redux/dataSlice/dataSlice';
 const ManageOrder = () => {
-    const [allOrders, setAllOrders] = useState([]);
-    // console.log(allOrders)
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setLoading(true);
-        axios.get('http://localhost:7070/api/orders/allorder')
-            .then(res => setAllOrders(res.data))
+    const dispatch = useDispatch()
+   const {allOrder,getLoad} = useSelector(allData)
 
-            .finally(() => setLoading(false));
-    }, []);
+   console.log('from redux',allOrder)
+
+  
+  useEffect(()=>{
+
+    dispatch(getAllOrders())
+  },[])
+
+
     return (
         <>
         {
-            loading ? <Stack alignItems='center'><CircularProgress></CircularProgress></Stack> : <OrdersTable allOrders={allOrders} all></OrdersTable>
+            getLoad ? <Stack alignItems='center'><CircularProgress></CircularProgress></Stack> : <OrdersTable allOrder={allOrder} all></OrdersTable>
         }
     </>
     );

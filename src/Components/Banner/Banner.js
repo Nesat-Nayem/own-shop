@@ -6,7 +6,7 @@ import "./Banner.css";
 
 const Banner = () => {
   const [service,setService] = useState([])
-  // console.log(service)
+  console.log('from banner',service)
   useEffect(()=>{
     fetch('http://localhost:7070/api/products/getProduct')
     .then(res=>res.json())
@@ -76,7 +76,6 @@ if (searchWord === "") {
               action=""
               className="d-md-flex justify-content-center  banner-form-input"
             >
-              {/* <form className="loginform mb-5"  onSubmit={handleSubmit(onSubmit)}> */}
               <input
                 type="text"
                 name=""

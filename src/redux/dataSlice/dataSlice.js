@@ -8,15 +8,15 @@ const initialState = {
     loading: true,
     getLoad: false,
     allServices: [],
-    // allUser: [],
     allOrder:[],
+    allProducts:[],
+
     serviceIsLoading: false,
     cartItems: [],
     cartTotalQuantity: 0,
     cartTotalAmount: 0,
     singleServiceLoading: true,
     singleServiceDetail: {},
-    testimonials: [],
     testimonialLoading: true,
     providers: [],
     allChat: [],
@@ -52,6 +52,17 @@ export const getAllOrders = createAsyncThunk(
     }
  
 )
+export const getProduct = createAsyncThunk(
+   
+    'order/getProduct',
+    async () => {
+        const response = await axios.get(`http://localhost:7070/api/products/getProduct`);
+        return response.data
+      
+      
+    }
+ 
+)
 
 
 export const loadServiceCategory = createAsyncThunk(
@@ -72,13 +83,7 @@ export const singleService = createAsyncThunk(
     }
 );
 
-export const websiteReviews = createAsyncThunk(
-    "testimonials/data",
-    async () => {
-        const response = await axios.get("https://dry-sea-00611.herokuapp.com/reviews")
-        return response.data;
-    }
-)
+
 
 export const deleteTestimonial = createAsyncThunk(
     "testimonial/delete",
@@ -97,102 +102,6 @@ export const approvedTestimonial = createAsyncThunk(
     }
 );
 
-export const serviceProviders = createAsyncThunk(
-    "providers/service",
-    async (info) => {
-        const response = await axios.get('https://dry-sea-00611.herokuapp.com/users/finding/ids', {
-            params: {
-                data: info
-            }
-        })
-        return response.data;
-    }
-);
-export const postChat = createAsyncThunk(
-    "chat/postChat",
-    async (info) => {
-        const response = await axios.post('https://dry-sea-00611.herokuapp.com/chat', info)
-        return response.data;
-    }
-);
-export const getChatFromDb = createAsyncThunk(
-    "chat/postChat",
-    async (info) => {
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/chat`);
-        return response.data;
-    }
-);
-
-
-export const saveService = createAsyncThunk(
-    "service/save",
-    async (info) => {
-        //
-        const response = await axios.post('https://dry-sea-00611.herokuapp.com/saveservice', info)
-        return response.data;
-    }
-);
-
-export const getNotification = createAsyncThunk(
-    "get/notification",
-    async (info) => {
-        // 
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/notification/getnotification?email=${info.email}`)
-        return response.data;
-    }
-)
-
-export const updateMessageStatus = createAsyncThunk("update/notificationstatus",
-    async (info) => {
-        const response = await axios.put(`https://dry-sea-00611.herokuapp.com/notification/statuschange/${info.email}`)
-        return response.data;
-    }
-)
-export const sendNotification = createAsyncThunk("sendNotification/notification",
-    async (info) => {
-        const modifyInfo = { ...info, seen: false, time: new Date() }
-
-        const response = await axios.post(`https://dry-sea-00611.herokuapp.com/notification`, modifyInfo)
-        return response.data;
-    }
-)
-export const getProviderChatsDb = createAsyncThunk(
-    "data/getProviderChatsDb",
-    async (info) => {
-        // 
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/chat/provider/${info.email}`)
-        return response.data;
-    }
-)
-
-export const getOtherOrders = createAsyncThunk(
-    "data/getOtherOrders",
-    async (info) => {
-        // 
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/provider/appointment/${info.email}`)
-        return response.data;
-    }
-)
-
-
-export const getSingleOrdersChat = createAsyncThunk(
-    "data/getSingleOrdersChat",
-    async (info) => {
-        // 
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/chat/singleOrder/${info.id}`)
-
-        return response.data;
-    }
-)
-export const getProviderDetailsByEmail = createAsyncThunk(
-    "data/getProviderDetailsByEmail",
-    async (info) => {
-        // 
-        const response = await axios.get(`https://dry-sea-00611.herokuapp.com/providerdetials/provider?email=${info.email}`)
-
-        return response.data;
-    }
-)
 export const dataSlice = createSlice({
     name: 'data',
     initialState,
@@ -203,11 +112,7 @@ export const dataSlice = createSlice({
         logout: (state, action) => {
             state.user = {}
         },
-        // changeRole: (state, { payload }) => {
-        //     const email = payload.email;
-        //     const role = payload.role;
-        //     state.allUser.find(data => data.email === email)['role'] = role;
-        // },
+
         setLoading: (state, action) => {
             console.log('calling ');
             state.loading = action.payload;
@@ -240,9 +145,7 @@ export const dataSlice = createSlice({
                 localStorage.setItem("cartItems", JSON.stringify([payload]))
             }
         },
-        remaingTestimonials: (state, { payload }) => {
-            state.testimonials = state.testimonials.filter((item) => item._id !== payload)
-        },
+
         deleteTestimonails: (state, { payload }) => {
             state.testimonials = state.testimonials.filter((item) => item._id !== payload)
         },
@@ -258,13 +161,7 @@ export const dataSlice = createSlice({
         addOrderChat: (state, { payload }) => {
             state.orderChats = [...state.orderChats, payload];
         },
-        // changeUserPosition: (state, { payload }) => {
-        //     //
-        //     const uid = payload?.uid;
-        //     const getUser = state.allUser.filter(user => user.uid === uid)[0];
-        //     const withoutUser = state.allUser.filter(user => user.uid !== uid);
-        //     state.allUser = [getUser, ...withoutUser]
-        // },
+
         changeOtherOrdersPosition: (state, { payload }) => {
             //
             const id = payload?.id;
@@ -288,23 +185,7 @@ export const dataSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // .addCase(makeAdmin.fulfilled, (state, action) => {
-            //     //
-            // })
-            // .addCase(isAdmin.pending, (state, action) => {
-            //     state.loading = true;
-            //     console.log('add case pending');
-            // })
-            // .addCase(isAdmin.fulfilled, (state, action) => {
-
-            //     state.user.role = action.payload.role;
-            //     console.log('add case false');
-            //     state.loading = false;
-            // })
-            // .addCase(isAdmin.rejected, (state, action) => {
-            //     state.loading = false;
-            //     console.log('add case reject');
-            // })
+           
             .addCase(loadServiceCategory.pending, (state, action) => {
                 state.serviceIsLoading = true;
             })
@@ -323,20 +204,8 @@ export const dataSlice = createSlice({
                 state.singleServiceDetail = payload;
                 state.singleServiceLoading = false;
             })
-            .addCase(websiteReviews.pending, (state, action) => {
-                state.testimonialLoading = true;
-            })
-            .addCase(websiteReviews.fulfilled, (state, { payload }) => {
-                state.testimonials = payload;
-                state.testimonialLoading = false;
-            })
-            .addCase(serviceProviders.pending, (state, { payload }) => {
-                state.serviceProviderLoading = true;
-            })
-            .addCase(serviceProviders.fulfilled, (state, { payload }) => {
-                state.serviceProviderLoading = false;
-                state.providers = payload;
-            })
+      
+      
             .addCase(getAllOrders.pending, (state, { payload }) => {
                 state.getLoad = true;
             })
@@ -348,32 +217,23 @@ export const dataSlice = createSlice({
                 state.allOrder = payload;
                 state.getLoad = false;
             })
+            
 
-            .addCase(getChatFromDb.fulfilled, (state, { payload }) => {
-                if (payload.length) {
-                    state.allChat = payload
-                }
+            .addCase(getProduct.pending, (state, { payload }) => {
+                state.getLoad = true;
             })
-            .addCase(getNotification.pending, (state, { payload }) => {
-                state.notificationLoading = true;
+            .addCase(getProduct.rejected, (state, { payload }) => {
+                state.getLoad = false;
             })
-            .addCase(getNotification.fulfilled, (state, { payload }) => {
-                state.notifications = payload.reverse();
-                state.notificationLoading = false;
+            .addCase(getProduct.fulfilled, (state, { payload }) => {
+                // state.allUser = payload;
+                state.allProducts = payload;
+                state.getLoad = false;
             })
-            .addCase(sendNotification.fulfilled, (state, { payload }) => {
 
-
-                if (state.user.email === payload.email) {
-                    state.notifications.push(payload)
-                }
-            })
-            .addCase(sendNotification.pending, (state, { payload }) => {
-
-            })
-            .addCase(sendNotification.rejected, (state, { payload }) => {
-
-            })
+     
+     
+      
             .addCase(deleteTestimonial.pending, (state, { payload }) => {
                 state.deleteLoading = true;
             })
@@ -387,25 +247,13 @@ export const dataSlice = createSlice({
                 state.approvdedLoading = true;
             })
 
-            .addCase(getOtherOrders.fulfilled, (state, { payload }) => {
-                state.otherOrders = payload.reverse();
-            })
-            .addCase(getProviderChatsDb.fulfilled, (state, { payload }) => {
-                state.orderChats = payload;
-            })
-            .addCase(getSingleOrdersChat.fulfilled, (state, { payload }) => {
-                state.orderChats = payload;
-            })
-            .addCase(getProviderDetailsByEmail.fulfilled, (state, { payload }) => {
-                // state.orderChats = payload; 
-                state.user.providerDetailId = payload._id;
-            })
-
+       
+       
 
     },
 })
 
 
-export const { login, logout, setLoading, addToCart, addOrderInfo, changeRole, selectedServiceAndProvider, reviewServiceIndex, parentServiceId, addChat, changeUserPosition, setNotificationCount, newNotification, remaingTestimonials, deleteTestimonails, addOrderChat, changeOtherOrdersPosition } = dataSlice.actions
+export const { login, logout, setLoading, addToCart, addOrderInfo, changeRole, selectedServiceAndProvider, reviewServiceIndex, parentServiceId, addChat, changeUserPosition, setNotificationCount, newNotification,  deleteTestimonails, addOrderChat, changeOtherOrdersPosition } = dataSlice.actions
 export const allData = (state) => state.data;
 export default dataSlice.reducer

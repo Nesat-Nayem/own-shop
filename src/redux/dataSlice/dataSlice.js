@@ -6,7 +6,7 @@ const initialState = {
     getLoad: false,
     allServices: [],
     allOrder:[],
-    allProducts:[],
+   
     userOrders:[],
 
 
@@ -26,11 +26,12 @@ export const getAllOrders = createAsyncThunk(
     }
  
 )
-export const getProduct = createAsyncThunk(
+export const getAllServices = createAsyncThunk(
    
-    'order/getProduct',
+    'order/getAllServices',
     async () => {
         const response = await axios.get(`http://localhost:7070/api/products/getProduct`);
+        // console.log('all service from redux',response.data)
         return response.data
       
       
@@ -88,15 +89,15 @@ export const dataSlice = createSlice({
             })
             
 
-            .addCase(getProduct.pending, (state, { payload }) => {
+            .addCase(getAllServices.pending, (state, { payload }) => {
                 state.getLoad = true;
             })
-            .addCase(getProduct.rejected, (state, { payload }) => {
+            .addCase(getAllServices.rejected, (state, { payload }) => {
                 state.getLoad = false;
             })
-            .addCase(getProduct.fulfilled, (state, { payload }) => {
-                // state.allUser = payload;
-                state.allProducts = payload;
+            .addCase(getAllServices.fulfilled, (state, { payload }) => {
+               
+                state.allServices = payload;
                 state.getLoad = false;
             })
 

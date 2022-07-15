@@ -6,7 +6,7 @@ import "./Banner.css";
 
 const Banner = () => {
   const [service,setService] = useState([])
-  console.log('from banner',service)
+  // console.log('from banner',service)
   useEffect(()=>{
     fetch('http://localhost:7070/api/products/getProduct')
     .then(res=>res.json())

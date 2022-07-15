@@ -1,9 +1,6 @@
 import { Typography, Grid } from "@mui/material";
-import React, {  useEffect } from "react";
-import {
-  allData,
-  userOrder,
-} from "../../../../redux/dataSlice/dataSlice";
+import React, { useEffect } from "react";
+import { allData, userOrder } from "../../../../redux/dataSlice/dataSlice";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,12 +18,10 @@ const MyOrdersTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(userOrder(user?._id));
   }, [dispatch]);
 
- 
   if (getLoad === true) {
     return <Loading></Loading>;
   } else {

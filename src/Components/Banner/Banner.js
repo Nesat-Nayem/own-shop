@@ -1,24 +1,21 @@
-// import React, { useState } from "react";
+import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
 import "./Banner.css";
+import { allData, getAllServices } from "../../redux/dataSlice/dataSlice";
 
 const Banner = () => {
-  const [service,setService] = useState([])
-  // console.log('from banner',service)
-  useEffect(()=>{
-    fetch('http://localhost:7070/api/products/getProduct')
-    .then(res=>res.json())
-    .then(data => setService(data) )
-  })
-
+  const { allServices } = useSelector(allData);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllServices());
+  });
 
   const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
 
-  const { searchKey, setSearchKey, searchLocation, setSearchLocation } =
-    useAuth();
+  const { setSearchKey, setSearchLocation } = useAuth();
 
   const handleSearchByKey = (e) => {
     e.preventDefault();
@@ -26,25 +23,20 @@ const Banner = () => {
     setSearchKey(searchText);
     // console.log(searchText);
 
-// search sussion show
-const searchWord = e.target.value;
-setWordEntered(searchWord);
-const newFilter = service.filter((value) => {
+    // search sussion show
+    const searchWord = e.target.value;
+    // setWordEntered(searchWord);
+    const newFilter = allServices.filter((value) => {
+      return value.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
 
-  return value.name.toLowerCase().includes(searchWord.toLowerCase());
-});
-
-if (searchWord === "") {
-  setFilteredData([]);
-} else {
-  setFilteredData(newFilter);
-}
-// search sussion show 
-
-
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+    // search sussion show
   };
-
- 
 
   const handleSearchByLocation = (e) => {
     e.preventDefault();
@@ -90,16 +82,16 @@ if (searchWord === "") {
 
               {/* search sussion show  */}
               {filteredData.length != 0 && (
-        <div className="dataResult">
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <a className="dataItem"  target="_blank">
-                <p className="sesionp">{value.name} </p>
-              </a>
-            );
-          })}
-        </div>
-    )} 
+                <div className="dataResult">
+                  {filteredData.slice(0, 15).map((value, key) => {
+                    return (
+                      <a className="dataItem" target="_blank">
+                        <p className="sesionp">{value.name} </p>
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
               {/* search sussion show  */}
 
               <input

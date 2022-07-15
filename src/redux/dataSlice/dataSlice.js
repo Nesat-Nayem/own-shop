@@ -10,6 +10,8 @@ const initialState = {
     allServices: [],
     allOrder:[],
     allProducts:[],
+    userOrders:[],
+
 
     serviceIsLoading: false,
     cartItems: [],
@@ -58,6 +60,20 @@ export const getProduct = createAsyncThunk(
     async () => {
         const response = await axios.get(`http://localhost:7070/api/products/getProduct`);
         return response.data
+      
+      
+    }
+ 
+)
+export const userOrder = createAsyncThunk(
+  
+    'order/userOrder',
+    async (id) => {
+        // console.log('hey from reux', id)
+        const response = await axios.get(`http://localhost:7070/api/orders/user/${id}`);
+        // console.log('hey from reux', response.data)
+        return response.data
+       
       
       
     }
@@ -228,6 +244,18 @@ export const dataSlice = createSlice({
             .addCase(getProduct.fulfilled, (state, { payload }) => {
                 // state.allUser = payload;
                 state.allProducts = payload;
+                state.getLoad = false;
+            })
+
+            .addCase(userOrder.pending, (state, { payload }) => {
+                state.getLoad = true;
+            })
+            .addCase(userOrder.rejected, (state, { payload }) => {
+                state.getLoad = false;
+            })
+            .addCase(userOrder.fulfilled, (state, { payload }) => {
+                // state.allUser = payload;
+                state.userOrders = payload;
                 state.getLoad = false;
             })
 

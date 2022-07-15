@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import {  Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
@@ -12,11 +12,10 @@ import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import "./ViewProducts.css";
 import { Typography } from "@mui/material";
 import Card from "../Card/Card";
-import { addProduct, setProducts } from "../../redux/slice";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import useAuth from "../../hooks/useAuth";
 import Review from "./Review";
+import { allData, getAllServices } from "../../redux/dataSlice/dataSlice";
 
 const AntTabs = styled(Tabs)({
   borderBottom: "1.2px solid #000",
@@ -82,8 +81,9 @@ function TabPanel(props) {
 
 const ViewProducts = () => {
   const [value, setValue] = useState(0);
-  const cart = useSelector((state) => state.products.cart);
-  const products = useSelector((state) => state.products.allProducts);
+
+  const {allServices} = useSelector(allData)
+  // console.log('redux from viwe product',allServices)
   const dispatch = useDispatch();
 
   const [reviews, setReviews] = useState("");
@@ -101,12 +101,13 @@ const ViewProducts = () => {
   const { productId } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:7070/api/products/getProduct")
-      .then((res) => res.json())
-      .then((data) => dispatch(setProducts(data)));
+
+    dispatch(getAllServices())
+
+
   }, []);
 
-  const productView = products.filter(
+  const productView = allServices.filter(
     (pro) => Number(pro.id) === Number(productId)
   );
 
@@ -118,24 +119,19 @@ const ViewProducts = () => {
 
   const category = productView[0]?.category;
 
-  const relatedProducts = products.filter(
+  const relatedProducts = allServices.filter(
     (pro) => pro.category.toLocaleLowerCase() === category.toLocaleLowerCase()
   );
 
-  // add to cart
-  const addToCart = (product) => {
-    const obj = { ...product };
-    obj.quantity = 1;
-    dispatch(addProduct(obj));
-  };
+
 
   // image galary 
 
   const [newImg,setNewImg] = useState([])
-  console.log(newImg[1])
+  // console.log(newImg[1])
 
   const [selectedImg,setSelectedImg] = useState(newImg[1])
-  console.log(selectedImg)
+  // console.log(selectedImg)
 
   useEffect(()=>{
     fetch('http://localhost:7070/api/products/getProduct')
@@ -267,7 +263,6 @@ const ViewProducts = () => {
                 to={`/products/checkout/${productView[0]?.id}`}
                 variant="dark"
                 className=" widgetbtn btn btn-primary"
-                // onClick={() => dispatch(addToCart(productView[0]))}
               >
                 Book Services
               </Link>

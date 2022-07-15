@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 
 const Review = (props) => {
   const { productId, username, review, date, rating } = props.review;
-  console.log(productId);
+  // console.log(productId);
 
   return (
     <>

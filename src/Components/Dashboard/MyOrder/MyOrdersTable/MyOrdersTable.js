@@ -1,10 +1,7 @@
 import { Typography, Grid } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import {
   allData,
-  parentServiceId,
-  reviewServiceIndex,
-  singleService,
   userOrder,
 } from "../../../../redux/dataSlice/dataSlice";
 
@@ -17,31 +14,19 @@ const MyOrdersTable = () => {
   const user = useSelector((state) => state.user.user);
   const { userOrders, getLoad } = useSelector(allData);
 
-  console.log("from redux thank", getLoad);
-  console.log("from redux thank", userOrders);
+  // console.log("from redux thank", getLoad);
+  // console.log("from redux thank", userOrders);
   // order
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // console.log(loading);
 
   useEffect(() => {
-    dispatch(singleService());
     dispatch(userOrder(user?._id));
   }, [dispatch]);
 
-  const handleRouteChange = (selectServiceId, index, service) => {
-    navigate(`/dashboard/review/${selectServiceId}`);
-    dispatch(reviewServiceIndex(parseInt(index) + 1));
-    const data = {
-      selectServiceId,
-      email: user.email,
-      providerEmail: service.providerEmail,
-    };
-    dispatch(parentServiceId(data));
-  };
-
+ 
   if (getLoad === true) {
     return <Loading></Loading>;
   } else {

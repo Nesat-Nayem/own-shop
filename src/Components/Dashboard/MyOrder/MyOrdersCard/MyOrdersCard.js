@@ -1,28 +1,18 @@
 import {
-  CardActionArea,
   Typography,
   CardMedia,
   CardContent,
-  Grid,
   Card,
   Avatar,
-  Chip,
   Button,
-  IconButton,
-  Stack,
-  Tooltip,
-  Skeleton,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
-import MessageIcon from "@mui/icons-material/Message";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 const MyOrdersCard = ({ service, notShow, index }) => {
-  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleRouteChange = (serviceId, index, service) => {
+  const handleRouteChange = (serviceId, ) => {
     navigate(`/dashboard/review/${serviceId}`);
   };
 

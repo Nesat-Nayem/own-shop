@@ -1,5 +1,5 @@
 import { configureStore, combineReducers, getDefaultMiddleware, } from "@reduxjs/toolkit";
-import productReducer from './slice'
+// import productReducer from './slice'
 // import userSlice from "./userSlice";
 import userSlice from "./userSlice";
 import dataSlice from "./dataSlice/dataSlice";
@@ -19,7 +19,7 @@ import storage from "redux-persist/lib/storage";
 
 
 const reducers = combineReducers({
-  products:productReducer,
+  // products:productReducer,
   user:userSlice,
   data:dataSlice
 });

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllServices,allData } from "../../redux/dataSlice/dataSlice";
-import { setProducts } from "../../redux/slice";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -10,27 +9,19 @@ import MultiServicesFilter from "../MultiServicesFilter/MultiServicesFilter";
 import "./Products.css";
 
 const Products = () => {
-  // const products = useSelector((state) => state.products.allProducts);
 
   const {allServices, getLoad} = useSelector(allData)
 
-  // console.log("form redux data slice", allServices);
-  // const cart = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
 
     dispatch(getAllServices())
 
-    fetch("http://localhost:7070/api/products/getProduct")
-      .then((res) => res.json())
-      .then((data) => dispatch(setProducts(data)));
+
   }, []);
 
-  // const filterJobs = (e) => {
-  //   console.log(e.target.value);
-  // };
-
+ 
   return (
     <div>
       <Header></Header>

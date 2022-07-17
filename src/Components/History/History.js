@@ -18,7 +18,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  // there is some changes 
   "&:last-child td, &:last-child th": {
     border: 0,
   },

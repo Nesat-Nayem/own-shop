@@ -12,7 +12,6 @@ const FeaturedServices = () => {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
   // console.log(services)
-  // This is comment for here 
 
   useEffect(() => {
     setLoading(true);

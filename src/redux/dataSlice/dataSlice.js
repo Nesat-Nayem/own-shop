@@ -20,7 +20,7 @@ export const getAllOrders = createAsyncThunk(
     'order/getAllOrders',
     async () => {
         const response = await axios.get(`http://localhost:7070/api/orders/allorder`);
-        return response.data
+        return response.data.reverse()
       
       
     }

@@ -22,6 +22,8 @@ import dateFormat from "../../DateFormat/dateFormat";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import AdminReport from "./AdminReport";
 import Swal from "sweetalert2";
+import { allData, getAllOrders } from "../../../redux/dataSlice/dataSlice";
+import {useDispatch,useSelector} from 'react-redux'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,8 +37,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const AdminReports = () => {
-  const [attendances, setAttendances] = useState([]);
-  // console.log(attendances);
   const [inputValue, setInputValue] = useState("");
   const { register, handleSubmit } = useForm();
   const [filterDates, setFilterDates] = useState([]);
@@ -45,20 +45,26 @@ const AdminReports = () => {
   const [filterData, setFilterData] = useState([]);
 
   console.log('filterdata',filterData);
+  const {allOrder,getLoad} = useSelector(allData)
+  console.log('redux admin report',getLoad)
+  console.log('redux admin report',allOrder)
 
+  const dispatch = useDispatch()
   useEffect(() => {
-    fetch("http://localhost:7070/api/orders/allorder")
-      .then((res) => res.json())
-      .then((data) => setAttendances(data.reverse()));
+
+    dispatch(getAllOrders())
+
+
+
   }, []);
 
   useEffect(() => {
-    const newFilterDate = attendances.filter(
+    const newFilterDate = allOrder.filter(
       (createdAt) =>
         createdAt?.createdAt >= startDate && createdAt?.createdAt <= endDate
     );
     setFilterDates(newFilterDate);
-  }, [attendances, startDate, endDate]);
+  }, [allOrder, startDate, endDate]);
 
   // console.log(filterDates);
 
@@ -88,14 +94,14 @@ const AdminReports = () => {
         setFilterData(filterDates);
       }
     } else {
-      const filterID = attendances.filter((data) => data.ID === inputValue);
+      const filterID = allOrder.filter((data) => data.ID === inputValue);
       if (filterID.length > 0 || inputValue > 0) {
         setFilterData(filterID);
       } else {
-        setFilterData(attendances);
+        setFilterData(allOrder);
       }
     }
-  }, [inputValue, attendances, filterDates]);
+  }, [inputValue, allOrder, filterDates]);
   const [text, setText] = useState("");
 
  const [category,setCategory]= useState([])

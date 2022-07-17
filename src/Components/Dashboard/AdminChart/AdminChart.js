@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Stack,
   Grid,
   Paper,
@@ -9,26 +8,11 @@ import {
   CircularProgress,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Cell,
-  Line,
-  LineChart,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import axios from "axios";
 import CountUp from "react-countup";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
-import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import {
   recentMoment,

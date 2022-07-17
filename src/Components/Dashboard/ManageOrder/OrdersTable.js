@@ -8,8 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import OrdersTableRow from './OrdersTableRow';
 
-const OrdersTable = ({ allOrders }) => {
-console.log('orderable',allOrders)
+const OrdersTable = ({ allOrder }) => {
+console.log('orderable',allOrder)
     // const pendingOrders = allOrders?.filter(data => data.status === 'pending');
 
     return (
@@ -33,7 +33,7 @@ console.log('orderable',allOrders)
 
                         } */}
                         {
-                            allOrders.map(data =>  <OrdersTableRow key={data._id} data={data}></OrdersTableRow>)
+                            allOrder.map(data =>  <OrdersTableRow key={data._id} data={data}></OrdersTableRow>)
 
                         }
                     </TableBody>

@@ -4,10 +4,12 @@ import { CircularProgress, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrders,allData } from '../../../redux/dataSlice/dataSlice';
 const ManageOrder = () => {
-    const dispatch = useDispatch()
-   const {allOrder,getLoad} = useSelector(allData)
+  
+  const {allOrder,getLoad} = useSelector(allData)
 
-   console.log('from redux',allOrder)
+  console.log('from redux',allOrder)
+    const dispatch = useDispatch()
+
 
   
   useEffect(()=>{

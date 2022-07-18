@@ -11,7 +11,6 @@ import ComonServices from "../ComonServices/ComonServices";
 const FeaturedServices = () => {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
-  // console.log(services)
 
   useEffect(() => {
     setLoading(true);
@@ -21,6 +20,9 @@ const FeaturedServices = () => {
 
       .finally(setLoading(false));
   }, []);
+
+// get from data api
+
 
   return (
     <Container sx={{ mb: 8 }}>

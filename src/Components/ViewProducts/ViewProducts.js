@@ -83,7 +83,7 @@ const ViewProducts = () => {
   const [value, setValue] = useState(0);
 
   const {allServices} = useSelector(allData)
-  // console.log('redux from viwe product',allServices)
+  console.log('redux from viwe product',allServices)
   const dispatch = useDispatch();
 
   const [reviews, setReviews] = useState("");
@@ -137,9 +137,12 @@ const ViewProducts = () => {
     fetch('http://localhost:7070/api/products/getProduct')
     .then(res =>res.json())
     .then(data =>setNewImg(data[11]?.images))
+    // .then(data =>console.log(data[11]?.images))
   })
 
   // image galary 
+
+  
 
   return (
     <>
@@ -155,7 +158,7 @@ const ViewProducts = () => {
             selectedImg === undefined ?  <img src={newImg[1]} alt="selected" className="selected imgstyle" /> :
             <img src={selectedImg} alt="selected" className="selected imgstyle" />
         }
-        {/* <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
+       {/* // <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
         <h6 className="my-4" style={{color:'purple'}}>Image Gallary</h6>
         <div className="imgContainer">
           {

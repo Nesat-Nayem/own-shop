@@ -42,7 +42,7 @@ const AddProducts = () => {
     console.log(serviceinfo);
 
     axios
-      .post("http://localhost:7070/api/products/postProduct", serviceinfo)
+      .post("https://lit-sands-58263.herokuapp.com/api/products/postProduct", serviceinfo)
       .then((response) => {
         console.log(response.data);
 
@@ -62,7 +62,7 @@ const AddProducts = () => {
   // console.log(loadCategory)
 
   useEffect(() => {
-    fetch("http://localhost:7070/api/category/getcategories")
+    fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
   });

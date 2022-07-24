@@ -21,7 +21,7 @@ const AddServiceReview = () => {
   const [review, setreview] = useState([]);
   console.log(review._id);
   useEffect(() => {
-    fetch(`http://localhost:7070/api/products/singleProduct/${id}`)
+    fetch(`https://lit-sands-58263.herokuapp.com/api/products/singleProduct/${id}`)
       .then((res) => res.json())
       .then((data) => setreview(data));
   }, []);
@@ -47,7 +47,7 @@ const AddServiceReview = () => {
     };
 
     axios
-      .post("http://localhost:7070/api/postreview", reviewdata)
+      .post("https://lit-sands-58263.herokuapp.com/api/postreview", reviewdata)
 
       .then(function (response) {
         Swal.fire("Submited!", "Recorded your review!", "success");

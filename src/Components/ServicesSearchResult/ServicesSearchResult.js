@@ -26,7 +26,7 @@ const ServicesSearchResult = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch("http://localhost:7070/api/products/getProduct")
+    fetch("https://lit-sands-58263.herokuapp.com/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)

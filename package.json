@@ -24,6 +24,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "cogo-toast": "^4.2.3",
+    "firebase": "^9.9.1",
     "font-awesome": "^4.7.0",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",

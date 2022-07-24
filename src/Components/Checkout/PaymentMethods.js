@@ -54,7 +54,7 @@ const PaymentMethods = ({ checkoutDetails }) => {
 
   // console.log(data);
   useEffect(() => {
-    fetch(`http://localhost:7070/api/Products/singleProduct/${productId}`)
+    fetch(`https://lit-sands-58263.herokuapp.com/api/Products/singleProduct/${productId}`)
       .then((res) => res.json())
       .then((data) => setdata(data));
   }, [productId]);
@@ -65,7 +65,7 @@ const PaymentMethods = ({ checkoutDetails }) => {
 
   // payment intent
   useEffect(() => {
-    fetch("http://localhost:7070/create-payment-intent", {
+    fetch("https://lit-sands-58263.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -155,7 +155,7 @@ const PaymentMethods = ({ checkoutDetails }) => {
     // console.log('clicked butoon' , orderalldata)
 
     axios
-      .post("http://localhost:7070/api/orders/postOrder", orderalldata)
+      .post("https://lit-sands-58263.herokuapp.com/api/orders/postOrder", orderalldata)
       .then((response) => {
         navigate("/dashboard/myorder");
         const options = { position: "bottom-right" };

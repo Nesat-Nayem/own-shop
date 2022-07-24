@@ -83,13 +83,13 @@ const ViewProducts = () => {
   const [value, setValue] = useState(0);
 
   const {allServices} = useSelector(allData)
-  console.log('redux from viwe product',allServices)
+  // console.log('redux from viwe product',allServices)
   const dispatch = useDispatch();
 
   const [reviews, setReviews] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:7070/api/postreview")
+    fetch("https://lit-sands-58263.herokuapp.com/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   });
@@ -117,7 +117,11 @@ const ViewProducts = () => {
     (r) => r.productId === prductreviewid
   );
 
+
+
   const category = productView[0]?.category;
+
+  
 
   const relatedProducts = allServices.filter(
     (pro) => pro.category.toLocaleLowerCase() === category.toLocaleLowerCase()
@@ -127,17 +131,28 @@ const ViewProducts = () => {
 
   // image galary 
 
-  const [newImg,setNewImg] = useState([])
-  // console.log(newImg[1])
+  // const [newImg,setNewImg] = useState([])
+  // console.log('all images here galary',newImg)
 
-  const [selectedImg,setSelectedImg] = useState(newImg[1])
+  const galary = productView[0]?.gallery
+  console.log('this filter galary in here', galary)
+
+  
+  const [selectedImg,setSelectedImg] = useState(galary[1])
+
+  
   // console.log(selectedImg)
 
+ 
+
   useEffect(()=>{
-    fetch('http://localhost:7070/api/products/getProduct')
-    .then(res =>res.json())
-    .then(data =>setNewImg(data[11]?.images))
-    // .then(data =>console.log(data[11]?.images))
+
+   
+    // fetch('https://lit-sands-58263.herokuapp.com/api/products/getProduct')
+    // .then(res =>res.json())
+    // .then(data =>setNewImg(data[10]?.gallery))
+    // .then(data =>console.log('all img galary',data[11]?.images))
+    // .then(data =>console.log('all img galary',data[10]?.gallery))
   })
 
   // image galary 
@@ -155,14 +170,14 @@ const ViewProducts = () => {
            <div>
       <div className="cscontainer">
         {
-            selectedImg === undefined ?  <img src={newImg[1]} alt="selected" className="selected imgstyle" /> :
+            selectedImg === undefined ?  <img src={galary[1]} alt="selected" className="selected imgstyle" /> :
             <img src={selectedImg} alt="selected" className="selected imgstyle" />
         }
        {/* // <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
         <h6 className="my-4" style={{color:'purple'}}>Image Gallary</h6>
         <div className="imgContainer">
           {
-            newImg?.map((img, index)=>(
+            galary?.map((img, index)=>(
                 <img style={{border: selectedImg === img ? "4px solid purple" : ''}}
                  key={index} 
                  className="imgstyle"

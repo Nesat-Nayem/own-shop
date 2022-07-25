@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# OWN SELL - AN Multi vendors Service-based platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Link](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## `OWN SELL FEATURES`
 
-In the project directory, you can run:
+Manual Authentication system for secure authentication data store 
 
-### `npm start`
+Payment system stripe intrigread for services booked
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+KYC verification system for vendor account like first a vendor account when he register it will inactive and admin can active it then he get access this platform and if vendor violated any rules then admin can inactive or permanently delete her account this portal
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Multi-level search filtering for more user access friendly 
 
-### `npm test`
+Dashboard access three type role like customer, vendor, Admin. Test  Access mail and password customer@gmail.com pass: 123456 vendor@gmail.com pass: 123456 admin@gmail.com pass: 123456
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Customer can book services and give review for specific services and he can see and download her services booking history
 
-### `npm run build`
+Vendor can see her total sales, earnings, customers, services, orders. vendor can update customer order status and he can add a new service
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Admin can manage platform he can see graphically all statics like portal total earning, total vendor, total order, total services and see graphically last 7 days platform activities admin can add new category and subcategory for vendors and admin can check platform all vendor activities 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Admin can see platform total sales report he can filter it year or month or week he can filter and download it and observe platform total sells statics 

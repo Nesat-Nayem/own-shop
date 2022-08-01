@@ -27,7 +27,7 @@ const ProviderTotalReport = () => {
   const [orders,setOrders] = useState('')
 
   useEffect(()=>{
-    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/provideremailorder/${user.email}`)
+    fetch(`http://localhost:7070/api/orders/provideremailorder/${user.email}`)
     .then(res=>res.json())
     .then(data=>setOrders(data))
   })
@@ -47,7 +47,7 @@ const ProviderTotalReport = () => {
 
   const [services,setServices] = useState('')
   useEffect(()=>{
-    fetch(`https://lit-sands-58263.herokuapp.com/api/products/providerservices/${user.email}`)
+    fetch(`http://localhost:7070/api/products/providerservices/${user.email}`)
     .then(res=>res.json())
     .then(data=>setServices(data))
   })

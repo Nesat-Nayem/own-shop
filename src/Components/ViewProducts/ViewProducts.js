@@ -89,7 +89,7 @@ const ViewProducts = () => {
   const [reviews, setReviews] = useState("");
 
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/postreview")
+    fetch("http://localhost:7070/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   });
@@ -148,7 +148,7 @@ const ViewProducts = () => {
   useEffect(()=>{
 
    
-    // fetch('https://lit-sands-58263.herokuapp.com/api/products/getProduct')
+    // fetch('http://localhost:7070/api/products/getProduct')
     // .then(res =>res.json())
     // .then(data =>setNewImg(data[10]?.gallery))
     // .then(data =>console.log('all img galary',data[11]?.images))

@@ -28,7 +28,7 @@ const PendingproviderStatusModal = ({
     const updatedUser = {
       access: data.status,
     };
-    fetch(`https://lit-sands-58263.herokuapp.com/api/updateprovider/${id}`, {
+    fetch(`http://localhost:7070/api/updateprovider/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedUser),
@@ -42,7 +42,7 @@ const PendingproviderStatusModal = ({
         }
       });
 
-    fetch(`https://lit-sands-58263.herokuapp.com/api/users/update/${userStatusid}`, {
+    fetch(`http://localhost:7070/api/users/update/${userStatusid}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedUser),

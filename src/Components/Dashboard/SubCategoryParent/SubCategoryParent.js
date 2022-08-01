@@ -113,7 +113,7 @@ const SubCategoryParent = () => {
   console.log(loadCategory);
 
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
+    fetch("http://localhost:7070/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
   });
@@ -130,7 +130,7 @@ const SubCategoryParent = () => {
   const [name, setName] = useState("");
   const id = age;
   useEffect(() => {
-    fetch(`https://lit-sands-58263.herokuapp.com/api/category/singleCategories/${id}`)
+    fetch(`http://localhost:7070/api/category/singleCategories/${id}`)
       .then((res) => res.json())
       .then((data) => setName(data?.name));
   });
@@ -147,7 +147,7 @@ const SubCategoryParent = () => {
     console.log(userinfo);
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/category/create", userinfo)
+      .post("http://localhost:7070/api/category/create", userinfo)
       .then(function (response) {
         console.log("success", response);
 
@@ -165,7 +165,7 @@ const SubCategoryParent = () => {
 
   // console.log( 'sub category info', subcategory)
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
+    fetch("http://localhost:7070/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setSubCategory(data?.categoryList));
   });

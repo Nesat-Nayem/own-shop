@@ -15,7 +15,7 @@ const FeaturedServices = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://lit-sands-58263.herokuapp.com/api/products/getProduct")
+      .get("http://localhost:7070/api/products/getProduct")
       .then((res) => setServices(res.data))
 
       .finally(setLoading(false));

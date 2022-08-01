@@ -56,7 +56,7 @@ const SingUpForm = () => {
     };
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/users/signup", userInfo)
+      .post("http://localhost:7070/api/users/signup", userInfo)
       .then((response) => {
         dispatch(signin(response.data));
         console.log(response.data);

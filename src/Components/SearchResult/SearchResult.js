@@ -25,7 +25,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch("https://lit-sands-58263.herokuapp.com/api/products/getProduct")
+    fetch("http://localhost:7070/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)

@@ -38,6 +38,8 @@ const MultiServicesFilter = () => {
     setSearchId(searchId);
     console.log(searchId);
   };
+
+
   const handleserivceCity = (e) => {
     e.preventDefault();
     const searchCity = e.target.value;
@@ -160,7 +162,7 @@ const MultiServicesFilter = () => {
                 <TextField
                   className="selector"
                   id="outlined-basic"
-                  // onChange={handleserivceId}
+                  onChange={handleserivceId}
                   variant="outlined"
                 />
               </Box>

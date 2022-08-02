@@ -16,6 +16,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Review from "./Review";
 import { allData, getAllServices } from "../../redux/dataSlice/dataSlice";
+import Loading from "../Loader/loading";
 
 const AntTabs = styled(Tabs)({
   borderBottom: "1.2px solid #000",
@@ -64,7 +65,6 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
     <div
-      // role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
@@ -103,26 +103,9 @@ const ViewProducts = () => {
     dispatch(getAllServices());
   }, []);
 
-
-
-// if(allServices.length !== 0){
-//   // console.log('here is product')
-
-
-
-// }
-// else{
-//   console.log('product come in')
-// }
-
-
-
-
-
   const productView = allServices.filter(
     (pro) => Number(pro.id) === Number(productId)
   );
-  // console.log(productView)
   const prductreviewid = productView[0]?._id;
 
   const productreview = reviews?.data?.filter(
@@ -137,203 +120,182 @@ const ViewProducts = () => {
 
   // image galary
 
-
   const galary = productView[0]?.gallery;
 
-  const [selectedImg, setSelectedImg] = useState(galary[1]);
-
-
-
-
-
-
-
-
-  // console.log(selectedImg)
-
-  useEffect(() => {
-    // fetch('http://localhost:7070/api/products/getProduct')
-    // .then(res =>res.json())
-    // .then(data =>setNewImg(data[10]?.gallery))
-    // .then(data =>console.log('all img galary',data[11]?.images))
-    // .then(data =>console.log('all img galary',data[10]?.gallery))
-  });
-
-  // image galary
+  const [selectedImg, setSelectedImg] = useState(galary);
 
   return (
     <>
       <Header></Header>
-      <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
-        <Row>
-          <Col lg={8} md={8} sm={12}>
-            {/* image galary  */}
-            <div>
-              <div className="cscontainer">
-                {selectedImg === undefined ? (
-                  <img
-                    src={galary[1]}
-                    alt="selected"
-                    className="selected imgstyle"
-                  />
-                ) : (
-                  <img
-                    src={selectedImg}
-                    alt="selected"
-                    className="selected imgstyle"
-                  />
-                )}
-                {/* // <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
-                <h6 className="my-4" style={{ color: "purple" }}>
-                  Image Gallary
-                </h6>
-                <div className="imgContainer">
-                  {galary?.map((img, index) => (
+
+      {allServices.length === 0 ? (
+        <Loading></Loading>
+      ) : (
+        <Container
+          style={{ textAlign: "left", marginTop: "120px" }}
+          className=""
+        >
+          <Row>
+            <Col lg={8} md={8} sm={12}>
+              {/* image galary  */}
+              <div>
+                <div className="cscontainer">
+                  {selectedImg === undefined ? (
                     <img
-                      style={{
-                        border: selectedImg === img ? "4px solid purple" : "",
-                      }}
-                      key={index}
-                      className="imgstyle"
-                      src={img}
-                      alt="img"
-                      onClick={() => setSelectedImg(img)}
+                      src={galary[0]}
+                      alt="selected"
+                      className="selected imgstyle"
                     />
-                  ))}
+                  ) : (
+                    <img
+                      src={selectedImg}
+                      alt="selected"
+                      className="selected imgstyle"
+                    />
+                  )}
+                  <h6 className="my-4" style={{ color: "purple" }}>
+                    Image Gallary
+                  </h6>
+                  <div className="imgContainer">
+                    {galary?.map((img, index) => (
+                      <img
+                        style={{
+                          border: selectedImg === img ? "4px solid purple" : "",
+                        }}
+                        key={index}
+                        className="imgstyle"
+                        src={img}
+                        alt="img"
+                        onClick={() => setSelectedImg(img)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* image galary  */}
-
-            {/* <img
-              src={productView[0]?.img}
-              alt=""
-              id="viewImage"
-              className="img-responsive img-fluid"
-            /> */}
-
-            {/* dascripttion tabs  */}
-
-            <Box sx={{ bgcolor: "#fff" }}>
-              <AntTabs
-                value={value}
-                onChange={handleChange}
-                aria-label="ant example"
-              >
-                <AntTab label="Long Description" />
-                <AntTab label="Short Description" />
-                <AntTab label="Reviews" />
-              </AntTabs>
-              <TabPanel value={value} index={0}>
-                {productView[0]?.longdesc}
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                {productView[0]?.shrotdesc}
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: 600, margin: "3px 0px 10px -25px" }}
+              <Box sx={{ bgcolor: "#fff" }}>
+                <AntTabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="ant example"
                 >
-                  Review of {productView[0]?.name}
-                </Typography>
-                <Typography variant="h2">4.67</Typography>
-                <Rate name="read-only" value="4.5" readOnly />
-                {productreview?.map((review) => (
-                  <Review key={review?._id} review={review}></Review>
-                ))}
-              </TabPanel>
+                  <AntTab label="Long Description" />
+                  <AntTab label="Short Description" />
+                  <AntTab label="Reviews" />
+                </AntTabs>
+                <TabPanel value={value} index={0}>
+                  {productView[0]?.longdesc}
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  {productView[0]?.shrotdesc}
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: 600, margin: "3px 0px 10px -25px" }}
+                  >
+                    Review of {productView[0]?.name}
+                  </Typography>
+                  <Typography variant="h2">4.67</Typography>
+                  <Rate name="read-only" value="4.5" readOnly />
+                  {productreview?.map((review) => (
+                    <Review key={review?._id} review={review}></Review>
+                  ))}
+                </TabPanel>
 
-              <Box sx={{ p: 3 }} />
-            </Box>
+                <Box sx={{ p: 3 }} />
+              </Box>
 
-            {/* dascripttion tabs  */}
-          </Col>
-          <Col lg={4} md={4} sm={12}>
-            <div>
-              <h2
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "36px",
-                  fontFamily: "Poppins",
-                  color: "#2c3038",
-                }}
-                className="my-2"
-              >
-                {productView[0]?.name}
-              </h2>
-              <p className="my-4">
-                {" "}
-                <GpsFixedIcon /> {productView[0]?.location}
-              </p>
-              <Rating ratingValue={5} size={25} readonly={true} />
-              <button
-                style={{
-                  color: "#fff",
-                  padding: "2px 10px",
-                  textTransform: "uppercase",
-                  background: "#d9c505",
-                  borderRadius: "4px",
-                  fontSize: "0.8125rem",
-                  display: "block",
-                  border: "none",
-                  cursor: "text",
-                }}
-                className="my-2 "
-              >
-                {productView[0]?.category}
-              </button>
-            </div>
+              {/* dascripttion tabs  */}
+            </Col>
+            <Col lg={4} md={4} sm={12}>
+              <div>
+                <h2
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "36px",
+                    fontFamily: "Poppins",
+                    color: "#2c3038",
+                  }}
+                  className="my-2"
+                >
+                  {productView[0]?.name}
+                </h2>
+                <p className="my-4">
+                  {" "}
+                  <GpsFixedIcon /> {productView[0]?.location}
+                </p>
+                <Rating ratingValue={5} size={25} readonly={true} />
+                <button
+                  style={{
+                    color: "#fff",
+                    padding: "2px 10px",
+                    textTransform: "uppercase",
+                    background: "#d9c505",
+                    borderRadius: "4px",
+                    fontSize: "0.8125rem",
+                    display: "block",
+                    border: "none",
+                    cursor: "text",
+                  }}
+                  className="my-2 "
+                >
+                  {productView[0]?.category}
+                </button>
+              </div>
 
-            <div className="wideget mt-5">
-              <p className="widamaunt">${productView[0]?.price}</p>
+              <div className="wideget mt-5">
+                <p className="widamaunt">${productView[0]?.price}</p>
 
-              <Link
-                to={`/products/checkout/${productView[0]?.id}`}
-                variant="dark"
-                className=" widgetbtn btn btn-primary"
-              >
-                Book Services
-              </Link>
-            </div>
+                <Link
+                  to={`/products/checkout/${productView[0]?.id}`}
+                  variant="dark"
+                  className=" widgetbtn btn btn-primary"
+                >
+                  Book Services
+                </Link>
+              </div>
 
-            <div className="cardcrearyfy mt-3">
-              <div className="cardbodY">
-                <h5 className="cardtitLe">Service Provider</h5>
-                <div className="athorabout">
-                  <div className="aboutproimage">
-                    <div className="proviimagerap">
-                      <a className="ancortt">
-                        <img
-                          className="img-fluid rounded-circle"
-                          src={productView[0]?.providerPhoto}
-                        />
+              <div className="cardcrearyfy mt-3">
+                <div className="cardbodY">
+                  <h5 className="cardtitLe">Service Provider</h5>
+                  <div className="athorabout">
+                    <div className="aboutproimage">
+                      <div className="proviimagerap">
+                        <a className="ancortt">
+                          <img
+                            className="img-fluid rounded-circle"
+                            src={productView[0]?.providerPhoto}
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="providerdetails">
+                      <a className="authorname">
+                        {productView[0]?.providername}
                       </a>
+                      <p>
+                        <i className="fas fa-circle online"></i>
+                        Online
+                      </p>
+                      <p className="mmmuted">Member Since Sep 2021</p>
                     </div>
                   </div>
-                  <div className="providerdetails">
-                    <a className="authorname">{productView[0]?.providername}</a>
-                    <p>
-                      <i className="fas fa-circle online"></i>
-                      Online
-                    </p>
-                    <p className="mmmuted">Member Since Sep 2021</p>
-                  </div>
                 </div>
               </div>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
 
-        <h3 className="ms-5">More Related Services</h3>
+          <h3 className="ms-5">More Related Services</h3>
 
-        <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto my-5">
-          {relatedProducts.slice(0, 2).map((p) => {
-            return <Card key={p.id} product={p} />;
-          })}
-        </div>
-      </Container>
+          <div className="row row-cols-1 row-cols-md-3 g-4 container mx-auto my-5">
+            {relatedProducts.slice(0, 2).map((p) => {
+              return <Card key={p.id} product={p} />;
+            })}
+          </div>
+        </Container>
+      )}
+
       <Footer></Footer>
     </>
   );

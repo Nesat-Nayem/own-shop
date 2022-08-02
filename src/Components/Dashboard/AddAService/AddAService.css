@@ -30,6 +30,14 @@
     text-decoration: none;
 }
 
+#upload_btn{
+    display: flex;
+    margin-bottom: 16px;
+    padding: 3px 20px;
+    border: none;
+    background-color: #fad7f1;
+}
+
 @media only screen and (max-width: 575px) {
     .form-area {
         width: 100%;

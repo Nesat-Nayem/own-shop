@@ -12,6 +12,8 @@ const AddProducts = () => {
   const user = useSelector((state) => state.user.user);
   const [product, setProduct] = useState({});
   const [img, setImg] = useState("");
+  const [gallary, setGalary] = useState();
+  console.log(gallary)
   //   console.log(product);
 
   const {
@@ -26,6 +28,7 @@ const AddProducts = () => {
     const serviceinfo = {
       img,
       // data
+      gallery: gallary,
       id: data.id,
       name: data.name,
       price: data.price,
@@ -66,6 +69,42 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
   });
+
+  // multiple images upload in cludanary 
+
+  
+
+  const [images, setImages] = useState([]);
+
+  // const [data, setGalary] = useState();
+  // console.log(data)
+
+  const handleUploadImages = () => {
+    const formData = new FormData();
+    const files = images;
+    for (let i = 0; i < files.length; i += 1) {
+      formData.append("images[]", files[i]);
+    }
+
+    console.log("for check images", formData);
+    fetch("http://localhost:7070/media", {
+      method: "post",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // alert("img Added");
+        // console.log(data);
+        setGalary(data)
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+
+
+  // multiple images upload in cludanary 
 
   // image upload handler
   const imageUploadHandler = (e) => {
@@ -239,6 +278,37 @@ const AddProducts = () => {
                 {...register("img", { required: true })}
                 onBlur={imageUploadHandler}
               />
+              <p
+                className="form-label"
+                style={{
+                  fontWeight: "bold",
+                  textAlign: "left",
+                  color: "green",
+                }}
+              >
+                Photo Galary
+              </p>
+              <input
+                style={{ border: "2px solid #10AC84" }}
+                className=""
+
+
+                placeholder="photoURL"
+                id="photoURL"
+                // type="file"
+
+                  // multifile
+                  type="file"
+                  name="images"
+                  onChange={(e) => setImages(e.target.files)}
+                  multiple
+                  accept="image/png , image/jpeg, image/webp" 
+                  // multifile 
+
+                // {...register("img", { required: true })}
+                // onBlur={imageUploadHandler}
+              />
+              <button id="upload_btn" onClick={handleUploadImages} >upload</button>
               <p
                 className="form-label"
                 style={{

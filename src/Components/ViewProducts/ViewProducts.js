@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
@@ -82,10 +82,6 @@ function TabPanel(props) {
 const ViewProducts = () => {
   const [value, setValue] = useState(0);
 
-  const {allServices} = useSelector(allData)
-  // console.log('redux from viwe product',allServices)
-  const dispatch = useDispatch();
-
   const [reviews, setReviews] = useState("");
 
   useEffect(() => {
@@ -97,67 +93,73 @@ const ViewProducts = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const { productId } = useParams();
 
+  const { allServices } = useSelector(allData);
+  console.log("redux from viwe product", allServices.length);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-
-    dispatch(getAllServices())
-
-
+    dispatch(getAllServices());
   }, []);
+
+
+
+// if(allServices.length !== 0){
+//   // console.log('here is product')
+
+
+
+// }
+// else{
+//   console.log('product come in')
+// }
+
+
+
+
 
   const productView = allServices.filter(
     (pro) => Number(pro.id) === Number(productId)
   );
-
+  // console.log(productView)
   const prductreviewid = productView[0]?._id;
 
   const productreview = reviews?.data?.filter(
     (r) => r.productId === prductreviewid
   );
 
-
-
   const category = productView[0]?.category;
-
-  
 
   const relatedProducts = allServices.filter(
     (pro) => pro.category.toLocaleLowerCase() === category.toLocaleLowerCase()
   );
 
+  // image galary
 
 
-  // image galary 
+  const galary = productView[0]?.gallery;
 
-  // const [newImg,setNewImg] = useState([])
-  // console.log('all images here galary',newImg)
+  const [selectedImg, setSelectedImg] = useState(galary[1]);
 
-  const galary = productView[0]?.gallery
-  console.log('this filter galary in here', galary)
 
-  
-  const [selectedImg,setSelectedImg] = useState(galary[1])
 
-  
+
+
+
+
+
   // console.log(selectedImg)
 
- 
-
-  useEffect(()=>{
-
-   
+  useEffect(() => {
     // fetch('http://localhost:7070/api/products/getProduct')
     // .then(res =>res.json())
     // .then(data =>setNewImg(data[10]?.gallery))
     // .then(data =>console.log('all img galary',data[11]?.images))
     // .then(data =>console.log('all img galary',data[10]?.gallery))
-  })
+  });
 
-  // image galary 
-
-  
+  // image galary
 
   return (
     <>
@@ -165,34 +167,44 @@ const ViewProducts = () => {
       <Container style={{ textAlign: "left", marginTop: "120px" }} className="">
         <Row>
           <Col lg={8} md={8} sm={12}>
-           
-           {/* image galary  */}
-           <div>
-      <div className="cscontainer">
-        {
-            selectedImg === undefined ?  <img src={galary[1]} alt="selected" className="selected imgstyle" /> :
-            <img src={selectedImg} alt="selected" className="selected imgstyle" />
-        }
-       {/* // <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
-        <h6 className="my-4" style={{color:'purple'}}>Image Gallary</h6>
-        <div className="imgContainer">
-          {
-            galary?.map((img, index)=>(
-                <img style={{border: selectedImg === img ? "4px solid purple" : ''}}
-                 key={index} 
-                 className="imgstyle"
-                 src={img}
-                  alt="img"
-                  onClick={() => setSelectedImg(img)}
+            {/* image galary  */}
+            <div>
+              <div className="cscontainer">
+                {selectedImg === undefined ? (
+                  <img
+                    src={galary[1]}
+                    alt="selected"
+                    className="selected imgstyle"
                   />
-            ))
-          }
-        </div>
-      </div>
-    </div>
+                ) : (
+                  <img
+                    src={selectedImg}
+                    alt="selected"
+                    className="selected imgstyle"
+                  />
+                )}
+                {/* // <img src={selectedImg} alt="selected" className="selected imgstyle" /> */}
+                <h6 className="my-4" style={{ color: "purple" }}>
+                  Image Gallary
+                </h6>
+                <div className="imgContainer">
+                  {galary?.map((img, index) => (
+                    <img
+                      style={{
+                        border: selectedImg === img ? "4px solid purple" : "",
+                      }}
+                      key={index}
+                      className="imgstyle"
+                      src={img}
+                      alt="img"
+                      onClick={() => setSelectedImg(img)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
 
-           {/* image galary  */}
-
+            {/* image galary  */}
 
             {/* <img
               src={productView[0]?.img}
@@ -239,39 +251,39 @@ const ViewProducts = () => {
             {/* dascripttion tabs  */}
           </Col>
           <Col lg={4} md={4} sm={12}>
-          <div>
-            <h2
-              style={{
-                fontWeight: "bold",
-                fontSize: "36px",
-                fontFamily: "Poppins",
-                color: "#2c3038",
-              }}
-              className="my-2"
-            >
-              {productView[0]?.name}
-            </h2>
-            <p className="my-4">
-              {" "}
-              <GpsFixedIcon /> {productView[0]?.location}
-            </p>
-            <Rating ratingValue={5} size={25} readonly={true} />
-            <button
-              style={{
-                color: "#fff",
-                padding: "2px 10px",
-                textTransform: "uppercase",
-                background: "#d9c505",
-                borderRadius: "4px",
-                fontSize: "0.8125rem",
-                display: "block",
-                border: "none",
-                cursor: "text",
-              }}
-              className="my-2 "
-            >
-              {productView[0]?.category}
-            </button>
+            <div>
+              <h2
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "36px",
+                  fontFamily: "Poppins",
+                  color: "#2c3038",
+                }}
+                className="my-2"
+              >
+                {productView[0]?.name}
+              </h2>
+              <p className="my-4">
+                {" "}
+                <GpsFixedIcon /> {productView[0]?.location}
+              </p>
+              <Rating ratingValue={5} size={25} readonly={true} />
+              <button
+                style={{
+                  color: "#fff",
+                  padding: "2px 10px",
+                  textTransform: "uppercase",
+                  background: "#d9c505",
+                  borderRadius: "4px",
+                  fontSize: "0.8125rem",
+                  display: "block",
+                  border: "none",
+                  cursor: "text",
+                }}
+                className="my-2 "
+              >
+                {productView[0]?.category}
+              </button>
             </div>
 
             <div className="wideget mt-5">
@@ -311,8 +323,6 @@ const ViewProducts = () => {
                 </div>
               </div>
             </div>
-
-           
           </Col>
         </Row>
 

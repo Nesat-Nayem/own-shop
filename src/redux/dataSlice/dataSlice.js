@@ -19,7 +19,7 @@ export const getAllOrders = createAsyncThunk(
    
     'order/getAllOrders',
     async () => {
-        const response = await axios.get(`http://localhost:7070/api/orders/allorder`);
+        const response = await axios.get(`https://lit-sands-58263.herokuapp.com/api/orders/allorder`);
         return response.data.reverse()
       
       
@@ -30,7 +30,7 @@ export const getAllServices = createAsyncThunk(
    
     'order/getAllServices',
     async () => {
-        const response = await axios.get(`http://localhost:7070/api/products/getProduct`);
+        const response = await axios.get(`https://lit-sands-58263.herokuapp.com/api/products/getProduct`);
         // console.log('all service from redux',response.data)
         return response.data
       
@@ -43,7 +43,7 @@ export const userOrder = createAsyncThunk(
     'order/userOrder',
     async (id) => {
         // console.log('hey from reux', id)
-        const response = await axios.get(`http://localhost:7070/api/orders/user/${id}`);
+        const response = await axios.get(`https://lit-sands-58263.herokuapp.com/api/orders/user/${id}`);
         // console.log('hey from reux', response.data)
         return response.data
        

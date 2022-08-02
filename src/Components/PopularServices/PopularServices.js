@@ -22,7 +22,7 @@ const PopularServices = () => {
 
   useEffect(() => {
     setLoading(true);
-    const api = `http://localhost:7070/api/products/getProduct`;
+    const api = `https://lit-sands-58263.herokuapp.com/api/products/getProduct`;
     axios.get(api).then((res) => {
       setProviders(res.data);
       setLoading(false);

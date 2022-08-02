@@ -27,7 +27,7 @@ const OrdersTableRow = ({ data }) => {
       status: 'approve'
 }
     // console.log(id)
-    fetch(`http://localhost:7070/api/orders/status/${id}`,
+    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/status/${id}`,
       {
         method: 'PUT',
         headers: {

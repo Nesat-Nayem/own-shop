@@ -14,7 +14,7 @@ const ManageServices = () => {
     const [product,setProduct] = useState([''])
     // console.log(product)
     useEffect(()=>{
-        fetch('http://localhost:7070/api/products/getProduct')
+        fetch('https://lit-sands-58263.herokuapp.com/api/products/getProduct')
         .then(res=>res.json())
         .then(data=>setProduct(data))
     })

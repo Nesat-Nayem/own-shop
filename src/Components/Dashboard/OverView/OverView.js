@@ -23,7 +23,7 @@ const OverView = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch("http://localhost:7070/api/orders/allorder")
+    fetch("https://lit-sands-58263.herokuapp.com/api/orders/allorder")
       .then((res) => res.json())
       .then((data) => setOrder(data.reverse()));
       setLoading(false)

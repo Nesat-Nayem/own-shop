@@ -39,9 +39,9 @@ const AdminChart = () => {
   });
   useEffect(() => {
     setLoading(true);
-    let one = "http://localhost:7070/api/orders/allorder";
-    let two = "http://localhost:7070/api/getprovider";
-    let three = "http://localhost:7070/api/products/getProduct";
+    let one = "https://lit-sands-58263.herokuapp.com/api/orders/allorder";
+    let two = "https://lit-sands-58263.herokuapp.com/api/getprovider";
+    let three = "https://lit-sands-58263.herokuapp.com/api/products/getProduct";
     const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
     const requestThree = axios.get(three);

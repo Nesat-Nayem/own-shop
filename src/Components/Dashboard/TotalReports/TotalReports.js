@@ -28,7 +28,7 @@ const TotalReports = () => {
   const [user, setuser] = useState("");
   // console.log(user.length)
   useEffect(() => {
-    fetch("http://localhost:7070/api/users/alluser")
+    fetch("https://lit-sands-58263.herokuapp.com/api/users/alluser")
       .then((res) => res.json())
       .then((data) => setuser(data));
   });

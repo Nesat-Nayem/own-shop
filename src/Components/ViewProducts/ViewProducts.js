@@ -85,7 +85,7 @@ const ViewProducts = () => {
   const [reviews, setReviews] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:7070/api/postreview")
+    fetch("https://lit-sands-58263.herokuapp.com/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   });

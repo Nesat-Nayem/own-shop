@@ -116,7 +116,7 @@ const SubCategoryParent = () => {
     fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
-  });
+  },[]);
 
   // category id form mui select
   const [age, setAge] = React.useState("");
@@ -334,6 +334,9 @@ const SubCategoryParent = () => {
             </TableHead>
 
             {/* here older format  */}
+
+
+
             <TableBody>
               {loadCategory?.map((row) => (
                 <TableRow

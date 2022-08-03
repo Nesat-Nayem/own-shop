@@ -196,6 +196,7 @@ const SubCategoryParent = () => {
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row gx-3 mb-3">
+
                   <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
                       <div className="mb-3">
@@ -238,32 +239,6 @@ const SubCategoryParent = () => {
                           className="form-label"
                           style={{ fontWeight: "bold" }}
                         >
-                          Sub Category Name
-                          <sup className="text-danger fw-bold fs-6">*</sup>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Sub Category Name"
-                          style={{ background: "#E5E5E5", height: "50px" }}
-                          {...register("name", { required: true })}
-                        />
-                        {errors.name && (
-                          <span className="text-danger">
-                            Please enter category name.
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-12">
-                    <div className="p-3 border bg-light">
-                      <div className="mb-3">
-                        <label
-                          className="form-label"
-                          style={{ fontWeight: "bold" }}
-                        >
                           Sub Category Img
                           <sup className="text-danger fw-bold fs-6">*</sup>
                         </label>
@@ -286,6 +261,38 @@ const SubCategoryParent = () => {
                       </div>
                     </div>
                   </div>
+
+
+
+
+                  <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div className="p-3 border bg-light">
+                      <div className="mb-3">
+                        <label
+                          className="form-label"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          Sub Category Name
+                          <sup className="text-danger fw-bold fs-6">*</sup>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Sub Category Name"
+                          style={{ background: "#E5E5E5", height: "50px" }}
+                          {...register("name", { required: true })}
+                        />
+                        {errors.name && (
+                          <span className="text-danger">
+                            Please enter sub category name.
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                
+
                 </div>
 
                 <div className="row gx-3 mb-3">
@@ -333,37 +340,51 @@ const SubCategoryParent = () => {
               </TableRow>
             </TableHead>
 
-            {/* here older format  */}
-
-
 
             <TableBody>
-              {loadCategory?.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <img
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        marginRight: "10px",
-                      }}
-                      src={row?.children?.[0]?.img}
-                    />
-                    {row?.children?.[0]?.name}
-                  </TableCell>
-                  <TableCell align="center">
-                    {" "}
-                    {row?.children?.[0]?.parentName}
-                  </TableCell>
-                  <TableCell align="center">
-                    {new Date(row?.children?.[0]?.createdAt).toDateString()}
-                  </TableCell>
-                  {/* <TableCell align="center">On</TableCell> */}
-                  <TableCell align="center">Edit</TableCell>
-                </TableRow>
+              {loadCategory?.map((row, idx) => (
+
+                Object.entries(row).map(
+                  ([key,value]) =>{
+              
+                    if(key === 'children'){
+                      return value.map((url,idx)=>{
+              
+                        
+                    return(
+     
+                    <TableRow
+                    key={idx + 1}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <img
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          marginRight: "10px",
+                        }}
+                        src={url?.img}
+                      />
+                      {url?.name}
+                    </TableCell>
+                    <TableCell align="center">
+                      {" "}
+                      {url?.parentName}
+                    </TableCell>
+                    <TableCell align="center">
+                      {new Date(url?.createdAt).toDateString()}
+                    </TableCell>
+                    {/* <TableCell align="center">On</TableCell> */}
+                    <TableCell align="center">Edit</TableCell>
+                  </TableRow>
+                    )
+
+                      })
+                    }
+                  }
+                )
+               
               ))}
             </TableBody>
             {/* here older format  */}

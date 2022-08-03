@@ -4,30 +4,23 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-// import swal from "sweetalert";
 import Swal from "sweetalert2";
 import "./AddAService.css";
 
 const AddProducts = () => {
   const user = useSelector((state) => state.user.user);
-  const [product, setProduct] = useState({});
   const [img, setImg] = useState("");
   const [gallary, setGalary] = useState();
-  console.log(gallary)
-  //   console.log(product);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data)
     const serviceinfo = {
       img,
-      // data
       gallery: gallary,
       id: data.id,
       name: data.name,
@@ -49,7 +42,6 @@ const AddProducts = () => {
       .then((response) => {
         console.log(response.data);
 
-        // navigate("/");
 
         Swal.fire("Success!", "Your services successfully created", "success");
       })
@@ -62,8 +54,6 @@ const AddProducts = () => {
   const options = { position: "bottom-center" };
 
   const [loadCategory, setLoadCategory] = useState([""]);
-  // console.log(loadCategory)
-
   useEffect(() => {
     fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
@@ -76,8 +66,6 @@ const AddProducts = () => {
 
   const [images, setImages] = useState([]);
 
-  // const [data, setGalary] = useState();
-  // console.log(data)
 
   const handleUploadImages = () => {
     const formData = new FormData();
@@ -93,8 +81,6 @@ const AddProducts = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // alert("img Added");
-        // console.log(data);
         setGalary(data)
       })
       .catch((error) => {
@@ -121,7 +107,6 @@ const AddProducts = () => {
         console.log(error);
       });
   };
-  // image upload handler
 
   // category lodad
 
@@ -153,7 +138,6 @@ const AddProducts = () => {
               Add a Service
             </h2>
             <div className="form-area">
-              {/* <form onSubmit={handleSubmit}> */}
               <p
                 className="form-label"
                 style={{
@@ -166,8 +150,6 @@ const AddProducts = () => {
               </p>
               <input
                 type="text"
-                //   onBlur={handleBlur}
-                //   name="name"
                 placeholder="Shop Name"
                 required
                 {...register("name", { required: true })}
@@ -188,8 +170,6 @@ const AddProducts = () => {
                 className="form-select mb-3"
                 aria-label="Default select example"
                 style={{ background: "#E5E5E5" }}
-                //   name="category"
-                //   onBlur={handleBlur}
                 {...register("category", { required: true })}
               >
                 {loadCategory.map((category) => (
@@ -216,10 +196,21 @@ const AddProducts = () => {
                 {...register("subcategory", { required: true })}
                 //   onBlur={handleBlur}
               >
-                {loadCategory.map((category) => (
-                  <option key={category._id} defaultValue={category?.name}>
-                    {category?.children?.[0]?.name}
+                {loadCategory?.map((category) => (
+                  // console.log(category)
+                  Object.entries(category).map(
+                    ([key,value]) =>{
+                
+                      if(key === 'children'){
+                        return value.map((url,idx)=>{
+                
+                          
+                      return(
+                         <option key={idx + 1} defaultValue={category?.name}>
+                    {url?.name}
                   </option>
+                      )
+                        })}})
                 ))}
               </select>
               <p
@@ -234,8 +225,6 @@ const AddProducts = () => {
               </p>
               <input
                 type="text"
-                //   onBlur={handleBlur}
-                //   name="location"
                 {...register("location", { required: true })}
                 placeholder="Service Location"
                 required
@@ -252,8 +241,6 @@ const AddProducts = () => {
               </p>
               <input
                 type="providernumber"
-                //   onBlur={handleBlur}
-                //   name="id"
                 {...register("id", { required: true })}
                 placeholder="Service Id"
                 required
@@ -295,18 +282,11 @@ const AddProducts = () => {
 
                 placeholder="photoURL"
                 id="photoURL"
-                // type="file"
-
-                  // multifile
                   type="file"
                   name="images"
                   onChange={(e) => setImages(e.target.files)}
                   multiple
                   accept="image/png , image/jpeg, image/webp" 
-                  // multifile 
-
-                // {...register("img", { required: true })}
-                // onBlur={imageUploadHandler}
               />
               <button id="upload_btn" onClick={handleUploadImages} >upload</button>
               <p
@@ -346,9 +326,6 @@ const AddProducts = () => {
                 placeholder="Short Description"
                 required
               />
-              {/* <button type="submit" className="signBtn mt-2">
-              Add Service
-            </button> */}
 
               <input
                 id="verdeorbtn"

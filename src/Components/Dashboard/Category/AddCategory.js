@@ -121,9 +121,41 @@ const AddCategory = () => {
               {/* <form onSubmit={handleSubmit(onSubmit)}> */}
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row gx-3 mb-3">
-                  <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                   {/* category img  */}
+                   <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
                       <div className="mb-3">
+                        <label
+                          className="form-label"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          Sub Category Img
+                          <sup className="text-danger fw-bold fs-6">*</sup>
+                        </label>
+
+                        <input
+                          style={{ border: "none", height: "50px" }}
+                          className=""
+                          placeholder="photoURL"
+                          id="photoURL"
+                          type="file"
+                          {...register("photoURL", { required: true })}
+                          onBlur={imageUploadHandler}
+                        />
+                        {/* errors will return when field validation fails  */}
+                        {errors.photoURL && (
+                          <span className="">
+                            Sub Category Photo Is Required
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div className="p-3 border bg-light">
+                      <div style={{paddingBottom:'13px'}} className="mb-3">
                         <label
                           className="form-label"
                           style={{ fontWeight: "bold" }}
@@ -146,7 +178,8 @@ const AddCategory = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                  {/* <div className="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div className="p-3 border bg-light">
                       <div className="mb-3">
                         <label
@@ -165,13 +198,20 @@ const AddCategory = () => {
                           {...register("photoURL", { required: true })}
                           onBlur={imageUploadHandler}
                         />
-                        {/* errors will return when field validation fails  */}
+
+                        errors will return when field validation fails 
+
                         {errors.photoURL && (
                           <span className="">category image is required</span>
                         )}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
+
+
+                       
+                          {/* from category img test  */}
+
                 </div>
                 {/* button  */}
                 <div className="row gx-3 mb-3">

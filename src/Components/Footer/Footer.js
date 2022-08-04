@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="footer-col col-md-3 col-12">
-            <h4>Categories</h4>
+            <h4 style={{marginLeft:'0px'}}>Categories</h4>
             <ul>
               <li>Conputer</li>
               <li>Interior</li>
@@ -17,7 +17,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer-col col-md-3 col-12">
-            <h4>Quick Links</h4>
+            <h4 style={{marginLeft:'0px'}}>Quick Links</h4>
             <ul>
               <li>About Us</li>
               <li>Contact Us</li>
@@ -25,7 +25,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer-col col-md-3 col-12">
-            <h4>Contract Us</h4>
+            <h4 style={{marginLeft:'0px'}}>Contract Us</h4>
             <ul>
               <li>
                 {" "}

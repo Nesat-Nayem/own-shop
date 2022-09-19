@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import OrdersTableRow from './OrdersTableRow';
 
 const OrdersTable = ({ allOrder }) => {
-console.log('orderable',allOrder)
+// console.log('orderable',allOrder)
     // const pendingOrders = allOrders?.filter(data => data.status === 'pending');
 
     return (

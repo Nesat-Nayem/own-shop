@@ -120,10 +120,12 @@ const MultiServicesFilter = () => {
                   Service Name
                 </Box>
                 <TextField
+
+                sx={{outline:'0px'}}
                   className="selector"
                   // {...register("serviceName")}
                   onChange={searchservicename}
-                  id="outlined-basic"
+                  id="removeoutline"
                   variant="outlined"
                 />
               </Box>

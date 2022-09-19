@@ -82,7 +82,7 @@ const AddCategory = () => {
     fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setnewCategory(data.categoryList));
-  });
+  },[]);
   // image upload handler
   const imageUploadHandler = (e) => {
     const imageData = new FormData();
@@ -286,7 +286,7 @@ const AddCategory = () => {
           <TableBody>
             {newCategory?.map((row) => (
               <TableRow
-                key={row.name}
+                key={row._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">

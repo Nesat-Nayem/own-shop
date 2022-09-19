@@ -437,7 +437,7 @@ const Dashboard = (props) => {
                     My Orders
                   </Button>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   style={{
                     textDecoration: "none",
                     marginTop: "0 !important",
@@ -456,7 +456,7 @@ const Dashboard = (props) => {
                     <HailIcon sx={{ mr: 2, fontSize: "24px" }} />
                     Give Feedback
                   </Button>
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink
                   style={{

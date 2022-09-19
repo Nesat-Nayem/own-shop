@@ -44,10 +44,10 @@ const AdminReports = () => {
   const [endDate, setEndDate] = useState();
   const [filterData, setFilterData] = useState([]);
 
-  console.log('filterdata',filterData);
+  // console.log('filterdata',filterData);
   const {allOrder,getLoad} = useSelector(allData)
-  console.log('redux admin report',getLoad)
-  console.log('redux admin report',allOrder)
+  // console.log('redux admin report',getLoad)
+  // console.log('redux admin report',allOrder)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -105,7 +105,7 @@ const AdminReports = () => {
   const [text, setText] = useState("");
 
  const [category,setCategory]= useState([])
- console.log(category)
+//  console.log(category)
 
  const filterServicess = (e) =>{
   setCategory(e.target.value)

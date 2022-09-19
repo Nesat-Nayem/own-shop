@@ -7,7 +7,7 @@ const ManageOrder = () => {
   
   const {allOrder,getLoad} = useSelector(allData)
 
-  console.log('from redux',allOrder)
+  // console.log('from redux',allOrder)
     const dispatch = useDispatch()
 
 

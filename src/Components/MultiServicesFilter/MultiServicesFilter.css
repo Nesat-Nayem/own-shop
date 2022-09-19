@@ -41,6 +41,13 @@
     outline:none !important;
   }
 
+  #removeoutline:focus {
+    -webkit-appearance: none;
+    outline: 0;
+    outline: none;
+}
+
+
   /* .selector:focus, input:focus{
     outline: none !important;
 } */

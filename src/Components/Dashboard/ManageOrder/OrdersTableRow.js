@@ -16,9 +16,9 @@ let pendingstyle = {
 };
 
 const OrdersTableRow = ({ data }) => {
-    console.log(data._id)
+    // console.log(data._id)
     const [isUpdated, setIsUpdated] = useState(null);
-    console.log(isUpdated)
+    // console.log(isUpdated)
     const [isDeleted, setIsDeleted] = useState(null);
   
 
@@ -35,7 +35,7 @@ const OrdersTableRow = ({ data }) => {
          
         },
         body: JSON.stringify(statusUpdate),
-      })
+      },[])
       // .then()
 
       .then(res => res.json())

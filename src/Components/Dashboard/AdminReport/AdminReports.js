@@ -115,7 +115,7 @@ const AdminReports = () => {
   fetch(`https://lit-sands-58263.herokuapp.com/api/orders/category/${category}`)
   .then(res=>res.json())
   .then(data=>setFilterData(data))
- })
+ },[category])
  
 
   

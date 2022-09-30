@@ -11,7 +11,7 @@ const Banner = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllServices());
-  });
+  },[]);
 
   const [filteredData, setFilteredData] = useState([]);
 

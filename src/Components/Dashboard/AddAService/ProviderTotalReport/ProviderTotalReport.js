@@ -30,7 +30,7 @@ const ProviderTotalReport = () => {
     fetch(`https://lit-sands-58263.herokuapp.com/api/orders/provideremailorder/${user.email}`)
     .then(res=>res.json())
     .then(data=>setOrders(data))
-  })
+  },[])
 
 
   // total earning 
@@ -50,7 +50,7 @@ const ProviderTotalReport = () => {
     fetch(`https://lit-sands-58263.herokuapp.com/api/products/providerservices/${user.email}`)
     .then(res=>res.json())
     .then(data=>setServices(data))
-  })
+  },[])
 
 
 

@@ -58,7 +58,7 @@ const AddProducts = () => {
     fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
-  });
+  },[]);
 
   // multiple images upload in cludanary 
 

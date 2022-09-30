@@ -88,7 +88,7 @@ const ViewProducts = () => {
     fetch("https://lit-sands-58263.herokuapp.com/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  });
+  },[]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

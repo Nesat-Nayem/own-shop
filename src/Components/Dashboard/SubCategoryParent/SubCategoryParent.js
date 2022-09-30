@@ -133,7 +133,7 @@ const SubCategoryParent = () => {
     fetch(`https://lit-sands-58263.herokuapp.com/api/category/singleCategories/${id}`)
       .then((res) => res.json())
       .then((data) => setName(data?.name));
-  });
+  },[]);
 
   const onSubmit = (data) => {
     // console.log(data);
@@ -168,7 +168,7 @@ const SubCategoryParent = () => {
     fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setSubCategory(data?.categoryList));
-  });
+  },[]);
 
   // form sub category
 

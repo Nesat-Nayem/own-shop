@@ -27,7 +27,7 @@ const OverView = () => {
       .then((res) => res.json())
       .then((data) => setOrder(data.reverse()));
       setLoading(false)
-  });
+  },[]);
 
   // table state
 

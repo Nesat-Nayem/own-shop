@@ -15,7 +15,7 @@ const FeaturedServices = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://lit-sands-58263.herokuapp.com/api/products/getProduct")
+      .get("https://energetic-pear-threads.cyclic.app/api/products/getProduct")
       .then((res) => setServices(res.data))
 
       .finally(setLoading(false));

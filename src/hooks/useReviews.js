@@ -10,7 +10,7 @@ const useReviews = () => {
   };
 
   useEffect(() => {
-    loadBlogs("https://lit-sands-58263.herokuapp.com/api/postreview");
+    loadBlogs("https://energetic-pear-threads.cyclic.app/api/postreview");
   }, [reviews]);
 
   return { reviews };

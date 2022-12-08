@@ -27,7 +27,7 @@ const OrdersTableRow = ({ data }) => {
       status: 'approve'
 }
     // console.log(id)
-    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/status/${id}`,
+    fetch(`https://energetic-pear-threads.cyclic.app/api/orders/status/${id}`,
       {
         method: 'PUT',
         headers: {

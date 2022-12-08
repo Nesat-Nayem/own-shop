@@ -85,7 +85,7 @@ const ViewProducts = () => {
   const [reviews, setReviews] = useState("");
 
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/postreview")
+    fetch("https://energetic-pear-threads.cyclic.app/api/postreview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   },[]);

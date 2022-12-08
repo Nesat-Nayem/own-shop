@@ -32,7 +32,7 @@ const PendingProviders = () => {
   // console.log(provider)
   useEffect(() => {
     setLoading(true)
-    fetch("https://lit-sands-58263.herokuapp.com/api/getprovider")
+    fetch("https://energetic-pear-threads.cyclic.app/api/getprovider")
       .then((res) => res.json())
       .then((data) => setProvider(data.reverse()));
       setLoading(false)
@@ -48,7 +48,7 @@ const PendingProviders = () => {
   const [updateprovieremail, setUpdateprovideremail] = useState();
 
   useEffect(() => {
-    fetch(`https://lit-sands-58263.herokuapp.com/api/users/email/${updateprovieremail}`)
+    fetch(`https://energetic-pear-threads.cyclic.app/api/users/email/${updateprovieremail}`)
       .then((res) => res.json())
       .then((data) => setUserstatusupdate(data[0]._id));
   });
@@ -57,7 +57,7 @@ const PendingProviders = () => {
   const [pupdateid, setpupdateid] = useState("");
   // console.log(pupdateid)
   useEffect(() => {
-    fetch(`https://lit-sands-58263.herokuapp.com/api/getproviderid/${pupdateid}`)
+    fetch(`https://energetic-pear-threads.cyclic.app/api/getproviderid/${pupdateid}`)
       .then((res) => res.json())
       .then((data) => setUpdateprovideremail(data[0].email));
   });
@@ -92,7 +92,7 @@ const PendingProviders = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://lit-sands-58263.herokuapp.com/api/deleteProvider/${id}`, {
+        fetch(`https://energetic-pear-threads.cyclic.app/api/deleteProvider/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -117,7 +117,7 @@ const PendingProviders = () => {
   // console.log("outsite email", eremail);
 
   useEffect(() => {
-    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/provideremailorder/${eremail}`)
+    fetch(`https://energetic-pear-threads.cyclic.app/api/orders/provideremailorder/${eremail}`)
       .then((res) => res.json())
       .then((data) => setEarning(data));
   });

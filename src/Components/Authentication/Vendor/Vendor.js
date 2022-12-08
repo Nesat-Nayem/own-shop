@@ -59,7 +59,7 @@ const Vendor = () => {
     };
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/users/signup", userInfo)
+      .post("https://energetic-pear-threads.cyclic.app/api/users/signup", userInfo)
       .then((response) => {
         dispatch(signin(response.data));
       })
@@ -69,7 +69,7 @@ const Vendor = () => {
       });
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/createprovider", userInfo)
+      .post("https://energetic-pear-threads.cyclic.app/api/createprovider", userInfo)
       .then((response) => {
         dispatch(signin(response.data));
         console.log(response.data);

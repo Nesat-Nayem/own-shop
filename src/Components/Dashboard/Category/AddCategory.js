@@ -55,7 +55,7 @@ const AddCategory = () => {
     console.log(userinfo);
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/category/create", userinfo)
+      .post("https://energetic-pear-threads.cyclic.app/api/category/create", userinfo)
       .then(function (response) {
         console.log("success", response);
 
@@ -79,7 +79,7 @@ const AddCategory = () => {
   const [newCategory, setnewCategory] = useState([""]);
   // console.log(newCategory)
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
+    fetch("https://energetic-pear-threads.cyclic.app/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setnewCategory(data.categoryList));
   },[]);

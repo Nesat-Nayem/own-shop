@@ -47,7 +47,13 @@ const AdminReports = () => {
   // console.log('filterdata',filterData);
   const {allOrder,getLoad} = useSelector(allData)
   // console.log('redux admin report',getLoad)
-  // console.log('redux admin report',allOrder)
+  console.log('redux admin report',allOrder)
+
+  // useEffect(()=>{
+  //   fetch('https://energetic-pear-threads.cyclic.app/api/orders/allorder')
+  //   .then(res => res.json())
+  //   .
+  // })
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -112,7 +118,7 @@ const AdminReports = () => {
  }
 
  useEffect(()=>{
-  fetch(`https://lit-sands-58263.herokuapp.com/api/orders/category/${category}`)
+  fetch(`https://energetic-pear-threads.cyclic.app/api/orders/category/${category}`)
   .then(res=>res.json())
   .then(data=>setFilterData(data))
  },[category])

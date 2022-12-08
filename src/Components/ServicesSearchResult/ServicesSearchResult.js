@@ -23,7 +23,7 @@ const ServicesSearchResult = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://lit-sands-58263.herokuapp.com/api/products/getProduct")
+    fetch("https://energetic-pear-threads.cyclic.app/api/products/getProduct")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

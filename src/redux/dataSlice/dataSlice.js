@@ -14,7 +14,7 @@ const initialState = {
 
 export const getAllOrders = createAsyncThunk("order/getAllOrders", async () => {
   const response = await axios.get(
-    `https://lit-sands-58263.herokuapp.com/api/orders/allorder`
+    `https://energetic-pear-threads.cyclic.app/api/orders/allorder`
   );
   return response.data.reverse();
 });
@@ -22,7 +22,7 @@ export const getAllServices = createAsyncThunk(
   "order/getAllServices",
   async () => {
     const response = await axios.get(
-      `https://lit-sands-58263.herokuapp.com/api/products/getProduct`
+      `https://energetic-pear-threads.cyclic.app/api/products/getProduct`
     );
     // console.log('all service from redux',response.data)
     return response.data;
@@ -31,7 +31,7 @@ export const getAllServices = createAsyncThunk(
 export const userOrder = createAsyncThunk("order/userOrder", async (id) => {
   // console.log('hey from reux', id)
   const response = await axios.get(
-    `https://lit-sands-58263.herokuapp.com/api/orders/user/${id}`
+    `https://energetic-pear-threads.cyclic.app/api/orders/user/${id}`
   );
   // console.log('hey from reux', response.data)
   return response.data;

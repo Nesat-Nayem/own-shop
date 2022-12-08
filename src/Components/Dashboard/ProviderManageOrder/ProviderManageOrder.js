@@ -12,7 +12,7 @@ const ProviderManageOrder = () => {
     console.log(loading)
     useEffect(() => {
         setLoading(true);
-        axios.get(`https://lit-sands-58263.herokuapp.com/api/orders/provideremailorder/${user.email}`)
+        axios.get(`https://energetic-pear-threads.cyclic.app/api/orders/provideremailorder/${user.email}`)
             .then(res => setAllOrders(res.data))
 
             .finally(() => setLoading(false));

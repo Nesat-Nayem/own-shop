@@ -52,7 +52,7 @@ const VendorReports = () => {
   const user = useSelector((state) => state.user.user);
   console.log(user);
   useEffect(() => {
-    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/provideremailorder/${user.email}`)
+    fetch(`https://energetic-pear-threads.cyclic.app/api/orders/provideremailorder/${user.email}`)
       .then((res) => res.json())
 
       .then((data) => setAttendances(data.reverse()));

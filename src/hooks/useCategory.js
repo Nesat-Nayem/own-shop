@@ -10,7 +10,7 @@ const useCategory = () => {
   };
 
   useEffect(() => {
-    loadBlogs("https://lit-sands-58263.herokuapp.com/api/category/getcategories");
+    loadBlogs("https://energetic-pear-threads.cyclic.app/api/category/getcategories");
   }, [categories]);
 
   return { categories };

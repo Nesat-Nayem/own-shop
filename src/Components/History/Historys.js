@@ -47,7 +47,7 @@ const Historys = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`https://lit-sands-58263.herokuapp.com/api/orders/user/${user._id}`)
+    fetch(`https://energetic-pear-threads.cyclic.app/api/orders/user/${user._id}`)
       .then((res) => res.json())
       .then((data) => setAttendances(data.reverse()));
       setLoading(false)

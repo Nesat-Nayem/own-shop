@@ -22,7 +22,7 @@ const PopularServices = () => {
 
   useEffect(() => {
     setLoading(true);
-    const api = `https://lit-sands-58263.herokuapp.com/api/products/getProduct`;
+    const api = `https://energetic-pear-threads.cyclic.app/api/products/getProduct`;
     axios.get(api).then((res) => {
       setProviders(res.data);
       setLoading(false);

@@ -38,7 +38,7 @@ const AddProducts = () => {
     console.log(serviceinfo);
 
     axios
-      .post("https://lit-sands-58263.herokuapp.com/api/products/postProduct", serviceinfo)
+      .post("https://energetic-pear-threads.cyclic.app/api/products/postProduct", serviceinfo)
       .then((response) => {
         console.log(response.data);
 
@@ -55,7 +55,7 @@ const AddProducts = () => {
 
   const [loadCategory, setLoadCategory] = useState([""]);
   useEffect(() => {
-    fetch("https://lit-sands-58263.herokuapp.com/api/category/getcategories")
+    fetch("https://energetic-pear-threads.cyclic.app/api/category/getcategories")
       .then((res) => res.json())
       .then((data) => setLoadCategory(data.categoryList));
   },[]);
@@ -75,7 +75,7 @@ const AddProducts = () => {
     }
 
     console.log("for check images", formData);
-    fetch("https://lit-sands-58263.herokuapp.com/media", {
+    fetch("https://energetic-pear-threads.cyclic.app/media", {
       method: "post",
       body: formData,
     })

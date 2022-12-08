@@ -39,9 +39,9 @@ const AdminChart = () => {
   });
   useEffect(() => {
     setLoading(true);
-    let one = "https://lit-sands-58263.herokuapp.com/api/orders/allorder";
-    let two = "https://lit-sands-58263.herokuapp.com/api/getprovider";
-    let three = "https://lit-sands-58263.herokuapp.com/api/products/getProduct";
+    let one = "https://energetic-pear-threads.cyclic.app/api/orders/allorder";
+    let two = "https://energetic-pear-threads.cyclic.app/api/getprovider";
+    let three = "https://energetic-pear-threads.cyclic.app/api/products/getProduct";
     const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
     const requestThree = axios.get(three);
